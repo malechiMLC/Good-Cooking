@@ -1,0 +1,5 @@
+<!--custom-components/buttonflow/buttonflow.wxml-->
+<view class="flex-column border">
+  <view class="blank"></view>
+  <view class="title-view"><text class="title-text">{{label}}</text></view>
+</view>

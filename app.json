@@ -1,7 +1,9 @@
 {
   "pages": [
-    "components/card/card",
+    "pages/search/search",
+    "pages/searchResult/searchResult",
     "pages/index/index"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
