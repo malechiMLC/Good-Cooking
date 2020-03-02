@@ -32,8 +32,32 @@ App({
         }
       }
     })
+    //获取设备信息
+    wx.getSystemInfo({
+      success: res => {
+        // console.log(res.pixelRatio)     //设备像素比
+        // console.log(res.windowWidth)    //可使用窗口宽度，单位px
+        // console.log(res.windowHeight)   //可使用窗口高度，单位px
+        // console.log(res.statusBarHeight)    //状态栏的高度，单位px
+        // console.log(res.width)    //安全区域的宽度，单位逻辑像素
+        // console.log(res.height)   //安全区域的高度，单位逻辑像素
+
+        this.globalData.windowWidth = res.windowWidth
+        this.globalData.windowHeight = res.windowHeight
+        this.globalData.statusBarHeight = res.statusBarHeight
+        this.globalData.safeWidth = res.width
+        this.globalData.safeHeight = res.height
+
+      }
+    })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    windowWidth:0,    //可使用窗口宽度，单位px
+    windowHeight:0,   //可使用窗口高度，单位px
+    statusBarHeight:0,    //状态栏的高度，单位px
+    safeWidth:0,    //安全区域的宽度，单位逻辑像素
+    safeHeight:0,   //安全区域的高度，单位逻辑像素
+
   }
 })
