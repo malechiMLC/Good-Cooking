@@ -47,12 +47,14 @@ App({
         this.globalData.statusBarHeight = res.statusBarHeight
         this.globalData.safeWidth = res.width
         this.globalData.safeHeight = res.height
-
       }
     })
   },
   globalData: {
     userInfo: null,
+
+    // 适配：微信定义所有屏幕宽度都为750rpx，screenWidth为手机屏幕的实际的宽度（单位px）
+    // 1rpx=（screenWidth / 750）px
     windowWidth:0,    //可使用窗口宽度，单位px
     windowHeight:0,   //可使用窗口高度，单位px
     statusBarHeight:0,    //状态栏的高度，单位px

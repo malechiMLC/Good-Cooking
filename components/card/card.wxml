@@ -1,0 +1,33 @@
+<!--components/card/card.wxml-->
+<view class="flex-row" >
+<view wx:for="{{infoArray}}" wx:for-item="item">
+
+<view class="card">
+  <view class="total-content flex-column">
+    <view class="image-view"><image class="image-bg" mode="aspectFill" src="{{item.bgUrl}}"></image></view>
+    <view class="title-view ver-center"><text class="title-text">{{item.title}}</text></view>
+    <view class="info-view flex-row">
+      <view class="avartar-view ver-center"><image class="image-avatar" mode="aspectFill" src="{{item.avatarUrl}}"></image></view>
+      <view class="author-view ver-center"><text class="author-text">{{item.author}}</text></view>
+      <view class="like-view ver-center">
+        <image class="image-like" mode="aspectFill" src="/images/Like.png"></image>
+        <text class="author-text">{{item.likeNum}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+</view>
+
+
+
+
+
+
+
+
+
+
+</view>
+
+
