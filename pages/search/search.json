@@ -1,6 +1,6 @@
 {
   "usingComponents": {
     "searchbar":"/components/searchbar/searchbar",
-    "buttonflow":"/components/buttonflow/buttonflow"
+    "buttonflow":"/custom-components/buttonflow/buttonflow"
    }
 }
