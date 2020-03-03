@@ -1,9 +1,9 @@
 {
-  "pages": [
+  "pages": ["pages/sharelist/share",
     "pages/search/search",
     "pages/searchResult/searchResult",
-    "pages/index/index"
     
+    "pages/index/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

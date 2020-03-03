@@ -1,0 +1,4 @@
+<!--pages/sharelist/share.wxml-->
+
+
+<cards infoArray="{{infoArray}}"/>

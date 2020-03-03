@@ -8,27 +8,7 @@ Page({
    */
   data: {
     keyword:'搜索关键词',
-    infoArray:[
-      {
-        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
-        text:"这里是内容",
-        avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-        author:"作者名",
-        likeNum:'2000'
-      },{
-        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
-        text:"这里是标题",
-        avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-        author:"作者名",
-        likeNum:'2000'
-      },{
-        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
-        text:"这里是标题",
-        avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-        author:"作者名",
-        likeNum:'2000'
-      }
-    ]
+    
   },
 
   /**
@@ -60,11 +40,10 @@ Page({
     //     var temp_array=[]
     //     for(var i=0;i<res.length;i++){
     //       var obj
-    //       obj.author=res[i].name
-    //       obj.bgUrl=res[i].images[0]
-    //       obj.text=res[i].text
-    //       obj.avatarUrl=res[i].profile
-    //       obj.likeNum=res[i].images.length*10+1     //fake likeNum
+    //       obj.timeNeeded=res.recipes[i].timeNeeded
+    //       obj.bgUrl=res.recipes[i].image
+    //       obj.text=res.recipes[i].name
+    //       obj.difficulty=res.recipes[i].difficulty
 
     //       temp_array.push(obj)
     //     }

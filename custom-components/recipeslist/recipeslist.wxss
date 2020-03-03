@@ -1,0 +1,97 @@
+/* custom-components/recipesList/recipeslist.wxss */
+.card{
+  width: 370rpx;
+  height: 500rpx;
+}
+
+.border{
+  border: 2rpx solid black;
+}
+
+.flex-row{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.flex-column{
+  display: flex;
+  flex-direction: column;
+}
+
+.hori-center{
+  display: flex;
+  justify-content: center;
+}
+
+.ver-center{
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+.total-content{
+  width: 330rpx;
+  height:93% ;
+  position: relative;
+  left: 25rpx;
+}
+
+.image-view{
+  width: 100%;
+  height: 75%;
+}
+
+.image-bg{
+  width: 100%;
+  height: 100%;
+  border-radius:13px;
+}
+
+.info-view{
+  width: 100%;
+  height: 25%;
+}
+
+.title-view{
+  width: 100%;
+  height: 40%;
+}
+
+.title-text{
+  font-size: medium;
+}
+
+/* .avartar-view{
+  width: 15%;
+  height: 100%;
+} */
+
+.author-view{
+  width: 50%;
+  height: 100%;
+}
+
+.like-view{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.image-avatar{
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 25px;
+}
+
+.author-text{
+  font-size: small;
+}
+
+.image-like{
+  width: 25rpx;
+  height: 25rpx;
+  position: relative;
+  right: 10rpx;
+}

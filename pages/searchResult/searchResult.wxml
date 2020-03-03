@@ -3,4 +3,4 @@
 
 <view class="blank"></view>
 
-<cards infoArray="{{infoArray}}"/>
+<recipies/>
