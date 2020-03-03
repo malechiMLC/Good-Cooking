@@ -1,4 +1,8 @@
 <!--pages/sharelist/share.wxml-->
+<searchbar bindfocus="tosearch"></searchbar>
 
+<view class="blank"></view>
 
 <cards infoArray="{{infoArray}}"/>
+
+<image class='camera' src='/images/camera.png' bindtap='towrite'></image>

@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "cards":"/custom-components/card/card"
-  }
+    "cards":"/custom-components/card/card",
+    "searchbar":"/components/searchbar/searchbar"
+  },
+  "navigationBarTitleText": "动态"
 }

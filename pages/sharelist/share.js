@@ -60,6 +60,20 @@ Page({
     // })
   },
 
+  tosearch:function(){
+    wx.navigateTo({
+      url: '/pages/search/search',
+      success: function(res) {
+        
+      }
+    })
+  },
+
+  towrite:function(){
+    //跳转到写文章界面
+    console.log("跳转到写文章界面")
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
