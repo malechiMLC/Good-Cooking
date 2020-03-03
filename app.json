@@ -8,7 +8,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "做好饭",
     "navigationBarTextStyle": "black"
   },
   "style": "v2",
@@ -30,7 +30,7 @@
         "text": "动态"
       },
       {
-        "pagePath": "pages/sharelist/share",
+        "pagePath": "pages/index/index",
         "iconPath":"/images/me.png",
         "selectedIconPath":"/images/me-active.png",
         "text": "我的"

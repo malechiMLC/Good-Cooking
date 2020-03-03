@@ -62,18 +62,18 @@
   font-size: medium;
 }
 
-/* .avartar-view{
+.avartar-view{
   width: 15%;
   height: 100%;
-} */
+}
 
 .author-view{
-  width: 50%;
+  width: 40%;
   height: 100%;
 }
 
 .like-view{
-  width: 50%;
+  width: 45%;
   height: 100%;
   display: flex;
   justify-content: flex-end;
