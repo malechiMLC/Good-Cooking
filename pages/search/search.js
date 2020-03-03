@@ -7,8 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    historyKeyword:['茄子','早餐','晚餐','排骨','茄子','早餐','晚餐','排骨','茄子','早餐','晚餐','排骨','茄子','早餐','晚餐','排骨'],
-    hotWords:['茄子','早餐','晚餐','排骨','茄子','早餐','晚餐','排骨']
+    historyWords:['茄子','早餐','晚餐','排骨','早餐','晚餐','排骨','茄子','早餐','晚餐','排骨','茄子','早餐','晚餐','排骨'],
+    hotWords:['茄子','早餐','晚餐','排骨','早餐','晚餐','排骨']
   },
 
   /**
@@ -31,7 +31,7 @@ Page({
     //   },
     //   success(res) {
     //    this.setData({
-    //      historyKeyword:res.histories
+    //      historyWords:res.histories
     //    })
     //   }
     // })
@@ -81,10 +81,19 @@ Page({
       url: '/pages/searchResult/searchResult',
       success: function(res) {
         // 通过eventChannel向被打开页面传送数据
-        res.eventChannel.emit('acceptDataFromOpenerPage', { data: keyword_send })
+        res.eventChannel.emit('acceptDataFromOpenerPage', { data: e.detail.item.text })
       }
     })
 
+  },
+
+  sendKeyword:function(e){
+    wx.navigateTo({
+      url: '/pages/searchResult/searchResult',
+      success: function(res) {
+        res.eventChannel.emit('acceptDataFromOpenerPage', { data: e.detail })
+      }
+    })
   },
 
   /**

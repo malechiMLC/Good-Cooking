@@ -1,4 +1,5 @@
 <!--pages/search/search.wxml-->
 <searchbar focus="true" bindselectresult="selectResult" search="{{search}}"></searchbar>
 
-<buttonflow/>
+<buttonflow label="历史搜索" words="{{historyWords}}" bind:sendKeyword="sendKeyword"/>
+<buttonflow label="热搜推荐" words="{{hotWords}}"/>
