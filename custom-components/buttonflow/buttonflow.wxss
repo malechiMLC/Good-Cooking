@@ -45,6 +45,8 @@
 
 .title-text{
   font-size: medium;
+  font-weight: 600;
+  color: #bbbbbb;
 }
 
 .buttons-view{
@@ -56,7 +58,7 @@
 }
 
 .total-button{
-  height: 90rpx;
+  height: 110rpx;
 }
 
 .space{
@@ -65,14 +67,22 @@
 }
 
 .button{
+  /*background-color: #FF8EAC;
+  font-size: 28rpx;
   border-radius: 25px;
-  height: 60rpx;
+  color:white;
+  margin-left: 0rpx;
+  padding-left: 0rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+   border-radius: 25px;
+  height: 80rpx;
+  line-height: 80rpx;
   font-size: xx-small;
-  font-weight: 400;
+  font-weight: 400; */
 }
 
 .blank3{
   width: 40rpx;
-  height: 60rpx;
-
+  height: 100rpx;
 }

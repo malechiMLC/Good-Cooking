@@ -1,5 +1,5 @@
 <!--pages/searchResult/searchResult.wxml-->
-<searchbar focus="true" value="{{keyword}}" search="{{search}}" confirm-type='搜索' bindconfirm="{{confirm}}"></searchbar>
+<searchbar focus="true" value="{{keyword}}" search="{{search}}" bindclear="navigateBack"></searchbar>
 
 <view class="blank"></view>
 
