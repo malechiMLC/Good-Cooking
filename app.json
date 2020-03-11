@@ -3,7 +3,8 @@
     "pages/sharelist/share",
     "pages/searchResult/searchResult",
     "pages/search/search",
-    "pages/index/index"
+    "pages/index/index",
+    "pages/home/home"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -18,7 +19,7 @@
     "selectedColor":"#515151",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/home/home",
         "iconPath":"/images/home.png",
         "selectedIconPath":"/images/home-active.png",
         "text": "首页"
