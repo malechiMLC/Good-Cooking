@@ -1,0 +1,6 @@
+<!--pages/searchResult/searchResult.wxml-->
+<searchbar focus="true" value="{{keyword}}" search="{{search}}" bindclear="navigateBack"></searchbar>
+
+<view class="blank"></view>
+
+<recipies infoArray="{{infoArray}}"/>

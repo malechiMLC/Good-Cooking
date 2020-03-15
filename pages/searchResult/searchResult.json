@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "searchbar":"/components/searchbar/searchbar",
+    "recipies":"/custom-components/recipeslist/recipeslist"
+  },
+  "navigationBarTitleText": "食谱"
+}

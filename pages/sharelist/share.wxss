@@ -1,0 +1,14 @@
+/* pages/sharelist/share.wxss */
+.blank{
+  width: 100%;
+  height: 60rpx;
+}
+
+.camera{
+  float: right;
+  position: fixed;
+  bottom: 30rpx;
+  right: 20rpx; 
+  width: 120rpx;
+  height: 120rpx;
+}

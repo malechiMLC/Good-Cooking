@@ -1,0 +1,5 @@
+/* pages/searchResult/searchResult.wxss */
+.blank{
+  width: 100%;
+  height: 20rpx;
+}
