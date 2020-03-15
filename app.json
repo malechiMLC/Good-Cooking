@@ -6,7 +6,12 @@
     "pages/sharelist/share",
     "pages/searchResult/searchResult",
     "pages/search/search",
+<<<<<<< HEAD
     "pages/recipe/recipe"
+=======
+    "pages/index/index",
+    "pages/home/home"
+>>>>>>> 21f4624404ca31c31b4177aede8aaaeedaab107b
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -21,9 +26,12 @@
     "selectedColor": "#515151",
     "list": [
       {
-        "pagePath": "pages/index/index",
-        "iconPath": "/images/home.png",
-        "selectedIconPath": "/images/home-active.png",
+<<<<<<< HEAD
+=======
+        "pagePath": "pages/home/home",
+        "iconPath":"/images/home.png",
+        "selectedIconPath":"/images/home-active.png",
+>>>>>>> 21f4624404ca31c31b4177aede8aaaeedaab107b
         "text": "首页"
       },
       {

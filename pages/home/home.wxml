@@ -1,0 +1,19 @@
+<!--pages/home/home.wxml-->
+<view class="page-section page-section-spacing swiper">
+	<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}" interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px">
+		<block wx:for="{{background}}" wx:key="*this">
+			<swiper-item>
+				<view class="swiper-item {{item}}"></view>
+			</swiper-item>
+		</block>
+	</swiper>
+</view>
+
+<view class="page-section">
+	<text>Dishes Today\n推荐菜单</text>
+		<scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%">
+			<view id="demo1" class="scroll-view-item_H demo-text-1"></view>
+			<view id="demo2" class="scroll-view-item_H demo-text-2"></view>
+			<view id="demo3" class="scroll-view-item_H demo-text-3"></view>
+		</scroll-view>
+</view>
