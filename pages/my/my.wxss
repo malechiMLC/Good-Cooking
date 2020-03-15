@@ -1,0 +1,43 @@
+/* pages/my/my.wxss */
+.info-card{
+  height: 240rpx;
+  width: 100%;
+}
+
+.info-top{
+  height: 200rpx;
+  padding: 10rpx 10rpx 0 30rpx;
+}
+
+.info-avater{
+  height:180rpx;
+  width: 180rpx;
+  border-radius: 50%;
+  background-color:rgb(108, 189, 255);
+}
+
+.info-detail{
+  align-items:center;
+}
+
+.info-btm{
+  width: 750rpx;
+  font-size: 13px;
+}
+
+.info-sex{
+  height:40rpx;
+  width:40rpx;
+  padding-top:6rpx;
+  padding-left:20rpx;
+}
+
+.flex-column{
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row{
+  display: flex;
+  flex-direction: row;
+}

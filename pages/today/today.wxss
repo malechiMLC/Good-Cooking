@@ -1,0 +1,30 @@
+/* pages/today/today.wxss */
+.today-page{
+  height:100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.cell{
+  height:33%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.foods-title{
+  font-weight:bold;
+  font-size:18px;
+  text-align: left;
+}
+
+.foods{
+  height: 95%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+

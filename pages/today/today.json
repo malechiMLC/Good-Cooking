@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "foodlist": "/custom-components/foodlist/foodlist"
+  },
+  "navigationBarTitleText": "今日三餐"
+}

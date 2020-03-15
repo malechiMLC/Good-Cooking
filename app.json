@@ -1,9 +1,12 @@
 {
   "pages": [
+    "pages/index/index",
+    "pages/my/my",
+    "pages/today/today",
     "pages/sharelist/share",
     "pages/searchResult/searchResult",
     "pages/search/search",
-    "pages/index/index"
+    "pages/recipe/recipe"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -14,25 +17,25 @@
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "tabBar": {
-    "color":"#cecece",
-    "selectedColor":"#515151",
+    "color": "#cecece",
+    "selectedColor": "#515151",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath":"/images/home.png",
-        "selectedIconPath":"/images/home-active.png",
+        "iconPath": "/images/home.png",
+        "selectedIconPath": "/images/home-active.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/sharelist/share",
-        "iconPath":"/images/share.png",
-        "selectedIconPath":"/images/share-active.png",
+        "iconPath": "/images/share.png",
+        "selectedIconPath": "/images/share-active.png",
         "text": "动态"
       },
       {
-        "pagePath": "pages/index/index",
-        "iconPath":"/images/me.png",
-        "selectedIconPath":"/images/me-active.png",
+        "pagePath": "pages/my/my",
+        "iconPath": "/images/me.png",
+        "selectedIconPath": "/images/me-active.png",
         "text": "我的"
       }
     ]

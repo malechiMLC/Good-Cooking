@@ -12,9 +12,17 @@ Page({
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
-      url: '../logs/logs'
+      url: '../log/log'
     })
   },
+
+  //今日三餐
+  todayTap: function () {
+    wx.redirectTo({
+      url: '../today/today',
+    })
+  },
+
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({

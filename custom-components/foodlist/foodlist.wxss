@@ -1,0 +1,45 @@
+/* custom-components/foodlist/foodlist.wxss */
+.foodlist{
+  height: 300rpx;
+  width: 100%;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+}
+.food-item{
+  height: 100%;
+  width: 30%;
+  padding-right:18rpx;
+  text-align: center;
+  display: inline-block;
+}
+.food-name{
+  font-size: 12px;
+}
+.food-img{
+  height: 85%;
+  width: 100%;
+  border-radius: 10%;
+  background-color: #eee;
+}
+.foodlist{
+  height: 300rpx;
+  width: 100%;
+  justify-content: space-around;
+}
+.food-item{
+  height: 100%;
+  width: 30%;
+  align-items: center;
+}
+.food-name{
+  font-size: 12px;
+  width: 100%;
+  display: block;
+  
+}
+.food-img{
+  height: 85%;
+  border-radius: 10%;
+}

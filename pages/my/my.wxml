@@ -1,0 +1,39 @@
+<!--pages/my/my.wxml-->
+
+<!--个人信息部分-->
+<view class="info-card flex-column">
+  <view class="info-top flex-row">
+      <image class="info-avater" src="{{userInfo.avatarUrl}}"></image>
+      <view style="padding-left:10rpx;padding-top:18rpx;width:500rpx;">
+         <view style="width:100%;height:25%;display:flex;flex-direction:row;">
+           <text style="font-size: 14px;font-weight:bold;">{{name}}</text>
+           <image wx:if="{{sex=='female'}}" class="info-sex" src='/images/home.png'></image>
+          <image wx:elif="{{sex=='male'}}" class="info-sex" src='/images/share.png'></image>
+          <image wx:else class="info-sex" src='/images/me.png'></image>
+          </view>
+         <view style="width:100%;height:60%;display:flex;flex-direction:row;justify-content: space-around;padding-top:15rpx;">
+            <view class="info-detail flex-column">
+              <text style="font-size:13px">following</text>
+              <text style="font-size:12px">{{followingnum}}</text>
+            </view>
+            <view class="info-detail flex-column">
+              <text style="font-size:13px">followers</text>
+              <text style="font-size:12px">{{followernum}}</text>
+            </view>
+            <view class="info-detail flex-column">
+              <text style="font-size:13px">likes</text>
+              <text style="font-size:12px">{{likenum}}</text>
+            </view>
+          </view>
+      
+      
+      </view>
+  </view>
+  <view class="info-btm flex-row">
+  <text style="width:600rpx;padding-left:50rpx;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;color:#aaa;">{{talk}}</text>
+  <view style="padding-left:20rpx;text-decoration:underline;color:rgb(108, 189, 255)" bindtap="infoBindTap">修改</view>
+  </view>
+</view>
+
+<!--浏览历史等部分-->
+<text>pages/my/my.wxml</text>

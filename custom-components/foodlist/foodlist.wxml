@@ -1,0 +1,7 @@
+<!--custom-components/foodlist/foodlist.wxml-->
+<scroll-view class="foodlist flex-row" scroll-x="true">
+  <view class="food-item flex-column" wx:for="{{infoArray}}" wx:for-item="item">
+    <image class="food-img" src="{{item.img}}"></image> 
+    <text class="food-name">{{item.name}}</text>
+  </view>
+</scroll-view>
