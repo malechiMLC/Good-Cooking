@@ -10,6 +10,7 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        console.log(res)
       }
     })
     // 获取用户信息
@@ -52,7 +53,9 @@ App({
   },
   globalData: {
     userInfo: null,
-
+    openId: null,
+    server: "https://csquare.wang/",
+    imgBase: 'cloud://env-3n8tl.656e-env-3n8tl-1301584149/',
     // 适配：微信定义所有屏幕宽度都为750rpx，screenWidth为手机屏幕的实际的宽度（单位px）
     // 1rpx=（screenWidth / 750）px
     windowWidth:0,    //可使用窗口宽度，单位px

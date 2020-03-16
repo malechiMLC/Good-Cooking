@@ -1,5 +1,7 @@
 // pages/home/home.js
 const order = ['demo1', 'demo2', 'demo3']
+const app = getApp()
+var date = new Date();
 
 Page({
 
@@ -24,14 +26,31 @@ Page({
     previousMargin: 10,
     // 后边距，可用于露出后一项的一小部分
     nextMargin: 10,
-
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if(app.globalData.openId == null){
+      console.log('没有openid')
+      console.log(date)
+    }
+    else{
+      wx.request({
+        url: 'csquare.wang/recipe/recommendation', 
+        data: {
+          openid: '',
+          time: ''
+        },
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success (res) {
+          console.log(res.data)
+        }
+      })
+    }
   },
 
   /**

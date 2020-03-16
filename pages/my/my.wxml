@@ -1,39 +1,108 @@
 <!--pages/my/my.wxml-->
 
 <!--个人信息部分-->
-<view class="info-card flex-column">
-  <view class="info-top flex-row">
-      <image class="info-avater" src="{{userInfo.avatarUrl}}"></image>
-      <view style="padding-left:10rpx;padding-top:18rpx;width:500rpx;">
-         <view style="width:100%;height:25%;display:flex;flex-direction:row;">
-           <text style="font-size: 14px;font-weight:bold;">{{name}}</text>
-           <image wx:if="{{sex=='female'}}" class="info-sex" src='/images/home.png'></image>
-          <image wx:elif="{{sex=='male'}}" class="info-sex" src='/images/share.png'></image>
-          <image wx:else class="info-sex" src='/images/me.png'></image>
-          </view>
-         <view style="width:100%;height:60%;display:flex;flex-direction:row;justify-content: space-around;padding-top:15rpx;">
-            <view class="info-detail flex-column">
-              <text style="font-size:13px">following</text>
-              <text style="font-size:12px">{{followingnum}}</text>
-            </view>
-            <view class="info-detail flex-column">
-              <text style="font-size:13px">followers</text>
-              <text style="font-size:12px">{{followernum}}</text>
-            </view>
-            <view class="info-detail flex-column">
-              <text style="font-size:13px">likes</text>
-              <text style="font-size:12px">{{likenum}}</text>
-            </view>
-          </view>
-      
-      
-      </view>
-  </view>
-  <view class="info-btm flex-row">
-  <text style="width:600rpx;padding-left:50rpx;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;color:#aaa;">{{talk}}</text>
-  <view style="padding-left:20rpx;text-decoration:underline;color:rgb(108, 189, 255)" bindtap="infoBindTap">修改</view>
-  </view>
+<!-- <view class="info-card flex-column">
+	<view class="info-top flex-row">
+		<image class="info-avater" src="{{userInfo.avatarUrl}}"></image>
+		<view style="padding-left:10rpx;padding-top:18rpx;width:500rpx;">
+			<view style="width:100%;height:25%;display:flex;flex-direction:row;">
+				<text style="font-size: 14px;font-weight:bold;">{{name}}</text>
+				<image wx:if="{{sex=='female'}}" class="info-sex" src='/images/home.png'></image>
+				<image wx:elif="{{sex=='male'}}" class="info-sex" src='/images/share.png'></image>
+				<image wx:else class="info-sex" src='/images/me.png'></image>
+			</view>
+			<view style="width:100%;height:60%;display:flex;flex-direction:row;justify-content: space-around;padding-top:15rpx;">
+				<view class="info-detail flex-column">
+					<text style="font-size:13px">following</text>
+					<text style="font-size:12px">{{followingnum}}</text>
+				</view>
+				<view class="info-detail flex-column">
+					<text style="font-size:13px">followers</text>
+					<text style="font-size:12px">{{followernum}}</text>
+				</view>
+				<view class="info-detail flex-column">
+					<text style="font-size:13px">likes</text>
+					<text style="font-size:12px">{{likenum}}</text>
+				</view>
+			</view>
+
+
+		</view>
+	</view>
+	<view class="info-btm flex-row">
+		<text style="width:600rpx;padding-left:50rpx;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;color:#aaa;">{{talk}}</text>
+		<view style="padding-left:20rpx;text-decoration:underline;color:rgb(108, 189, 255)" bindtap="infoBindTap">修改</view>
+	</view>
 </view>
 
-<!--浏览历史等部分-->
-<text>pages/my/my.wxml</text>
+<view class="spacing"></view> -->
+
+<scroll-view scroll-y class="scrollPage">
+
+	<view class="UCenter-bg bg-gradual-red">
+
+		<view class='cu-avatar xl margin-bottom round'>
+			<image class="cu-avatar round xl bg-white" src="{{profile}}"></image>
+		</view>
+		<view class="margin-top-xs">
+			<text class="text-xl bold">{{name}}</text>
+		</view>
+		<image src="{{imgBase}}wave.gif" mode="scaleToFill" class="gif-wave"></image>
+	</view>
+
+	<view class="padding flex text-center text-grey bg-white shadow-warp">
+
+		<view class="flex flex-sub flex-direction solid-right">
+			<text class="cuIcon-homefill"></text> 已发布文章
+			<view class="margin-top-sm">
+				<view class="text-xl text-orange">{{todayCalories}}篇</view>
+			</view>
+
+		</view>
+
+		<view class="flex flex-sub flex-direction solid-right">
+			<text class="cuIcon-rankfill"></text> 已获得赞数
+			<view class="margin-top-sm">
+				<view class="text-xl text-blue">{{todaySteps}}赞</view>
+			</view>
+		</view>
+
+	</view>
+
+	<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+		
+    <view class="cu-item arrow">
+			<button class="cu-btn content" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
+				<text class="cuIcon-people text-green"></text>
+				<text class="text-grey">授权登录</text>
+			</button>
+		</view>
+
+		<view class="cu-item arrow">
+			<view class="content" url="/pages/my/log/log" bindtap="NavToInfo">
+				<text class="cuIcon-formfill text-blue"></text>
+				<text class="text-grey text-bold">个人信息</text>
+			</view>
+		</view>
+
+
+		<view class="cu-item arrow">
+			<navigator class="content" url="/pages/others/about/about" hover-class="none">
+				<text class="cuIcon-apps text-orange"></text>
+				<text class="text-grey text-bold">关于我们</text>
+			</navigator>
+		</view>
+
+		<view class="cu-item arrow">
+			<button class="cu-btn content" bindtap='showLogout'>
+				<text class="cuIcon-exit text-red"></text>
+				<text class="text-grey">退出登录</text>
+			</button>
+		</view>
+
+	</view>
+	<view class="cu-tabbar-height"></view>
+</scroll-view>
+
+<!-- 浏览历史等部分 -->
+<!-- <text>pages/my/my.wxml</text> -->

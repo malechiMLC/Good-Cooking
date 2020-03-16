@@ -1,13 +1,12 @@
 {
   "pages": [
-    "pages/index/index",
+    "pages/home/home",
     "pages/my/my",
     "pages/today/today",
     "pages/sharelist/share",
     "pages/searchResult/searchResult",
     "pages/search/search",
-    "pages/recipe/recipe",
-    "pages/home/home"
+    "pages/recipe/recipe"
   ],
   "window": {
     "backgroundTextStyle": "light",

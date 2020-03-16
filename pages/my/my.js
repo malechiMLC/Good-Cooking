@@ -13,6 +13,7 @@ Page({
     followingnum: "111",
     followernum: "222",
     likenum: "333",
+    imgBase: app.globalData.imgBase
   },
 
   //事件处理函数
