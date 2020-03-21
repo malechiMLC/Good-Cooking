@@ -32,25 +32,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(app.globalData.openId == null){
-      console.log('没有openid')
-      console.log(date)
-    }
-    else{
-      wx.request({
-        url: 'csquare.wang/recipe/recommendation', 
-        data: {
-          openid: '',
-          time: ''
-        },
-        header: {
-          'content-type': 'application/json' // 默认值
-        },
-        success (res) {
-          console.log(res.data)
-        }
-      })
-    }
+    //程序的首页 所以一开始加载，也只会加载一次，可以用来处理登录
+    
   },
 
   /**
@@ -74,7 +57,25 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if(app.globalData.openId == null){
+      console.log('没有openid')
+      console.log(date)
+    }
+    else{
+      wx.request({
+        url: 'csquare.wang/recipe/recommendation', 
+        data: {
+          openid: '',
+          time: ''
+        },
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success (res) {
+          console.log(res.data)
+        }
+      })
+    }
   },
 
   /**

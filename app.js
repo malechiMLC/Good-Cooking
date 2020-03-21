@@ -1,6 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
+
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -11,26 +12,47 @@ App({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         console.log(res)
+        wx.request({
+          url: 'csquare.wang/openId', 
+          data: {
+            code: 'res.code',
+          },
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success (res) {
+            console.log(res.data.openId)
+          }
+        })
       }
     })
     // 获取用户信息
     wx.getSetting({
       success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
-
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
+        wx.getSetting({
+          success: res => {
+            console.log(res)
+            if (res.authSetting['scope.userInfo']) {
+              // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+              wx.getUserInfo({
+                success: res => {
+                  // 可以将 res 发送给后台解码出 unionId
+                  var userInfo = res.userInfo;
+                  this.globalData.userInfo = userInfo;
+                }
+              })
+              this.globalData.loginSuccess = true;
             }
-          })
-        }
+            else{
+              console.log('尚未授权')
+              wx.showModal({
+                title: '请先登录',
+                content: '新用户请点击授权登录获取更多服务哦',
+                showCancel: false
+              })
+            }
+          }
+        })
       }
     })
     //获取设备信息
@@ -56,6 +78,7 @@ App({
     openId: null,
     server: "https://csquare.wang/",
     imgBase: 'cloud://env-3n8tl.656e-env-3n8tl-1301584149/',
+    loginSuccess: false,
     // 适配：微信定义所有屏幕宽度都为750rpx，screenWidth为手机屏幕的实际的宽度（单位px）
     // 1rpx=（screenWidth / 750）px
     windowWidth:0,    //可使用窗口宽度，单位px

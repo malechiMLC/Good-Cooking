@@ -42,7 +42,7 @@
 	<view class="UCenter-bg bg-gradual-red">
 
 		<view class='cu-avatar xl margin-bottom round'>
-			<image class="cu-avatar round xl bg-white" src="{{profile}}"></image>
+			<image class="cu-avatar round xl bg-white" src="{{avatar}}"></image>
 		</view>
 		<view class="margin-top-xs">
 			<text class="text-xl bold">{{name}}</text>
@@ -55,7 +55,7 @@
 		<view class="flex flex-sub flex-direction solid-right">
 			<text class="cuIcon-homefill"></text> 已发布文章
 			<view class="margin-top-sm">
-				<view class="text-xl text-orange">{{todayCalories}}篇</view>
+				<view class="text-xl text-orange">{{essayNumber}}篇</view>
 			</view>
 
 		</view>
@@ -63,7 +63,7 @@
 		<view class="flex flex-sub flex-direction solid-right">
 			<text class="cuIcon-rankfill"></text> 已获得赞数
 			<view class="margin-top-sm">
-				<view class="text-xl text-blue">{{todaySteps}}赞</view>
+				<view class="text-xl text-blue">{{praiseNumber}}赞</view>
 			</view>
 		</view>
 
