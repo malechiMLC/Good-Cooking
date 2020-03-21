@@ -33,14 +33,82 @@ Page({
    */
   onLoad: function (options) {
     //程序的首页 所以一开始加载，也只会加载一次，可以用来处理登录
-    
+    // 登录
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId
+        console.log(res)
+        //这样不太好.....但是省事
+        wx.request({
+          url: app.globalData.server+'openid', 
+          data: {
+            appid: 'wx58f90beac70c6284',
+            secret: '7445557abf79f7371a4056035e0ee901',
+            js_code: res.code,
+            grant_type: 'authorization_code'
+          },
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success (res) {
+            app.globalData.openId = res.data.openid
+            console.log(app.globalData.openId)
+            wx.request({
+              url: 'csquare.wang/recipe/recommendation', 
+              data: {
+                openid: '',
+                time: ''
+              },
+              header: {
+                'content-type': 'application/json' // 默认值
+              },
+              success (res) {
+                console.log(res.data)
+              }
+            })
+          },
+          fail (res){
+            console.log(res)
+          }
+        })
+      }
+    })
+    // 获取用户信息
+    wx.getSetting({
+      success: res => {
+        wx.getSetting({
+          success: res => {
+            console.log(res)
+            if (res.authSetting['scope.userInfo']) {
+              // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+              wx.getUserInfo({
+                success: res => {
+                  // 可以将 res 发送给后台解码出 unionId
+                  var userInfo = res.userInfo;
+                  app.globalData.userInfo = userInfo;
+                }
+              })
+              app.globalData.loginSuccess = true;
+            }
+            else{
+              console.log('尚未授权')
+              wx.showModal({
+                title: '请先登录',
+                content: '新用户请在我的页面点击授权登录获取更多服务哦',
+                showCancel: false
+              })
+            }
+          }
+        })
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
 
   scroll(e) {
@@ -57,25 +125,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if(app.globalData.openId == null){
-      console.log('没有openid')
-      console.log(date)
-    }
-    else{
-      wx.request({
-        url: 'csquare.wang/recipe/recommendation', 
-        data: {
-          openid: '',
-          time: ''
-        },
-        header: {
-          'content-type': 'application/json' // 默认值
-        },
-        success (res) {
-          console.log(res.data)
-        }
-      })
-    }
+    
   },
 
   /**

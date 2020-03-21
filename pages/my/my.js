@@ -25,10 +25,12 @@ Page({
    */
   onLoad: function (options) {
     var userInfo = app.globalData.userInfo;
-    this.setData({
-      name: userInfo.nickName,
-      avatar: userInfo.avatarUrl,
-    })
+    if(userInfo != null){
+      this.setData({
+        name: userInfo.nickName,
+        avatar: userInfo.avatarUrl,
+      })
+    }
   },
 
   /**
@@ -43,21 +45,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.getSetting({
-      success: res => {
-        console.log(res)
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-        } else {
-          console.log('尚未授权')
-          wx.showModal({
-            title: '请先登录',
-            content: '新用户请点击授权登录获取更多服务哦',
-            showCancel: false
-          })
-        }
-      }
-    })
+
   },
 
   /**

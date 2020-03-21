@@ -7,54 +7,8 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        console.log(res)
-        wx.request({
-          url: 'csquare.wang/openId', 
-          data: {
-            code: 'res.code',
-          },
-          header: {
-            'content-type': 'application/json' // 默认值
-          },
-          success (res) {
-            console.log(res.data.openId)
-          }
-        })
-      }
-    })
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        wx.getSetting({
-          success: res => {
-            console.log(res)
-            if (res.authSetting['scope.userInfo']) {
-              // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-              wx.getUserInfo({
-                success: res => {
-                  // 可以将 res 发送给后台解码出 unionId
-                  var userInfo = res.userInfo;
-                  this.globalData.userInfo = userInfo;
-                }
-              })
-              this.globalData.loginSuccess = true;
-            }
-            else{
-              console.log('尚未授权')
-              wx.showModal({
-                title: '请先登录',
-                content: '新用户请点击授权登录获取更多服务哦',
-                showCancel: false
-              })
-            }
-          }
-        })
-      }
-    })
+    // 我发现好像app.js的onLaunch严格意义上不一定在home.js的onLoad之前执行
+    
     //获取设备信息
     wx.getSystemInfo({
       success: res => {
