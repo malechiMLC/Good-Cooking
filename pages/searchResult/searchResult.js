@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    keyword:'搜索关键词',
+    keyword:'',
     infoArray:[
       {
         bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
@@ -36,7 +36,6 @@ Page({
     const eventChannel = this.getOpenerEventChannel()
     // 监听acceptDataFromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
     eventChannel.on('acceptDataFromOpenerPage', function(data) {
-      console.log(data.data)
       _this.setData({
         keyword:data.data
       })
@@ -47,25 +46,26 @@ Page({
     //   url: 'https://csquare.wang/search',
     //   method: 'GET',
     //   data: {
-    //     openid:app.globalData.openid,
-    //     keyword:_this.setData.keyword
+    //     openid:app.globalData.openId,
+    //     keyword:_this.data.keyword
     //   },
     //   header: {
     //     'content-type': 'application/json'
     //   },
     //   success(res) {
+    //     console.log(res.data)
     //     var temp_array=[]
-    //     for(var i=0;i<res.length;i++){
-    //       var obj
-    //       obj.timeNeeded=res.recipes[i].timeNeeded
-    //       obj.bgUrl=res.recipes[i].image
-    //       obj.text=res.recipes[i].name
-    //       obj.difficulty=res.recipes[i].difficulty
+        // for(var i=0;i<res.length;i++){
+        //   var obj
+        //   obj.timeNeeded=res.data[i].timeNeeded
+        //   obj.bgUrl=res.data[i].image
+        //   obj.text=res.data[i].name
+        //   obj.difficulty=res.data[i].difficulty
 
-    //       temp_array.push(obj)
-    //     }
+        //   temp_array.push(obj)
+        // }
 
-    //     this.setData({
+    //     _this.setData({
     //       infoArray:temp_array
     //     })
     //   }

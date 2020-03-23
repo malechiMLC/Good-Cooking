@@ -7,51 +7,52 @@ Page({
    * 页面的初始数据
    */
   data: {
-    historyWords:['茄子','早餐','晚餐','排骨','早餐','晚餐','排骨','茄子','早餐','晚餐','排骨','茄子','早餐','晚餐','排骨'],
-    hotWords:['茄子','早餐','晚餐','排骨','早餐','晚餐','排骨']
+    historyWords:[],
+    hotWords:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
+    var _this=this
+    _this.setData({
       search: this.search.bind(this)
     })
 
-    // // 获取历史搜索
-    // wx.request({
-    //   url: 'https://csquare.wang/search/history',
-    //   method: 'GET',
-    //   data: {
-    //     openid:app.globalData.openid
-    //   },
-    //   header: {
-    //     'content-type': 'application/json'
-    //   },
-    //   success(res) {
-    //    this.setData({
-    //      historyWords:res.histories
-    //    })
-    //   }
-    // })
+    // 获取历史搜索
+    wx.request({
+      url: 'https://csquare.wang/search/history',
+      method: 'GET',
+      data: {
+        openid:app.globalData.openId
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res) {
+       _this.setData({
+         historyWords:res.data
+       })
+      }
+    })
 
-    // // 获取热门搜索
-    // wx.request({
-    //   url: 'https://csquare.wang/search/hot',
-    //   method: 'GET',
-    //   data: {
-    //     openid:app.globalData.openid
-    //   },
-    //   header: {
-    //     'content-type': 'application/json'
-    //   },
-    //   success(res) {
-    //    this.setData({
-    //      hotWords:res.hotWords
-    //    })
-    //   }
-    // })
+    // 获取热门搜索
+    wx.request({
+      url: 'https://csquare.wang/search/hot',
+      method: 'GET',
+      data: {
+        openid:app.globalData.openId
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res) {
+       _this.setData({
+         hotWords:res.data
+       })
+      }
+    })
   },
 
   search: function (value){

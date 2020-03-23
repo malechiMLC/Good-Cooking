@@ -32,6 +32,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var _this=this
     // 获取分享列表
     // wx.request({
     //   url: 'https://csquare.wang/post',
@@ -44,16 +45,16 @@ Page({
     //     var temp_array=[]
     //     for(var i=0;i<res.length;i++){
     //       var obj
-    //       obj.author=res.posts[i].name
-    //       obj.bgUrl=res.posts[i].images[0]
-    //       obj.text=res.posts[i].text
-    //       obj.avatarUrl=res.posts[i].profile
-    //       obj.likeNum=res.posts[i].images.length*10+1     //fake likeNum
+    //       obj.author=res.data[i].name
+    //       obj.bgUrl=res.data[i].images[0]
+    //       obj.text=res.data[i].text
+    //       obj.avatarUrl=res.data[i].profile
+    //       obj.likeNum=res.data[i].images.length*10+1     //fake likeNum
 
     //       temp_array.push(obj)
     //     }
 
-    //     this.setData({
+    //     _this.setData({
     //       infoArray:temp_array
     //     })
     //   }
