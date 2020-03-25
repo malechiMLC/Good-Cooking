@@ -10,6 +10,7 @@ Page({
    */
   data: {
     cardCur: 0,
+    currentImage: 0,
     swiperList: [{
       id: 0,
       type: 'image',
@@ -106,6 +107,16 @@ Page({
 
   },
 
+  swiperChanged: function(e){
+    this.setData({
+      currentImage: e.detail.current
+    })
+  },
+
+  swiperClicked: function(){
+    console.log(this.data.currentImage)
+  },
+
   //登录以及老用户直接获取用户信息
   loginAndGetUserInfo: function(){
     wx.login({
@@ -131,7 +142,6 @@ Page({
               url: app.globalData.server + 'recipe/recommendation', 
               data: {
                 openid: app.globalData.openId,
-                time: date
               },
               header: {
                 'content-type': 'application/json' // 默认值
@@ -147,7 +157,6 @@ Page({
               url: app.globalData.server + 'recipe/today', 
               data: {
                 openid: app.globalData.openId,
-                time: date
               },
               header: {
                 'content-type': 'application/json' // 默认值

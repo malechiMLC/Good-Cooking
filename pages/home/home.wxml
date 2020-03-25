@@ -1,8 +1,12 @@
 <!--pages/home/home.wxml-->
 <view>
-	<text>Dishes Today\n猜你喜欢</text>
-	<swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
-		<swiper-item wx:for="{{swiperList}}" wx:key>
+	<view class="cu-bar bg-white solid-bottom">
+		<view class="action">
+			<text class="cuIcon-title text-blue"></text>猜你喜欢
+		</view>
+	</view>
+	<swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="swiperChanged">
+		<swiper-item bindtap="swiperClicked" wx:for="{{swiperList}}" wx:key>
 			<image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
 			<video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
 		</swiper-item>
@@ -10,7 +14,11 @@
 </view>
 
 <view class="page-section-spacing">
-	<text>Dishes Today\n推荐菜单</text>
+	<view class="cu-bar bg-white solid-bottom">
+		<view class="action">
+			<text class="cuIcon-title text-blue"></text>今日菜单
+		</view>
+	</view>
 	<swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
 		<swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
 			<view class="swiper-item">
