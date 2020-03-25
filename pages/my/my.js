@@ -80,7 +80,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    
   },
 
   bindGetUserInfo: function (e) {
@@ -99,6 +99,8 @@ Page({
           name: e.detail.userInfo.nickName,
           avatar: e.detail.userInfo.avatarUrl,
         })
+        //上传账号信息
+        this.uploadUserInfo(e.detail.userInfo);
         wx.showToast({
           title: '登录成功',
         })
@@ -118,5 +120,35 @@ Page({
         });
       }
     }
+  },
+
+  uploadUserInfo: function(userInfo){
+    wx.request({
+      url: 'https://csquare.wang/user',
+      data: {
+        openid: app.globalData.openId,
+        name: userInfo.nickName,
+        sex: userInfo.gender,
+        profile: userInfo.avatarUrl
+      },
+      method: 'post',
+      success(res){
+        console.log(res.data)
+        if(!res.data){
+          wx.showModal({
+            title: '警告',
+            content: '账号信息上传错误，请重试或联系开发者',
+            cancelColor: 'cancelColor',
+          })
+        }
+      },
+      fail(res){
+        wx.showModal({
+          title: '警告',
+          content: '账号信息上传错误，请重试或联系开发者',
+          cancelColor: 'cancelColor',
+        })
+      }
+    })
   },
 })
