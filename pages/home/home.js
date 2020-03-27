@@ -9,23 +9,37 @@ Page({
    * 页面的初始数据
    */
   data: {
-    background: ['demo-text-1', 'demo-text-2', 'demo-text-3'],
-    // 是否显示面板指示点
-    indicatorDots: true,
-    // 滑动方向是否为纵向
-    vertical: false,
-    // 是否自动切换
-    autoplay: true,
-    // 是否采用衔接滑动
-    circular: true,
-    // 自动切换时间间隔
-    interval: 2000,
-    // 滑动动画时长
-    duration: 500,
-    // 前边距，可用于露出前一项的一小部分
-    previousMargin: 10,
-    // 后边距，可用于露出后一项的一小部分
-    nextMargin: 10,
+    cardCur: 0,
+    currentImage: 0,
+    swiperList: [{
+      id: 0,
+      type: 'image',
+      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
+    }, {
+      id: 1,
+        type: 'image',
+        url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
+    }, {
+      id: 2,
+      type: 'image',
+      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
+    }, {
+      id: 3,
+      type: 'image',
+      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
+    }, {
+      id: 4,
+      type: 'image',
+      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big25011.jpg'
+    }, {
+      id: 5,
+      type: 'image',
+      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21016.jpg'
+    }, {
+      id: 6,
+      type: 'image',
+      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
+    }],
   },
 
   /**
@@ -33,7 +47,78 @@ Page({
    */
   onLoad: function (options) {
     //程序的首页 所以一开始加载，也只会加载一次，可以用来处理登录
-    // 登录
+    // 登录 以及登录的回调里面写了获取推荐数据等等
+    this.loginAndGetUserInfo();
+  },
+
+  // cardSwiper
+  cardSwiper(e) {
+    this.setData({
+      cardCur: e.detail.current
+    })
+  },
+  
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  },
+
+  swiperChanged: function(e){
+    this.setData({
+      currentImage: e.detail.current
+    })
+  },
+
+  swiperClicked: function(){
+    console.log(this.data.currentImage)
+  },
+
+  //登录以及老用户直接获取用户信息
+  loginAndGetUserInfo: function(){
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId
@@ -54,16 +139,33 @@ Page({
             app.globalData.openId = res.data.openid
             console.log(app.globalData.openId)
             wx.request({
-              url: 'csquare.wang/recipe/recommendation', 
+              url: app.globalData.server + 'recipe/recommendation', 
               data: {
-                openid: '',
-                time: ''
+                openid: app.globalData.openId,
               },
               header: {
                 'content-type': 'application/json' // 默认值
               },
               success (res) {
                 console.log(res.data)
+              },
+              fail(res){
+                console.log(res)
+              }
+            })
+            wx.request({
+              url: app.globalData.server + 'recipe/today', 
+              data: {
+                openid: app.globalData.openId,
+              },
+              header: {
+                'content-type': 'application/json' // 默认值
+              },
+              success (res) {
+                console.log(res.data)
+              },
+              fail(res){
+                console.log(res)
               }
             })
           },
@@ -105,7 +207,7 @@ Page({
   },
 
   toToday:function(){
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/today/today',
     })
   },

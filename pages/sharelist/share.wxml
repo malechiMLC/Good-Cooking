@@ -26,3 +26,5 @@
 <cards infoArray="{{infoArray}}"/>
 
 <image class='camera' src='/images/camera.png' bindtap='towrite'></image>
+
+<image class='article' src='/images/add.png' bindtap='toedit'></image>

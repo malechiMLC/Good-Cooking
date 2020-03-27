@@ -19,7 +19,9 @@ Page({
 
   //exit
   exit:function(){
-
+    wx.navigateBack({
+      delta: 1
+    })
   },
 
   //submit

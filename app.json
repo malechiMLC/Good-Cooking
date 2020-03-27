@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/recipe/recipe",
-    "pages/editor/editor",
     "pages/home/home",
+    "pages/editor/editor",
+    "pages/recipe/recipe",
     "pages/my/my",
     "pages/today/today",
     "pages/sharelist/share",

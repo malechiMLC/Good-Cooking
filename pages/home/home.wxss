@@ -12,7 +12,7 @@ page {
 .page-section-spacing{
   box-sizing: border-box;
   /* 控制swiper的上 左右边界 */
-  padding: 80rpx 0rpx;
+  padding: 50rpx 0rpx;
 }
 
 .demo-text-1{

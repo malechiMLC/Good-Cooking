@@ -74,17 +74,22 @@ Page({
   tosearch:function(){
     wx.navigateTo({
       url: '/pages/search/search',
-      success: function(res) {
-        
-      }
     })
   },
 
   towrite:function(){
-    //跳转到写文章界面
-    console.log("跳转到写文章界面")
+    //展示蒙层
+    console.log("展示蒙层")
     this.setData({
       showModal: true
+    })
+  },
+
+  toedit: function () {
+    //跳转到写菜谱页面
+    console.log("跳转到写菜谱页面")
+    wx.navigateTo({
+      url: '/pages/editor/editor',
     })
   },
 

@@ -65,3 +65,12 @@
   margin-bottom: 10px;
   overflow: hidden;
 }
+
+.article{
+  float: right;
+  position: fixed;
+  bottom: 160rpx;
+  right: 20rpx; 
+  width: 120rpx;
+  height: 120rpx;
+}
