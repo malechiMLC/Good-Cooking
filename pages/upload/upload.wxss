@@ -1,8 +1,4 @@
-/* pages/sharelist/share.wxss */
-.blank{
-  width: 100%;
-  height: 60rpx;
-}
+/* pages/upload/upload.wxss */
 
 .camera{
   float: right;
@@ -29,7 +25,7 @@
   width: 100%;
   height: 90%;
   position: fixed;
-  margin-top: 50rpx;
+  margin-top: 200rpx;
   z-index: 9999;
   background-color: #fff;
   border-radius: 40rpx;

@@ -1,12 +1,14 @@
 {
   "pages": [
+    "pages/recipe/recipe",
+    "pages/editor/editor",
     "pages/home/home",
     "pages/my/my",
     "pages/today/today",
     "pages/sharelist/share",
     "pages/searchResult/searchResult",
     "pages/search/search",
-    "pages/recipe/recipe"
+    "pages/upload/upload"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -22,8 +24,8 @@
     "list": [
       {
         "pagePath": "pages/home/home",
-        "iconPath":"/images/home.png",
-        "selectedIconPath":"/images/home-active.png",
+        "iconPath": "/images/home.png",
+        "selectedIconPath": "/images/home-active.png",
         "text": "首页"
       },
       {

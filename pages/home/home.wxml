@@ -11,7 +11,7 @@
 
 <view class="page-section">
 	<text>Dishes Today\n推荐菜单</text>
-		<scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%">
+		<scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%" bindtap="toToday">
 			<view id="demo1" class="scroll-view-item_H demo-text-1"></view>
 			<view id="demo2" class="scroll-view-item_H demo-text-2"></view>
 			<view id="demo3" class="scroll-view-item_H demo-text-3"></view>

@@ -1,9 +1,10 @@
-<!--pages/sharelist/share.wxml-->
+<!--pages/upload/upload.wxml-->
+<image class='camera' src='/images/camera.png' bindtap='upload'></image>
 <searchbar bindfocus="tosearch"></searchbar>
 
 <view class="blank"></view>
 
-<!--mask-->
+
 <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
 <view class ="uploadDlg" wx:if="{{showModal}}">
     <text style="font-weight:bold;font-size:30rpx;">分享</text>
@@ -21,8 +22,5 @@
       <button style="width:100px;position:fixed;right:10px;" bindtap="submit">发布</button>
     </view>
 </view>
-<!--mask-->
 
 <cards infoArray="{{infoArray}}"/>
-
-<image class='camera' src='/images/camera.png' bindtap='towrite'></image>

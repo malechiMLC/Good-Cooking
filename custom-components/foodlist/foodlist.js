@@ -21,6 +21,12 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    toRecipe:function(event){
+      var recipeID = event.currentTarget.dataset.index
+      console.log(event.currentTarget.dataset.index)
+      wx.navigateTo({
+        url: '/pages/recipe/recipe?recipeID=' + recipeID,
+      })
+    }
   }
 })

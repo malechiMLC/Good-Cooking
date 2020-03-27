@@ -5,19 +5,41 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: "零零零零",
-    recipeInfo: {
-      text: "菜名",
-      timeNeeded: "200分钟",
-      difficulty: '中等',
-    },
+    id:0,
+    name: "零零零零",
+    image:'',
+    timeNeeded:'',
+    difficulty:'',
+    size:'',
+    ingredients:'',
+    nutrition:[],
+    steps:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let sid = options.recipeID
+    let rid = parseInt(sid)
+    this.setData({
+      id:rid
+    })
 
+    var that = this
+    //获取食谱
+    wx.request({
+      url: 'https://csquare.wang/recipe/'+rid,
+      method: 'GET',
+      data: {
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res) {
+        console.log(res)
+      }
+    })
   },
 
   /**

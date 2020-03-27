@@ -1,6 +1,5 @@
-// pages/sharelist/share.js
+// pages/upload/upload.js
 
-//mask
 const app = getApp()
 const util = require('../../utils/util.js');
 
@@ -10,87 +9,37 @@ Page({
    * 页面的初始数据
    */
   data: {
-    infoArray:[
+    showModal:false,
+    img_url:[],
+    content:'',
+    infoArray: [
       {
-        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
-        text:"这里是内容",
-        avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-        author:"作者名",
-        likeNum:'2000'
-      },{
-        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
-        text:"这里是标题",
-        avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-        author:"作者名",
-        likeNum:'2000'
-      },{
-        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
-        text:"这里是标题",
-        avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-        author:"作者名",
-        likeNum:'2000'
+        bgUrl: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",
+        text: "这里是内容",
+        avatarUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
+        author: "作者名",
+        likeNum: '2000'
+      }, {
+        bgUrl: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",
+        text: "这里是标题",
+        avatarUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
+        author: "作者名",
+        likeNum: '2000'
+      }, {
+        bgUrl: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",
+        text: "这里是标题",
+        avatarUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
+        author: "作者名",
+        likeNum: '2000'
       }
-    ],
-
-    //Mask
-    showModal: false,
-    img_url: [],
-    content: '',    
+    ]
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    var _this=this
-    // 获取分享列表
-    // wx.request({
-    //   url: 'https://csquare.wang/post',
-    //   method: 'GET',
-    //   data: { },
-    //   header: {
-    //     'content-type': 'application/json'
-    //   },
-    //   success(res) {
-    //     var temp_array=[]
-    //     for(var i=0;i<res.length;i++){
-    //       var obj
-    //       obj.author=res.data[i].name
-    //       obj.bgUrl=res.data[i].images[0]
-    //       obj.text=res.data[i].text
-    //       obj.avatarUrl=res.data[i].profile
-    //       obj.likeNum=res.data[i].images.length*10+1     //fake likeNum
-
-    //       temp_array.push(obj)
-    //     }
-
-    //     _this.setData({
-    //       infoArray:temp_array
-    //     })
-    //   }
-    // })
-  },
-
-  tosearch:function(){
-    wx.navigateTo({
-      url: '/pages/search/search',
-      success: function(res) {
-        
-      }
-    })
-  },
-
-  towrite:function(){
-    //跳转到写文章界面
-    console.log("跳转到写文章界面")
+  upload:function(){
     this.setData({
-      showModal: true
+      showModal:true
     })
   },
-
-  /**
-   * Mask
-   */
 
   preventTouchMove: function () {
 
@@ -184,9 +133,16 @@ Page({
   //中途退出
   close: function () {
     this.setData({
-      img_url: [],
+      img_url:[],
       showModal: false
     })
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+
   },
 
   /**

@@ -1,4 +1,6 @@
 // pages/today/today.js
+
+const app = getApp()
 var util = require('../../utils/util.js');
 
 Page({
@@ -10,25 +12,6 @@ Page({
     brArray:[],
     luArray:[],
     diArray:[],
-    infoArray: [
-      {
-        img: "",
-        name: "0",
-        recipeid:"",
-      }, {
-        img: "",
-        name: "1",
-        recipeid: "",
-      }, {
-        img: "",
-        name: "2",
-        recipeid: "",
-      }, {
-        img: "",
-        name: "3",
-        recipeid: "",
-      }
-    ]
   },
 
   //事件处理函数
@@ -40,26 +23,28 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // var TIME = util.formatTime(new Date());
-    // 获取今日菜单
-    // wx.request({
-    //   url: '',
-    //   method: 'GET',
-    //   data: {
-    //     openid:app.globalData.openid,
-    //     time:TIME
-    //   },
-    //   header: {
-    //     'content-type': 'application/json'
-    //   },
-    //   success(res) {
-    //     this.setData({
-    //       brArray:res.breakfastRecipes[]
-    //       luArray:res.lunchRecipes[]
-    //       diArray:res.dinnerRecipes[]
-    //     })
-    //   }
-    // })
+    //var TIME = util.formatTime(new Date());
+    var that = this
+    //获取今日菜单
+    wx.request({
+      url: 'https://csquare.wang/recipe/today',
+      method: 'GET',
+      data: {
+        openid:app.globalData.openid,
+        //time:TIME
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res) {
+        console.log(res)
+        that.setData({
+          brArray:res.data.breakfastRecipes,
+          luArray:res.data.lunchRecipes,
+          diArray:res.data.dinnerRecipes
+        })
+      }
+    })
   },
 
   /**
