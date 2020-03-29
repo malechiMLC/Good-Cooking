@@ -9,18 +9,11 @@
 		<swiper-item bindtap="swiperClicked" wx:for="{{swiperList}}" wx:key>
 			<image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
 			<video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+			<view class='swipertitle animation-fade'><text>我是标题啦啦啦</text></view>
 		</swiper-item>
 	</swiper>
 </view>
 
-<view class="page-section">
-	<text>Dishes Today\n推荐菜单</text>
-		<scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%" bindtap="toToday">
-			<view id="demo1" class="scroll-view-item_H demo-text-1"></view>
-			<view id="demo2" class="scroll-view-item_H demo-text-2"></view>
-			<view id="demo3" class="scroll-view-item_H demo-text-3"></view>
-		</scroll-view>
-</view>
 <view class="page-section-spacing">
 	<view class="cu-bar bg-white solid-bottom">
 		<view class="action">
@@ -30,9 +23,69 @@
 	<swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
 		<swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
 			<view class="swiper-item">
-				<image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
-				<video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+				<image class="bg-img bg-mask" style="background-image" src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+				<view class='swipertitle2 animation-fade margin-sm basis-sm shadow'><text>我是标题啦啦啦</text></view>
 			</view>
 		</swiper-item>
 	</swiper>
+</view>
+
+<view class="page-section-spacing">
+	<view class="cu-bar bg-white solid-bottom">
+		<view class="action">
+			<text class="cuIcon-title text-blue"></text>猜你喜欢
+		</view>
+	</view>
+	<view class="cu-card case {{isCard?'no-card':''}}">
+		<view class="cu-item shadow">
+			<view class="image">
+				<image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="widthFix"></image>
+				<view class="cu-tag bg-blue">难度</view>
+				<view class="cu-bar bg-shadeBottom">
+					<text class="text-cut">菜谱名字</text>
+				</view>
+			</view>
+			<view class="cu-list menu-avatar">
+				<view class="cu-item">
+					<view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+					<view class="content flex-sub">
+						<view class="text-grey">作者昵称</view>
+						<view class="text-gray text-sm flex justify-between">
+							发布时间
+							<view class="text-gray text-sm">
+								<text class="cuIcon-attentionfill margin-lr-xs"></text> 10
+								<text class="cuIcon-appreciatefill margin-lr-xs"></text> 20
+								<text class="cuIcon-messagefill margin-lr-xs"></text> 30
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="cu-card case {{isCard?'no-card':''}}">
+		<view class="cu-item shadow">
+			<view class="image">
+				<image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="widthFix"></image>
+				<view class="cu-tag bg-blue">难度</view>
+				<view class="cu-bar bg-shadeBottom">
+					<text class="text-cut">菜谱名字</text>
+				</view>
+			</view>
+			<view class="cu-list menu-avatar">
+				<view class="cu-item">
+					<view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+					<view class="content flex-sub">
+						<view class="text-grey">作者昵称</view>
+						<view class="text-gray text-sm flex justify-between">
+							菜谱前十个字就可以了...
+							<view class="text-gray text-sm">
+								<text class="cuIcon-appreciatefill margin-lr-xs"></text> 20
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
 </view>
