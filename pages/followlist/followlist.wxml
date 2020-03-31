@@ -1,0 +1,10 @@
+<!--pages/followlist/followlist.wxml-->
+<view wx:for="{{userList}}">
+  <view class="flex-row ver-center item" bindtap="touserhomepage" id="{{item.openid}}">
+    <image class="profile" mode="aspectFill" src="{{item.profile}}"></image>
+    <text class="name">{{item.name}}</text>
+    <image wx:if="{{item.sex=='1'}}" class="sex-img" src="/images/male.png"></image>
+    <image wx:elif="{{item.sex=='2'}}" class="sex-img" src="/images/female.png"></image>
+  </view>
+</view>
+<view class="hori-center" style="margin-top:30px;"><text class="bottom-text"> - - 没有更多关注啦 - - </text></view>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "cards":"/custom-components/card/card",
+    "recipies":"/custom-components/recipeslist/recipeslist"
+  }
+}

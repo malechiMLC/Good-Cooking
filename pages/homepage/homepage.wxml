@@ -1,0 +1,30 @@
+<view class="flex-column" style="background-color:white;">
+  <!-- 上方个人信息 -->
+  <view class="flex-row space-between" style="margin-top:20rpx;">
+    <view style="width:250rpx;"><image class="profile" mode="aspectFill" src="{{profile}}"></image></view>
+    <view class="flex-column" style="margin-top:10rpx;width:500rpx;">
+      <!-- 关注数，被关注数，关注/取关按钮 -->
+      <view class="flex-row space-around" style="margin-left:50rpx;margin-right:50rpx;">
+        <view class="flex-column ver-center" bindtap="showfollows"><text class="follow-number">{{followsLength}}</text><text class="follow-text">关注</text></view>
+        <view class="flex-column ver-center" bindtap="showfollowers"><text class="follow-number">{{followersLength}}</text><text class="follow-text">粉丝</text></view>
+        <view class="flex-column ver-center"><text class="follow-number">{{likes}}</text><text class="follow-text">获赞数</text></view>
+        <view style="margin-top:15rpx;"><button bindtap="iffollow" class="follow-btn" style="background-color:{{btnColor}};color:{{txtColor}};">{{iffollow}}</button></view>  
+      </view>
+    </view> 
+  </view>
+  <!-- 选择菜谱/动态 -->
+  <view class="flex-row ver-center hori-center chooseview" style="margin-top:40rpx;margin-bottom:30rpx;">
+    <view bindtap="changetab"><text class="choose-txt" style="color:{{caipuColor}}">菜谱</text></view>
+    <text style="margin:0 30px;color:#aaa;">|</text>
+    <view bindtap="changetab"><text class="choose-txt" style="color:{{dongtaiColor}}">动态</text></view>
+  </view>
+
+  <!-- 下方菜谱动态 -->
+  <view>
+    <view wx:if="{{iscaipu}}"><recipies infoArray="{{caipuArray}}"/></view>
+    <view wx:else><cards infoArray="{{dongtaiArray}}"/></view>
+  </view>
+
+</view>
+
+<view class="hori-center" style="margin-top:30px;"><text class="bottom-text"> - - 没有更多啦 - - </text></view>

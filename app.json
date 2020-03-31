@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/followlist/followlist",
+    "pages/homepage/homepage",
     "pages/home/home",
     "pages/editor/editor",
     "pages/recipe/recipe",
@@ -9,13 +11,14 @@
     "pages/searchResult/searchResult",
     "pages/search/search",
     "pages/upload/upload"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "做好饭",
     "navigationBarTextStyle": "black",
-    "onReachBottomDistance":50
+    "onReachBottomDistance": 50
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",
