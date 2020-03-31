@@ -1,27 +1,31 @@
 <view class="page">
-<view class="head" style="height:200rpx;display:flex;justify-content: space-between;">
+<view class="head" style="height:250rpx;display:flex;justify-content: space-between;">
   <view class="head-half">
     <view class="detail-item">
       <text>菜名:</text>
-      <input class="detail-input" placeholder="name" bindinput="inputTitle"></input>
+      <input class="detail-input" placeholder="菜谱示例" bindinput="inputTitle"></input>
     </view>
     <view class="detail-item">
       <text>难度:</text>
-      <input class="detail-input" placeholder="difficulty" bindinput="inputDif"></input>
+      <input class="detail-input" placeholder="0基础" bindinput="inputDif"></input>
     </view>
-    <view class="detail-item">
-      <text>时间:</text>
-      <input class="detail-input" placeholder="timeNeeded" bindinput="inputTime"></input>
+    <view class="detail-item" style="height:50%;">
+      <text>营养:</text>
+      <textarea class="detail-input" style="height:80%;" placeholder="富含蛋白质，维生素ABCDEF。" bindinput="inputNur"></textarea>
     </view>
   </view>
   <view class="head-half">
-    <view class="detail-item" style="height:33%;padding-top:3rpx;">
+    <view class="detail-item">
       <text>份量:</text>
-      <input class="detail-input" placeholder="size" bindinput="inputSize"></input>
+      <input class="detail-input" placeholder="1人份" bindinput="inputSize"></input>
     </view>
-    <view class="detail-item" style="height:64%;padding-top:7rpx;">
+    <view class="detail-item">
+      <text>时间:</text>
+      <input class="detail-input" placeholder="10分钟" bindinput="inputTime"></input>
+    </view>
+    <view class="detail-item" style="height:50%;">
       <text>原料:</text>
-      <textarea class="detail-input" style="height:80%;" placeholder="ingredients" bindinput="inputIng"></textarea>
+      <textarea class="detail-input" style="height:80%;" placeholder="清水：100g，食用盐：20g，食用油：30g..." bindinput="inputIng"></textarea>
     </view>
   </view>
 </view>
@@ -45,9 +49,12 @@
   </editor>
 </view>
 
-<view style="display:flex;flex-direction:row;position:fixed;bottom:0;height:100rpx;width:100%;">
+<view style="display:flex;flex-direction:row;position:fixed;bottom:0;height:100rpx;width:100%;justify-content: space-around;">
   <button style="width:120px;height:80rpx;position:fixed;left:2px;font-size:16px;bottom:3px;" bindtap="exit">退出</button>
+  <image style="height:80rpx;width:80rpx;border-radius:20rpx;" src='{{icon}}' bindtap="chooseCover"></image>
   <button style="width:120px;height:80rpx;position:fixed;right:2px;font-size:16px;bottom:3px;" bindtap="submit">发布</button>
 </view>
+
+<text style="position:fixed;font-size:20rpx;bottom:0;width: 100%;text-align:center;">选择封面</text>
 
 </view>

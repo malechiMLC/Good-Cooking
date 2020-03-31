@@ -85,14 +85,6 @@ Page({
     })
   },
 
-  toedit: function () {
-    //跳转到写菜谱页面
-    console.log("跳转到写菜谱页面")
-    wx.navigateTo({
-      url: '/pages/editor/editor',
-    })
-  },
-
   /**
    * Mask
    */
@@ -172,6 +164,7 @@ Page({
           duration: 1500
         })
         that.setData({
+          img_url: [],
           showModal: false
         })
       },

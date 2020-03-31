@@ -42,6 +42,14 @@ Page({
     }],
   },
 
+  //跳转到写菜谱页面
+  toedit: function () {
+    console.log("跳转到写菜谱页面")
+    wx.navigateTo({
+      url: '/pages/editor/editor',
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

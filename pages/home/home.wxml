@@ -36,3 +36,8 @@
 		</swiper-item>
 	</swiper>
 </view>
+
+
+
+
+<image class='article' src='/images/add.png' bindtap='toedit'></image>

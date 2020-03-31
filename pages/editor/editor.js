@@ -8,6 +8,8 @@ Page({
     ingredients:'',
     nutrition:[],
     steps:'',
+    //chooseIcon
+    icon:'/images/add.png',
     //editor
     formats: {},
     readOnly: false,
@@ -85,6 +87,11 @@ Page({
       ingredients: e.detail.value
     })
   },
+  inputNur: function (e) {
+    this.setData({
+      nutrition: e.detail.value
+    })
+  },
   inputStep: function (e) {
     var that = this;
     that.editorCtx.getContents({
@@ -96,9 +103,27 @@ Page({
         })
       }
     })
+    console.log(that.steps)
   },
+  //get cover
+  chooseCover:function(){
+    var that=this;
+    console.log("chooseimage")
+    wx.chooseImage({
+      count: 1, // 默认9  
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有  
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有  
+      success: function (res) {
 
-
+        if (res.tempFilePaths.length > 0) {
+            that.setData({
+              icon: res.tempFilePaths[0],
+              image: res.tempFilePaths[0]
+            })
+        }
+      }
+    })
+  },
 
 
   readOnlyChange() {
