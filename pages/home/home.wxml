@@ -89,3 +89,6 @@
 		</view>
 	</view>
 </view>
+
+
+<image class='article' src='/images/add.png' bindtap='toedit'></image>

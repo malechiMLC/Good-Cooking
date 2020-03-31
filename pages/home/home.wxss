@@ -82,6 +82,15 @@ page {
   margin-top: 60rpx;
 }
 
+
+.article{
+  float: right;
+  position: fixed;
+  bottom: 30rpx;
+  right: 20rpx; 
+  width: 120rpx;
+  height: 120rpx;
+}
 .weui-loading {
   margin: 0 5px;
   width: 20px;

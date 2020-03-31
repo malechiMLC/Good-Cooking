@@ -6,14 +6,14 @@ Page({
    */
   data: {
     id:0,
-    name: "零零零零",
+    title: "title",
     image:'',
-    timeNeeded:'',
-    difficulty:'',
-    size:'',
-    ingredients:'',
+    timeNeeded:'time',
+    difficulty:'diff',
+    size:'size',
+    ingredients:'ingre',
     nutrition:[],
-    steps:'',
+    steps: ' <div class="recipeStep">< ul ><li><div class="recipeStep_img"><img src="https://i8.meishichina.com/attachment/recipe/2020/01/03/2020010315780566122045067513584.JPG?x-oss-process=style/p320" alt="腊肠香菇糯米饭的做法步骤：1"></div><div class="recipeStep_word"><div class="recipeStep_num">1</div>备好材料：糯米提前至少4小时凉水浸泡，干香菇凉水泡软，腊肠切厚片，青豆剥皮洗净，胡萝卜刮掉外皮，洋葱半个，香葱清洗干净。</div></li><li><div class="recipeStep_img"><img src="https://i8.meishichina.com/attachment/recipe/2020/01/03/2020010315780566124783257513584.JPG?x-oss-process=style/p320" alt="腊肠香菇糯米饭的做法步骤：2"></div><div class="recipeStep_word"><div class="recipeStep_num">2</div>洋葱切小丁，胡萝卜切小丁，香菇切丁，香葱切末；香菇水不要倒，焖饭倍儿香。</div></li><li><div class="recipeStep_img"><img src="https://i8.meishichina.com/attachment/recipe/2020/01/03/2020010315780566125993627513584.JPG?x-oss-process=style/p320" alt="腊肠香菇糯米饭的做法步骤：3"></div><div class="recipeStep_word"><div class="recipeStep_num">3</div>炒锅中倒少许油，将腊肠和香菇丁同入锅中，小火翻炒出香味；腊肠是自家制作的，如果肥肉少可以适量多放些油煸炒，如果肥肉多，可以少放些油煸炒。</div></li><li><div class="recipeStep_img"><img src="https://i8.meishichina.com/attachment/recipe/2020/01/03/2020010315780566127178917513584.JPG?x-oss-process=style/p320" alt="腊肠香菇糯米饭的做法步骤：4"></div><div class="recipeStep_word"><div class="recipeStep_num">4</div>将青豆、胡萝卜丁、洋葱丁入锅中，腊肠有咸味，根据口味撒盐、倒生抽，翻炒均匀。</div></li><li><div class="recipeStep_img"><img src="https://i8.meishichina.com/attachment/recipe/2020/01/03/2020010315780566128859707513584.JPG?x-oss-process=style/p320" alt="腊肠香菇糯米饭的做法步骤：5">',
   },
 
   /**
