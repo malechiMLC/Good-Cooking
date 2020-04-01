@@ -13,17 +13,20 @@ Page({
         bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
         text:"菜名",
         timeNeeded:"200分钟",
-        difficulty:'中等'
+        difficulty:'中等',
+        id:'1'
       },{
         bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
         text:"菜名",
         timeNeeded:"200分钟",
-        difficulty:'容易'
+        difficulty:'容易',
+        id:'2'
       },{
         bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
         text:"菜名",
         timeNeeded:"200分钟",
-        difficulty:'较难'
+        difficulty:'较难',
+        id:'3'
       }
     ]
   },
@@ -41,34 +44,34 @@ Page({
       })
     }) 
 
-    //搜索
-    // wx.request({
-    //   url: 'https://csquare.wang/search',
-    //   method: 'GET',
-    //   data: {
-    //     openid:app.globalData.openId,
-    //     keyword:_this.data.keyword
-    //   },
-    //   header: {
-    //     'content-type': 'application/json'
-    //   },
-    //   success(res) {
-    //     var temp_array=[]
-        // for(var i=0;i<res.data.length;i++){
-        //   var obj
-        //   obj.timeNeeded=res.data[i].timeNeeded
-        //   obj.bgUrl=res.data[i].image
-        //   obj.text=res.data[i].title
-        //   obj.difficulty=res.data[i].difficulty
-
-        //   temp_array.push(obj)
-        // }
-
-    //     _this.setData({
-    //       infoArray:temp_array
-    //     })
-    //   }
-    // })
+    // 搜索
+    wx.request({
+      url: 'https://csquare.wang/search',
+      method: 'GET',
+      data: {
+        openid:app.globalData.openId,
+        keyword:_this.data.keyword
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res) {
+        var temp_array=[]
+        for(var i=0;i<res.data.length;i++){
+          var obj
+          obj.timeNeeded=res.data[i].timeNeeded
+          obj.bgUrl=res.data[i].image
+          obj.text=res.data[i].title
+          obj.difficulty=res.data[i].difficulty
+          obj.id=res.data[i].id
+          
+          temp_array.push(obj)
+        }
+        _this.setData({
+          infoArray:temp_array
+        })
+      }
+    })
   },
 
   navigateBack:function(){

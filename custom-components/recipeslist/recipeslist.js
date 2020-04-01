@@ -21,7 +21,12 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    torecipe:function(e){
+      console.log(e.currentTarget.id)
+      wx.navigateTo({
+        url: '/pages/recipe/recipe?recipeID='+e.currentTarget.id
+      })
+    }
   }
 })
 
