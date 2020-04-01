@@ -53,13 +53,12 @@ Page({
     //     'content-type': 'application/json'
     //   },
     //   success(res) {
-    //     console.log(res.data)
     //     var temp_array=[]
-        // for(var i=0;i<res.length;i++){
+        // for(var i=0;i<res.data.length;i++){
         //   var obj
         //   obj.timeNeeded=res.data[i].timeNeeded
         //   obj.bgUrl=res.data[i].image
-        //   obj.text=res.data[i].name
+        //   obj.text=res.data[i].title
         //   obj.difficulty=res.data[i].difficulty
 
         //   temp_array.push(obj)

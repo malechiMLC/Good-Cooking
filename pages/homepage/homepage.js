@@ -10,40 +10,40 @@ Page({
   data: {
     otherOpenId:'111',      //个人主页的所有者的openid
     name:'昵称在这里~',
-    sex:'女',
+    sex:'2',
     profile:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg',
     follows:[{
-      openid:111,
+      openid:'111',
       name:'被关注用户1',
-      sex:'女',
-      profile:'http://b-ssl.duitang.com/uploads/item/201704/10/20170410095843_SEvMy.thumb.700_0.jpeg'
+      sex:'0',
+      profile:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg'
     },{
-      openid:222,
+      openid:'222',
       name:'被关注用户2',
-      sex:'男',
-      profile:'http://b-ssl.duitang.com/uploads/item/201704/10/20170410095843_SEvMy.thumb.700_0.jpeg'
+      sex:'2',
+      profile:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg'
     },{
-      openid:333,
+      openid:'333',
       name:'被关注用户3',
-      sex:'女',
-      profile:'http://b-ssl.duitang.com/uploads/item/201704/10/20170410095843_SEvMy.thumb.700_0.jpeg'
+      sex:'2',
+      profile:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg'
     }],
     followsLength:3,
     followers:[{
-      openid:111,
+      openid:'111',
       name:'关注用户1',
-      sex:'女',
-      profile:'http://b-ssl.duitang.com/uploads/item/201704/10/20170410095843_SEvMy.thumb.700_0.jpeg'
+      sex:'1',
+      profile:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg'
     },{
-      openid:222,
+      openid:'222',
       name:'关注用户2',
-      sex:'男',
-      profile:'http://b-ssl.duitang.com/uploads/item/201704/10/20170410095843_SEvMy.thumb.700_0.jpeg'
+      sex:'1',
+      profile:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg'
     },{
-      openid:333,
+      openid:'333',
       name:'关注用户3',
-      sex:'女',
-      profile:'http://b-ssl.duitang.com/uploads/item/201704/10/20170410095843_SEvMy.thumb.700_0.jpeg'
+      sex:'2',
+      profile:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg'
     }],
     followersLength:3,
     likes:233,
@@ -52,7 +52,53 @@ Page({
     txtColor:'white',
     caipuColor:'#777',
     dongtaiColor:'#bbb',
+    shoucangColor:'#bbb',
     dongtaiArray:[
+      {
+        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
+        text:"这里是内容",
+        avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
+        author:"作者名",
+        likeNum:'2000',
+        id:'1'
+      },{
+        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
+        text:"这里是标题",
+        avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
+        author:"作者名",
+        likeNum:'2000',
+        id:'1'
+      },{
+        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
+        text:"这里是标题",
+        avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
+        author:"作者名",
+        likeNum:'2000',
+        id:'1'
+      }
+    ],
+    caipuArray:[
+      {
+        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
+        text:"菜名",
+        timeNeeded:"200分钟",
+        difficulty:'中等',
+        id:'1'
+      },{
+        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
+        text:"菜名",
+        timeNeeded:"200分钟",
+        difficulty:'容易',
+        id:'2'
+      },{
+        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
+        text:"菜名",
+        timeNeeded:"200分钟",
+        difficulty:'较难',
+        id:'3'
+      }
+    ],
+    shoucangArray:[
       {
         bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
         text:"这里是内容",
@@ -65,33 +111,10 @@ Page({
         avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
         author:"作者名",
         likeNum:'2000'
-      },{
-        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
-        text:"这里是标题",
-        avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-        author:"作者名",
-        likeNum:'2000'
-      }
-    ],
-    caipuArray:[
-      {
-        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
-        text:"菜名",
-        timeNeeded:"200分钟",
-        difficulty:'中等'
-      },{
-        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
-        text:"菜名",
-        timeNeeded:"200分钟",
-        difficulty:'容易'
-      },{
-        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
-        text:"菜名",
-        timeNeeded:"200分钟",
-        difficulty:'较难'
-      }
-    ],
+      }],
     iscaipu:true,
+    isshoucang:false,
+    isdongtai:false
   },
 
   /**
@@ -99,25 +122,19 @@ Page({
    */
   onLoad: function (options) {
     console.log(options.otherOpenId)
-  },
+    var _this=this
+    _this.setData({
+      otherOpenId:options.otherOpenId
+    })
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
     var _this=this
   //获取个人主页信息
   //  wx.request({
-  //   url: 'https://csquare.wang/user/'+_this.data.otherOpenId,
+  //   url: 'https://csquare.wang/user/',
   //   method: 'GET',
-  //   data: {},
+  //   data: {
+  //     openid:_this.data.otherOpenId
+  //   },
   //   header: {
   //     'content-type': 'application/json'
   //   },
@@ -201,7 +218,9 @@ Page({
     // wx.request({
     //   url: 'https://csquare.wang/post',
     //   method: 'GET',
-    //   data: { },
+    //   data: { 
+    //     openid:_this.data.otherOpenId
+    //   },
     //   header: {
     //     'content-type': 'application/json'
     //   },
@@ -213,22 +232,100 @@ Page({
     //       obj.bgUrl=res.data[i].images[0]
     //       obj.text=res.data[i].text
     //       obj.avatarUrl=res.data[i].profile
-    //       obj.likeNum=res.data[i].images.length*10+1     //fake likeNum
-
+    //       obj.openid=res.data[i].openid
+    //       obj.id=res.data[i].id
+    //       // 获取点赞数
+    //       wx.request({
+    //         url: 'https://csquare.wang/like/post/'+res.data[i].id+'/number',
+    //         method: 'GET',
+    //         data: { },
+    //         header: {
+    //           'content-type': 'application/json'
+    //         },
+    //         success(response) {
+    //           obj.likeNum=response.data
+    //         }
+    //       })
     //       temp_array.push(obj)
     //     }
-
     //     _this.setData({
-    //       infoArray:temp_array
+    //       dongtaiArray:temp_array
     //     })
+    //   }
+    // }) 
+
+    // 获取菜谱列表
+    // wx.request({
+    //   url: 'https://csquare.wang/recipe',
+    //   method: 'GET',
+    //   data: {
+    //     openid:_this.data.otherOpenId
+    //   },
+    //   header: {
+    //     'content-type': 'application/json'
+    //   },
+    //   success(res) {
+    //         var temp_array=[]
+    //         for(var i=0;i<res.data.length;i++){
+    //           var obj
+    //           obj.timeNeeded=res.data[i].timeNeeded
+    //           obj.bgUrl=res.data[i].image
+    //           obj.text=res.data[i].name
+    //           obj.difficulty=res.data[i].difficulty
+    //           obj.id=res.data[i].id
+    
+    //           temp_array.push(obj)
+    //         }
+    
+    //         _this.setData({
+    //           caipuArray:temp_array
+    //         })
     //   }
     // })
 
-    //获取菜谱列表
-
+    // 获取收藏列表
+    // wx.request({
+    //   url: 'https://csquare.wang/favorite/user/'+_this.data.otherOpenId,
+    //   method: 'GET',
+    //   data: { },
+    //   header: {
+    //     'content-type': 'application/json'
+    //   },
+    //   success(res) {
+    //         var temp_array=[]
+    //         for(var i=0;i<res.data.length;i++){
+    //           var obj
+    //           obj.timeNeeded=res.data[i].timeNeeded
+    //           obj.bgUrl=res.data[i].image
+    //           obj.text=res.data[i].title
+    //           obj.difficulty=res.data[i].difficulty
+    //           obj.id=res.data[i].id
+    
+    //           temp_array.push(obj)
+    //         }
+    
+    //         _this.setData({
+    //           caipuArray:temp_array
+    //         })
+    //   }
+    // })
     wx.setNavigationBarTitle({
       title: _this.data.name
    })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    
   },
 
   iffollow:function(){
@@ -278,20 +375,34 @@ Page({
       // })
     }
   },
-  changetab:function(){
+  changetab:function(e){
     var _this=this
-    console.log
-    if(_this.data.iscaipu){
-      _this.setData({
-        iscaipu:false,
-        caipuColor:'#bbb',
-        dongtaiColor:'#777'
-      })
-    }else{
+    if(e.currentTarget.id=='caipu'){
       _this.setData({
         iscaipu:true,
+        isdongtai:false,
+        isshoucang:false,
         caipuColor:'#777',
-        dongtaiColor:'#bbb'
+        dongtaiColor:'#bbb',
+        shoucangColor:'#bbb'
+      })
+    }else if(e.currentTarget.id=='dongtai'){
+      _this.setData({
+        iscaipu:false,
+        isdongtai:true,
+        isshoucang:false,
+        caipuColor:'#bbb',
+        dongtaiColor:'#777',
+        shoucangColor:'#bbb'
+      })
+    }else if(e.currentTarget.id=='shoucang'){
+      _this.setData({
+        iscaipu:false,
+        isdongtai:false,
+        isshoucang:true,
+        caipuColor:'#bbb',
+        dongtaiColor:'#bbb',
+        shoucangColor:'#777'
       })
     }
   },
@@ -306,7 +417,14 @@ Page({
     })
   },
   showfollowers:function(){
-
+    var _this=this
+    wx.navigateTo({
+      url: '/pages/followlist/followlist',
+      success: function(res) {
+        // 通过eventChannel向被打开页面传送数据
+        res.eventChannel.emit('acceptDataFromOpenerPage', { data: _this.data.followers})
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面隐藏

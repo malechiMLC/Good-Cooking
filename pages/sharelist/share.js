@@ -16,19 +16,25 @@ Page({
         text:"这里是内容",
         avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
         author:"作者名",
-        likeNum:'2000'
+        likeNum:'2000',
+        openid:'111',
+        id:'1'
       },{
         bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
         text:"这里是标题",
         avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
         author:"作者名",
-        likeNum:'2000'
+        likeNum:'2000',
+        openid:'112',
+        id:'2'
       },{
         bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
         text:"这里是标题",
         avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
         author:"作者名",
-        likeNum:'2000'
+        likeNum:'2000',
+        openid:'113',
+        id:'3'
       }
     ],
 
@@ -59,16 +65,27 @@ Page({
     //       obj.bgUrl=res.data[i].images[0]
     //       obj.text=res.data[i].text
     //       obj.avatarUrl=res.data[i].profile
-    //       obj.likeNum=res.data[i].images.length*10+1     //fake likeNum
-
+    //       obj.openid=res.data[i].openid
+    //       obj.id=res.data[i].id
+    //       // 获取点赞数
+    //       wx.request({
+    //         url: 'https://csquare.wang/like/post/'+res.data[i].id+'/number',
+    //         method: 'GET',
+    //         data: { },
+    //         header: {
+    //           'content-type': 'application/json'
+    //         },
+    //         success(response) {
+    //           obj.likeNum=response.data
+    //         }
+    //       })
     //       temp_array.push(obj)
     //     }
-
     //     _this.setData({
     //       infoArray:temp_array
     //     })
     //   }
-    // })
+    // }) 
   },
 
   tosearch:function(){

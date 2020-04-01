@@ -14,15 +14,18 @@
   </view>
   <!-- 选择菜谱/动态 -->
   <view class="flex-row ver-center hori-center chooseview" style="margin-top:40rpx;margin-bottom:30rpx;">
-    <view bindtap="changetab"><text class="choose-txt" style="color:{{caipuColor}}">菜谱</text></view>
+    <view bindtap="changetab" id="caipu"><text class="choose-txt" style="color:{{caipuColor}}">菜谱</text></view>
     <text style="margin:0 30px;color:#aaa;">|</text>
-    <view bindtap="changetab"><text class="choose-txt" style="color:{{dongtaiColor}}">动态</text></view>
+    <view bindtap="changetab" id="dongtai"><text class="choose-txt" style="color:{{dongtaiColor}}">动态</text></view>
+    <text style="margin:0 30px;color:#aaa;">|</text>
+    <view bindtap="changetab" id="shoucang"><text class="choose-txt" style="color:{{shoucangColor}}">收藏</text></view>
   </view>
 
   <!-- 下方菜谱动态 -->
   <view>
     <view wx:if="{{iscaipu}}"><recipies infoArray="{{caipuArray}}"/></view>
-    <view wx:else><cards infoArray="{{dongtaiArray}}"/></view>
+    <view wx:elif="{{isdongtai}}"><cards infoArray="{{dongtaiArray}}"/></view>
+    <view wx:elif="{{isshoucang}}"><cards infoArray="{{shoucangArray}}"/></view>
   </view>
 
 </view>

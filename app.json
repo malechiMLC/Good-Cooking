@@ -1,13 +1,9 @@
 {
   "pages": [
-<<<<<<< HEAD
-    "pages/followlist/followlist",
-    "pages/homepage/homepage",
-    "pages/home/home",
-=======
     "pages/sharelist/share",
+    "pages/homepage/homepage",
+    "pages/followlist/followlist",
     "pages/collections/collections",
->>>>>>> 9d87fca84b24331c19ef56a8f37a1b9d169c461c
     "pages/editor/editor",
     "pages/recipe/recipe",
     "pages/home/home",

@@ -5,22 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userList:[{
-      openid:'111',
-      name:'被关注用户1',
-      sex:'0',
-      profile:'http://pic4.zhimg.com/50/v2-236c74303ee2e7da84cab2b21b8ef30b_hd.jpg'
-    },{
-      openid:'222',
-      name:'被关注用户2',
-      sex:'1',
-      profile:'http://pic4.zhimg.com/50/v2-236c74303ee2e7da84cab2b21b8ef30b_hd.jpg'
-    },{
-      openid:'333',
-      name:'被关注用户3',
-      sex:'2',
-      profile:'http://pic4.zhimg.com/50/v2-236c74303ee2e7da84cab2b21b8ef30b_hd.jpg'
-    }]
+    userList:[]
   },
 
   /**
@@ -28,13 +13,12 @@ Page({
    */
   onLoad: function (options) {
     var _this=this
-    // const eventChannel = this.getOpenerEventChannel()
-    // eventChannel.on('acceptDataFromOpenerPage', function(data) {
-    //   console.log(data)
-    //   _this.setData({
-    //     userList:data
-    //   })
-    // })
+    const eventChannel = this.getOpenerEventChannel()
+    eventChannel.on('acceptDataFromOpenerPage', function(data) {
+      _this.setData({
+        userList:data.data
+      })
+    })
   },
   touserhomepage:function(e){
     wx.redirectTo({
