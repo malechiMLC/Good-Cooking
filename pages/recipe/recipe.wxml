@@ -2,13 +2,70 @@
 <view class="bg">
 
   <view style="display:flex;flex-direction:column;align-items:center;width:100%;">
-    <text class="title" maxlength="10" style="font-size:30rpx;font-weight:bold;">{{title}}</text>
+    <text class="title" maxlength="10" style="font-size:30rpx;font-weight:bold">{{title}}</text>
   </view>
 
-  <view class="page__bd">
+ <view class="detail" style="display:flex;flex-direction:column;justify-content:space-between;padding:5rpx 30rpx;border-top:2rpx dashed #D8D8D8;border-bottom:2rpx dashed #D8D8D8;border-radius:50rpx;">
+    <view class="detail-item">
+      <text class="detail-title">菜名:</text>
+      <text class="detail-content">{{title}}</text>
+    </view>
+    <view class='line'></view>
+    <view class="detail-item">
+      <text class="detail-title">难度:</text>
+      <text class="detail-content">{{difficulty}}</text>
+    </view>
+    <view class='line'></view>
+    <view class="detail-item">
+      <text class="detail-title">份量:</text>
+      <text class="detail-content">{{size}}</text>
+    </view>
+    <view class='line'></view>
+    <view class="detail-item">
+      <text class="detail-title">时间:</text>
+      <text class="detail-content">{{timeNeeded}}</text>
+    </view>
+    <view class='line'></view>
+    <view class="detail-item">
+      <text class="detail-title">营养:</text>
+      <text class="detail-content">{{nutrition}}</text>
+    </view>
+    <view class='line'></view>
+    <view class="detail-item">
+      <text class="detail-title">原料:</text>
+      <text class="detail-content">{{ingredients}}</text>
+    </view>
+ </view>
+
+  <view class="page__bd" style="padding-top:20rpx;">
     <rich-text nodes="{{steps}}"></rich-text>
+  </view>
+
+  <view class="comment-area">
+      <view class="comment-title" style="display:flex;flex-direction:row;justify-content: flex-end;width:95%;">
+        <image class="icon" src="../../images/like.png" bindtap="onLike" wx:if="{{liked}}"/>
+        <image class="icon" src="../../images/like.png" wx:else/>
+        <text/>{{likenum}}
+        <image class="icon" src="../../images/like.png"/>
+        <text/>{{commentnum}}
+        <image class="icon" src="../../images/like.png" bindtap="onCollect" wx:if="{{collected}}" />
+        <image class="icon" src="../../images/like.png" wx:else/>
+        <text/>{{collecttnum}}
+      </view>
+      <view>
+        <text style="padding-top:20rpx;height:40rpx;width:40rpx;border-bottom:2rpx solid #aaa;font-weight:bold;">评论区</text>
+          <view  class="comment-card">
+            <image class="avater" style="height:60rpx;width:60rpx;border-radius:30rpx;margin-left:10rpx;" src="../../images/me.png"></image>
+            <view style="width:620rpx;display:flex;flex-direction:column;margin-left:10rpx;margin-right:10rpx;">
+              <text style="color:#000">美食评论家</text>
+              <text style="font-size:26rpx;width:100%;text-overflow:ellipsis;word-wrap:break-word">lalallalallalaalaalaalallalaalaalaalallalaalaalaalallalaalaalalalalalaalal</text>
+            </view>
+          </view>
+      </view>
+
   </view>
 
 </view>
 
-<image class="collection" style="position:absolute;top:0;right:20rpx;height:40rpx;width:40rpx;" src="../../images/like.png"></image>
+<image class="collection" style="position:fixed;top:0;right:20rpx;height:40rpx;width:40rpx;" src="../../images/like.png" bindtap="onCollect" wx:if="{{collected}}"></image>
+<image wx:else class="collection" style="position:fixed;top:0;right:20rpx;height:40rpx;width:40rpx;" src="../../images/like.png" bindtap="onCollect"></image>

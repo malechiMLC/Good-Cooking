@@ -20,7 +20,7 @@
 			<text class="cuIcon-title text-blue"></text>今日菜单
 		</view>
 	</view>
-	<swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+	<swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff" bindtap="toToday">
 		<swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
 			<view class="swiper-item">
 				<image class="bg-img bg-mask" style="background-image" src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
