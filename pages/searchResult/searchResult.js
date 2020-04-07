@@ -42,6 +42,7 @@ Page({
       _this.setData({
         keyword:data.data
       })
+      console.log(_this.data.keyword)
     }) 
 
     // 搜索

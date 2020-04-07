@@ -37,18 +37,25 @@ Page({
         id:'3'
       }
     ],
-
+URI:undefined,
     //Mask
     showModal: false,
     img_url: [],
     content: '',    
   },
 
+
   /**
    * 生命周期函数--监听页面加载
    */
+  
+
   onLoad: function (options) {
     var _this=this
+    
+    
+    
+    
     // 获取分享列表
     // wx.request({
     //   url: 'https://csquare.wang/post',

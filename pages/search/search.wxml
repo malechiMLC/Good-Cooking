@@ -1,5 +1,9 @@
 <!--pages/search/search.wxml-->
-<searchbar focus="true" bindselectresult="selectResult" search="{{search}}"></searchbar>
+<view class="flex-row space-around ver-center" style="background-color:#EDEDED;">
+  <view style="width:660rpx;"><searchbar focus="true" bindselectresult="selectResult" search="{{search}}"></searchbar></view>
+  <view class="ver-center" style="margin-right:15rpx;" bindtap="usecamera"><image src="/images/camera-search.png" class="camera"></image></view>
+</view>
+
 
 <buttonflow label="历史搜索" words="{{historyWords}}" bind:sendKeyword="sendKeyword"/>
 <buttonflow label="热搜推荐" words="{{hotWords}}" bind:sendKeyword="sendKeyword"/>
