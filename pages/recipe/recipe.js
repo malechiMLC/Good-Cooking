@@ -1,4 +1,7 @@
 // pages/recipe/recipe.js
+
+const app = getApp()
+
 Page({
 
   /**
@@ -7,30 +10,124 @@ Page({
   data: {
     liked:false,
     collected:false,
-    likenum:'111',
-    commentnum: '111',
-    collecttnum: '111',
-    id:0,
-    title: "title",
+    commented:false,
+    likenum:'',
+    commentnum: '',
+    collectnum: '',
+    commenttext:'',
+
+    rid:10,
+    uid:'',
+    title: "",
     image:'',
-    timeNeeded:'time',
-    difficulty:'diff',
-    size:'size',
-    ingredients:'清水：100g，食用盐：20g，食用油：30g...清水：100g，食用盐：20g，食用油：30g...',
-    nutrition:'清水：100g，食用盐：20g，食用油：30g...清水：100g，食用盐：20g，食用油：30g...清水：100g，食用盐：20g，食用油：30g...清水：100g，食用盐：20g，食用油：30g...',
-    steps: ' < ul ><li><div class="recipeStep_img"><img src="https://i8.meishichina.com/attachment/recipe/2020/01/03/2020010315780566122045067513584.JPG?x-oss-process=style/p320" alt="腊肠香菇糯米饭的做法步骤：1"></div><div class="recipeStep_word"><div class="recipeStep_num">1</div>备好材料：糯米提前至少4小时凉水浸泡，干香菇凉水泡软，腊肠切厚片，青豆剥皮洗净，胡萝卜刮掉外皮，洋葱半个，香葱清洗干净。</div></li><li><div class="recipeStep_img"><img src="https://i8.meishichina.com/attachment/recipe/2020/01/03/2020010315780566124783257513584.JPG?x-oss-process=style/p320" alt="腊肠香菇糯米饭的做法步骤：2"></div><div class="recipeStep_word"><div class="recipeStep_num">2</div>洋葱切小丁，胡萝卜切小丁，香菇切丁，香葱切末；香菇水不要倒，焖饭倍儿香。</div></li><li><div class="recipeStep_img"><img src="https://i8.meishichina.com/attachment/recipe/2020/01/03/2020010315780566125993627513584.JPG?x-oss-process=style/p320" alt="腊肠香菇糯米饭的做法步骤：3"></div><div class="recipeStep_word"><div class="recipeStep_num">3</div>炒锅中倒少许油，将腊肠和香菇丁同入锅中，小火翻炒出香味；腊肠是自家制作的，如果肥肉少可以适量多放些油煸炒，如果肥肉多，可以少放些油煸炒。</div></li><li><div class="recipeStep_img"><img src="https://i8.meishichina.com/attachment/recipe/2020/01/03/2020010315780566127178917513584.JPG?x-oss-process=style/p320" alt="腊肠香菇糯米饭的做法步骤：4"></div><div class="recipeStep_word"><div class="recipeStep_num">4</div>将青豆、胡萝卜丁、洋葱丁入锅中，腊肠有咸味，根据口味撒盐、倒生抽，翻炒均匀。</div></li><li><div class="recipeStep_img"><img src="https://i8.meishichina.com/attachment/recipe/2020/01/03/2020010315780566128859707513584.JPG?x-oss-process=style/p320" alt="腊肠香菇糯米饭的做法步骤：5">',
+    timeNeeded:'',
+    difficulty:'',
+    size:'',
+    ingredients:'',
+    nutrition:'',
+    steps: '',
+    commentArray: []
   },
 
   //collect
   onCollect:function(){
+    console.log(app.globalData.openid)
+    if (!this.data.collected) {
+      var that = this
+      //收藏
+      wx.request({
+        url: 'https://csquare.wang/favorite/user/' + app.globalData.openid + '/recipe/' + that.data.rid,
+        method: 'POST',
+        data: {
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        success(res) {
+          console.log('collect success')
+          that.setData({
+            collected: true
+          })
+       },
+        fail() {
+          console.log('collect fail')
+        }
+      })
+    } else {
+      var that = this
+      //取消收藏
+      wx.request({
+        url: 'https://csquare.wang/favorite/recipe/' + that.data.rid,
+        method: 'delete',
+        data: {
+          openid: app.globalData.openid
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        success(res) {
+          console.log(res)
+          that.setData({
+            collected: false
+          })
+        },
+        fail() {
+          console.log('delete fail')
+        }
+      })
+    }
+  },
+
+  // //coLike
+  // onLike: function () {
+  //   if (!this.data.liked) {
+  //     this.setData({
+  //       liked: true
+  //     })
+  //   } else {
+  //     this.setData({
+  //       liked: false
+  //     })
+  //   }
+  // },
+  //comment-open/close
+  onComment: function () {
+    if (!this.data.commented) {
+      this.setData({
+        commented: true
+      })
+    } else {
+      this.setData({
+        commented: false
+      })
+    }
 
   },
-  //like
-  onLike: function () {
-
-  },
-  //comment
-  onLike: function () {
+  //comment-commit
+  commitComment:function(){
+    var that = this
+    wx.request({
+      url: 'https://csquare.wang/comment/recipe/'+ that.data.rid,
+      method:'POST',
+      data:{
+        openid: app.globalData.openId,
+        content:that.data.commenttext
+      },
+      header:{
+        'content-type': 'application/json'
+      },
+      success(res){
+        console.log("comment success")
+        wx.showToast({
+          title: '成功',
+          icon: 'success',
+          duration: 1500
+        })
+        that.setData({
+          commented:false
+        })
+      }
+    })
 
   },
 
@@ -38,16 +135,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let sid = options.recipeID
-    let rid = parseInt(sid)
-    this.setData({
-      id:rid
-    })
-
     var that = this
+    // 页面跳转参数处理
+    // let sid = options.recipeID
+    // let rid = parseInt(sid)
+    // this.setData({
+    //   id:rid
+    // })
+
+
     //获取食谱
     wx.request({
-      url: 'https://csquare.wang/recipe/'+rid,
+      url: 'https://csquare.wang/recipe/' + that.data.rid,
       method: 'GET',
       data: {
       },
@@ -56,8 +155,40 @@ Page({
       },
       success(res) {
         console.log(res)
+        that.setData({
+          difficulty:res.data.difficulty,
+          image:res.data.image,
+          ingredients:res.data.ingredients,
+          nutrition:res.data.nutrition,
+          size:res.data.size,
+          steps:res.data.steps,
+          timeNeeded:res.data.timeNeeded,
+          title:res.data.title,
+          uid:res.data.openid,
+          time:res.data.time,
+        })
       }
     })
+
+    // 获取评论
+    wx.request({
+      url: 'https://csquare.wang/comment/recipe/' + that.data.rid,
+      method: 'GET',
+      data: {
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res) {
+        console.log(res)
+        that.setData({
+          commentArray:res.data
+        })
+      }
+    })
+    // 处理获得的评论对象数组
+    // var temp_array = []
+    // for (var i =0;i<temp_array.length)
   },
 
   /**
@@ -71,7 +202,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
   /**

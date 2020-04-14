@@ -1,0 +1,9 @@
+/* custom-components/commentcard/commentcard.wxss */
+.comment-card{
+  display:flex;
+  flex-direction:row;
+  border:2rpx solid #ccc;
+  border-radius:15rpx;
+  margin:10rpx;
+  padding: 4rpx;
+}

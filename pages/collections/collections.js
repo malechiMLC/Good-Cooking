@@ -1,18 +1,50 @@
 // pages/collections/collections.js
+
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    collects:[
+      {
+        title:"菜名",
+        image:"https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
+        timeNeeded:"10min",
+        difficulty:"0基础",
+      }, {
+        title: "菜名",
+        image: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
+        timeNeeded: "10min",
+        difficulty: "0基础",
+      }
+    ],
+    openid: app.globalData.openid,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this
+    //获取收藏列表
+    wx.request({
+      url: 'https://csquare.wang/favorite/user/'+that.openid,
+      method: 'GET',
+      data: {
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res) {
+        console.log(res)
+        that.setData({
+          collects: res.data.collects,
+        })
+      }
+    })
   },
 
   /**

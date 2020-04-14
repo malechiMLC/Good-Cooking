@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/home/home",
     "pages/recipe/recipe",
-    "pages/sharelist/share",
     "pages/collections/collections",
+    "pages/home/home",
     "pages/editor/editor",
+    "pages/sharelist/share",
     "pages/my/my",
     "pages/today/today",
     "pages/searchResult/searchResult",

@@ -1,12 +1,17 @@
+// pages/editor/editor.js
+
+const app = getApp()
+
 Page({
   data: {
+    openid:'',
     title:'',
     image:'',
     timeNeeded:'',
     difficulty:'',
     size:'',
     ingredients:'',
-    nutrition:[],
+    nutrition:'',
     steps:'',
     //chooseIcon
     icon:'/images/add.png',
@@ -30,24 +35,23 @@ Page({
   submit:function(){
     let that = this;
     let da = that.data;
-    let ing =JSON.stringify(da.ingredients);
-    let nut = JSON.stringify(da.nutrition);
-    let ste = JSON.stringify(da.steps);
+    console.log(da)
     wx.request({
       url: 'https://csquare.wang/recipe',
       method:'POST',
       data:{
+        openid: app.globalData.openid,
         title:da.title,
         image:da.image,
         timeNeeded:da.timeNeeded,
         difficulty:da.difficulty,
         size:da.size,
-        ingredients:ing,
-        nutrition:nut,
-        steps:ste,
+        ingredients:da.ingredients,
+        nutrition:da.nutrition,
+        steps:da.steps,
       },
       header:{
-        'content-type': 'application.json'
+        'content-type': 'application/json'
       },
       success(res) {
         console.log(res);
@@ -125,12 +129,12 @@ Page({
     })
   },
 
-
   readOnlyChange() {
     this.setData({
       readOnly: !this.data.readOnly
     })
   },
+
   onLoad() {
     const platform = wx.getSystemInfoSync().platform
     const isIOS = platform === 'ios'

@@ -30,11 +30,3 @@
   height:40rpx;
   width:40rpx;
 }
-
-.comment-card{
-  display:flex;
-  flex-direction:row;
-  border:2rpx solid #ccc;
-  border-radius:30rpx;
-  margin:10rpx;
-}
