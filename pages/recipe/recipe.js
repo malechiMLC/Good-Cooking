@@ -31,7 +31,7 @@ Page({
 
   //collect
   onCollect:function(){
-    console.log(app.globalData.openid)
+    console.log(app.globalData.openId)
     if (!this.data.collected) {
       var that = this
       //收藏

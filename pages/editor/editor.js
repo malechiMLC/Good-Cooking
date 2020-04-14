@@ -40,7 +40,7 @@ Page({
       url: 'https://csquare.wang/recipe',
       method:'POST',
       data:{
-        openid: app.globalData.openid,
+        openid: app.globalData.openId,
         title:da.title,
         image:da.image,
         timeNeeded:da.timeNeeded,

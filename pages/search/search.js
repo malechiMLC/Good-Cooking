@@ -8,7 +8,8 @@ Page({
    */
   data: {
     historyWords:[],
-    hotWords:[]
+    hotWords:[],
+    URI:undefined
   },
 
   /**
@@ -68,7 +69,6 @@ Page({
         temp_list.push(obj)
       }
     }
-
     return new Promise((resolve, reject) => {
       setTimeout(() => {
           resolve(temp_list)
@@ -95,6 +95,86 @@ Page({
         res.eventChannel.emit('acceptDataFromOpenerPage', { data: e.detail })
       }
     })
+  },
+
+  img2Base642URI:function(){
+    var _this=this
+    var FSM = wx.getFileSystemManager()
+    // 获取图片
+    wx.chooseImage({
+      count: 1,
+      success: function(e) {
+        FSM.readFile({
+          filePath: e.tempFilePaths[0],
+          encoding: "base64",
+          success: function(res) {
+            console.log(encodeURI(res.data))
+            _this.setData({
+              URI:encodeURI(res.data)
+            })
+            console.log(_this.data.URI)
+            _this.getCate()
+          }
+        })
+      }
+  })
+
+    FSM.readFile({
+      filePath: '/images/timg.jpg',
+      encoding: "base64",
+      success: function(res) {
+        console.log(encodeURI(res.data))
+        _this.setData({
+          URI:encodeURI(res.data)
+        })
+        console.log(_this.data.URI)
+        _this.getCate()
+      }
+    })
+  },
+
+  
+
+  getCate:function(){
+    var _this=this
+    var access_token
+    wx.request({
+      url: 'https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=dHI6TB3SArO6YVxOkDvcnzwv&client_secret=EoSU8wLzXIpb7yqyFIFuk6rzIU3E1h3C',
+      method: 'POST',
+      data: { },
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res) {
+        access_token = res.data.access_token
+        console.log(_this.data.URI)
+        wx.request({
+          url: 'https://aip.baidubce.com/rest/2.0/image-classify/v2/dish?access_token='+access_token,
+          method: 'POST',
+          data: {
+            image:_this.data.URI,
+            filter_threshold:0.95
+          },
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          success(e) {
+            console.log(e.data.result[0].name)
+            wx.navigateTo({
+              url: '/pages/searchResult/searchResult',
+              success: function(res) {
+                res.eventChannel.emit('acceptDataFromOpenerPage', { data: e.data.result[0].name })
+              }
+            })
+          }
+        })
+      }
+    })    
+  },
+
+  usecamera:function(){
+    var _this=this
+    _this.img2Base642URI()
   },
 
   /**

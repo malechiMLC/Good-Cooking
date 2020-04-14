@@ -1,9 +1,11 @@
 {
   "pages": [
-    "pages/recipe/recipe",
-    "pages/collections/collections",
     "pages/home/home",
     "pages/editor/editor",
+    "pages/homepage/homepage",
+    "pages/followlist/followlist",
+    "pages/collections/collections",
+    "pages/recipe/recipe",
     "pages/sharelist/share",
     "pages/my/my",
     "pages/today/today",
@@ -16,7 +18,7 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "做好饭",
     "navigationBarTextStyle": "black",
-    "onReachBottomDistance":50
+    "onReachBottomDistance": 50
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",

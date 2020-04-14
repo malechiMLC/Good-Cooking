@@ -1,0 +1,76 @@
+/* pages/homepage/homepage.wxss */
+.border{
+  border: 2rpx solid black;
+}
+
+.flex-row{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.flex-column{
+  display: flex;
+  flex-direction: column;
+}
+
+.hori-center{
+  display: flex;
+  justify-content: center;
+}
+
+.ver-center{
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+.space-around{
+  display:flex;
+  justify-content:space-around;
+}
+
+.space-between{
+  display:flex;
+  justify-content:space-between;
+}
+
+.profile{
+  width:170rpx;
+  height:170rpx ;
+  border-radius: 50%;
+  margin-left: 40rpx;
+}
+
+.follow-number{
+  font-size:medium;
+  letter-spacing: 2px;
+  color: #555;
+}
+
+.follow-text{
+  font-size: small;
+  letter-spacing: 2px;
+  line-height: 25px;
+  color: #555;
+}
+
+.follow-btn{
+  height:50rpx;
+  border-radius:30px;
+  font-size:small;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: red 1px solid;
+}
+
+.choose-txt{
+  font-size: large;
+  letter-spacing: 2px;
+}
+
+.bottom-text{
+  color: #ccc;
+  font-size: medium;
+}
