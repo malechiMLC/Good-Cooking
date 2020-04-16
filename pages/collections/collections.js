@@ -21,7 +21,6 @@ Page({
         difficulty: "0基础",
       }
     ],
-    openid: app.globalData.openid,
   },
 
   /**
@@ -31,7 +30,7 @@ Page({
     var that = this
     //获取收藏列表
     wx.request({
-      url: 'https://csquare.wang/favorite/user/'+that.openid,
+      url: 'https://csquare.wang/favorite/user/' + app.globalData.openId,
       method: 'GET',
       data: {
       },

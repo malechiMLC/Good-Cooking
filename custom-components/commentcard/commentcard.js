@@ -21,6 +21,10 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    tohomepage: function (e) {
+      wx.navigateTo({
+        url: '/pages/homepage/homepage?otherOpenId=' + e.currentTarget.id,
+      })
+    },
   }
 })

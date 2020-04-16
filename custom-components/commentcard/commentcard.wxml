@@ -3,7 +3,7 @@
 <view wx:for="{{commentArray}}" wx:for-item="item">
 
   <view  class="comment-card">
-   <image class="avater" style="height:80rpx;width:80rpx;border-radius:40rpx;margin-left:10rpx;" src="{{item.avatar}}"></image>
+   <image class="avater" style="height:80rpx;width:80rpx;border-radius:40rpx;margin-left:10rpx;" src="{{item.avatar}}" bindtap="tohomepage" id="{{item.openid}}"></image>
       <view style="width:610rpx;display:flex;flex-direction:column;margin-left:10rpx">
           <text style="color:#000">{{item.name}}</text>
           <text style="font-size:26rpx;width:100%;text-overflow:ellipsis;word-wrap:break-word">{{item.comment}}</text>

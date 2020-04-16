@@ -4,7 +4,6 @@ const app = getApp()
 
 Page({
   data: {
-    openid:'',
     title:'',
     image:'',
     timeNeeded:'',
@@ -13,8 +12,10 @@ Page({
     ingredients:'',
     nutrition:'',
     steps:'',
+
     //chooseIcon
     icon:'/images/add.png',
+
     //editor
     formats: {},
     readOnly: false,
@@ -34,27 +35,27 @@ Page({
   //submit
   submit:function(){
     let that = this;
-    let da = that.data;
-    console.log(da)
     wx.request({
       url: 'https://csquare.wang/recipe',
       method:'POST',
       data:{
         openid: app.globalData.openId,
-        title:da.title,
-        image:da.image,
-        timeNeeded:da.timeNeeded,
-        difficulty:da.difficulty,
-        size:da.size,
-        ingredients:da.ingredients,
-        nutrition:da.nutrition,
-        steps:da.steps,
+        title: that.data.title,
+        image: that.data.image,
+        timeNeeded: that.data.timeNeeded,
+        difficulty: that.data.difficulty,
+        size: that.data.size,
+        ingredients: that.data.ingredients,
+        nutrition: that.data.nutrition,
+        steps: that.data.steps,
       },
       header:{
         'content-type': 'application/json'
       },
       success(res) {
-        console.log(res);
+        console.log('upload success');
+        // console.log(that.data.steps)
+        that.clear()
         wx.showToast({
           title: '成功',
           icon: 'success',
@@ -66,7 +67,6 @@ Page({
 
   //inputs
   inputTitle:function(e){
-    var that = this;
     this.setData({
       title: e.detail.value
     })
@@ -97,17 +97,9 @@ Page({
     })
   },
   inputStep: function (e) {
-    var that = this;
-    that.editorCtx.getContents({
-      success: function (res) {
-        console.log(res.html)
-        wx.setStorageSync("content", res.html); // 缓存本地
-        that.setData({
-          steps:res.html
-        })
-      }
-    })
-    console.log(that.steps)
+    const value = e.detail.html
+    this.data.steps = value
+    console.log(value)
   },
   //get cover
   chooseCover:function(){

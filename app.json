@@ -1,13 +1,13 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/editor/editor",
-    "pages/homepage/homepage",
-    "pages/followlist/followlist",
     "pages/collections/collections",
     "pages/recipe/recipe",
-    "pages/sharelist/share",
+    "pages/homepage/homepage",
     "pages/my/my",
+    "pages/editor/editor",
+    "pages/followlist/followlist",
+    "pages/sharelist/share",
     "pages/today/today",
     "pages/searchResult/searchResult",
     "pages/search/search",
