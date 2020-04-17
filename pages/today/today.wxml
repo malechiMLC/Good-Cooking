@@ -2,13 +2,14 @@
 <view class="today-page">
   <view class="cell">
     <text class="foods-title">早餐</text>
-    <view class="foods"><foodlist infoArray="{{brArray}}"/></view></view>
+    <foodlist class="foods" infoArray="{{brArray}}"/>
+  </view>
   <view class="cell">
     <text class="foods-title">午餐</text>
-    <view class="foods"><foodlist infoArray="{{luArray}}"/></view>
+    <foodlist class="foods" infoArray="{{luArray}}"/>
   </view>
   <view class="cell">
     <text class="foods-title">晚餐</text>
-    <view class="foods"><foodlist infoArray="{{diArray}}"/></view>
+    <foodlist  class="foods" infoArray="{{diArray}}"/>
   </view>
 </view>

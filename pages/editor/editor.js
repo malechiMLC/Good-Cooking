@@ -56,6 +56,7 @@ Page({
         console.log('upload success');
         // console.log(that.data.steps)
         that.clear()
+        
         wx.showToast({
           title: '成功',
           icon: 'success',

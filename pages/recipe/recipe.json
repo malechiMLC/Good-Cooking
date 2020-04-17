@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "commentcard": "/custom-components/commentcard/commentcard"},
-  "navigationBarTitleText": "食谱"
+    "commentcards": "/custom-components/commentcard/commentcard"
+    },
+    "navigationBarTitleText": "食谱"
 }

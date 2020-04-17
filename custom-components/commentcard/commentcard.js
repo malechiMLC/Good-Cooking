@@ -6,7 +6,14 @@ Component({
   properties: {
     commentArray: {
       type: Array,
-      value: []
+      value: [],
+      observer:function(newval,oldval){
+        console.log(this.data.commentArray)
+        console.log(newval)
+        this.setData({
+          commentArray:newval
+        })
+      }
     }
   },
 
@@ -14,7 +21,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    comments:[]
   },
 
   /**

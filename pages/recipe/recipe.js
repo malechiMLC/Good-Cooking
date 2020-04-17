@@ -11,9 +11,8 @@ Page({
     liked:false,
     collected:false,
     commented:false,
-    likenum:'',
-    commentnum: '',
-    collectnum: '',
+    commentnum: '111',
+    collectnum: '222',
     commenttext:'',
     rid:10,
     title: "",
@@ -25,83 +24,28 @@ Page({
     nutrition:'',
     steps: '',
     commentArray: [
-      {
-        avatar:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg",
-        name:'user',
-        comment:"great!"
-      },
-      {
-        avatar: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg",
-        name: 'user',
-        comment: "great!"
-      },
-      {
-        avatar: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg",
-        name: 'user',
-        comment: "great!"
-      }
+      // {
+      //   avatar:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg",
+      //   name:'user',
+      //   comment:"great!"
+      // },
+      // {
+      //   avatar: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg",
+      //   name: 'user',
+      //   comment: "great!"
+      // },
+      // {
+      //   avatar: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg",
+      //   name: 'user',
+      //   comment: "great!"
+      // }
     ]
   },
 
-  //获取评论
-  getComments:function(){
-    var that = this
-    var list = []
-    var commentList = []
-    wx.request({
-      url: 'https://csquare.wang/comment/recipe/' + that.data.rid,
-      method: 'GET',
-      data: {
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success(res) {
-        console.log(res)
-        for(var i=0;i<res.data.length;i++){
-          list.push(res.data[i])
-        }
-      }
-    })
-    console.log(list)
-    //对获取的list做处理
-    // for(var i=0;list.length;i++){
-    //   var avatar,name = this.getCommentUserInfo(list[i].openid)
-    //   var obj
-    //   obj.name = name
-    //   obj.avatar = avatar
-    //   obj.openid = list[i].openid
-    //   obj.comment = list[i].content
-    //   commentList.push(obj)
-    // }
-    // that.setData({
-    //   commentArray:commentList
-    // })
-  },
-  //根据openId反向获取用户信息
-  getCommentUserInfo:function(userId){
-    wx.request({
-      url: 'https://csquare.wang/user',
-      method:'GET',
-      data:{
-        openid:userId
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success(res) {
-        console.log(res)
-        console.log(res.data)
-        return res.data.avatar,res.data.name
-      }
-    })
-  },
   //点击collet按钮
   onCollect:function(){
     if (!this.data.collected) {
       var that = this
-      console.log('if')
-      console.log(app.globalData.openId)
       //收藏
       wx.request({
         url: 'https://csquare.wang/favorite/user/' + app.globalData.openId + '/recipe/' + that.data.rid,
@@ -113,18 +57,15 @@ Page({
         },
         success(res) {
           console.log('collect success')
+          var num = parseInt(that.data.collectnum)+1
           that.setData({
-            collected: true
+            collected: true,
+            collectnum:num.toString()
           })
        },
-        fail() {
-          console.log('collect fail')
-        }
       })
     } else {
       var that = this
-      console.log('else')
-      console.log(app.globalData.openId)
       //取消收藏
       wx.request({
         url: 'https://csquare.wang/favorite/recipe/' + that.data.rid,
@@ -137,14 +78,12 @@ Page({
         },
         success(res) {
           console.log('delete success')
-          console.log(res)
+          var num = parseInt(that.data.collectnum) - 1
           that.setData({
-            collected: false
+            collected: false,
+            collectnum: num.toString()
           })
         },
-        fail() {
-          console.log('delete fail')
-        }
       })
     }
   },
@@ -160,6 +99,12 @@ Page({
       })
     }
 
+  },
+  //
+  inputComment:function(e){
+    this.setData({
+      commenttext: e.detail.value
+    })
   },
   //提交评论
   commitComment:function(){
@@ -181,11 +126,11 @@ Page({
           icon: 'success',
           duration: 1500
         })
+        var num = parseInt(that.data.commentnum) + 1
         that.setData({
-          commented:false
+          commented:false,
+          commentnum:num.toString()
         })
-        //刷新评论
-        that.getComments()
       }
     })
 
@@ -231,9 +176,43 @@ Page({
       }
     })
 
-    // that.getComments()
-
-    that.getCommentUserInfo('ovQMG5twIxjfeMk7WdJt8hAIZDBQ')
+    // 获取评论列表
+    wx.request({
+      url: 'https://csquare.wang/comment/recipe/' + that.data.rid,
+      method: 'GET',
+      data: {
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res) {
+        var temp_array = []
+        for (let i = 0; i < res.length; i++) {
+          var obj = {}
+          obj.comment = res.data[i].content,
+          obj.openid = res.data[i].openid,
+          //获取用户头像
+          wx.request({
+            url: 'https://csquare.wang/user',
+            method: 'GET',
+            data: {
+              openid: res.data[i].openid
+            },
+            header: {
+              'content-type': 'application/json'
+            },
+            success(response) {
+              obj.name = response.data.name,
+              obj.avatar = response.data.profile
+            }
+          })
+          temp_array.push(obj)
+        }
+        that.setData({
+          commentArray: temp_array
+        })
+      }
+    })
 
   },
 

@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "commentcard": "/custom-components/commentcard/commentcard"
+  }
+}

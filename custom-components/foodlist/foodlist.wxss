@@ -1,6 +1,6 @@
 /* custom-components/foodlist/foodlist.wxss */
 .foodlist{
-  height: 300rpx;
+  height: 100%;
   width: 100%;
   justify-content: space-around;
   display: flex;

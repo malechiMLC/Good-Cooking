@@ -40,7 +40,7 @@
     </view>
   </view>
 
-  <view class="page__bd" style="padding: 20rpx 10rpx 0 10rpx;">
+  <view class="page__bd" style="padding: 20rpx 10rpx 0 20rpx;">
     <rich-text nodes="{{steps}}"></rich-text>
   </view>
 
@@ -49,27 +49,27 @@
         <!-- <image wx:if="{{liked}}" class="icon" src="../../images/like-active.png" catchtap="onLike"/>
         <image wx:else class="icon" src="../../images/like.png" catchtap="onLike"/>
         <text/>{{likenum}} -->
-        <image wx:if="{{commented}}" class="icon" src="../../images/like-active.png" catchtap="onComment"/>
-        <image wx:else class="icon" src="../../images/like.png" catchtap="onComment"/>
+        <image wx:if="{{commented}}" class="icon" src="/images/Like-active.png" catchtap="onComment"/>
+        <image wx:else class="icon" src="/images/Like.png" catchtap="onComment"/>
         <text/>{{commentnum}}
-        <image wx:if="{{collected}}" class="icon" src="../../images/like-active.png" catchtap="onCollect"/>
-        <image wx:else class="icon" src="../../images/like.png" catchtap="onCollect"/>
+        <image wx:if="{{collected}}" class="icon" src="/images/Like-active.png" catchtap="onCollect"/>
+        <image wx:else class="icon" src="/images/Like.png" catchtap="onCollect"/>
         <text/>{{collectnum}}
       </view>
 
       <view wx:if="{{commented}}">
-          <textarea style="margin:10rpx;width:730rpx;border:2rpx solid #ddd;border-radius:15rpx;height:100rpx;font-size:26rpx;text-overflow:ellipsis;word-wrap:break-word;">{{commenttext}}</textarea>
+          <textarea style="margin:10rpx;width:730rpx;border:2rpx solid #ddd;border-radius:15rpx;height:100rpx;font-size:26rpx;text-overflow:ellipsis;word-wrap:break-word;" bindinput="inputComment"></textarea>
           <button style="margin-right:10rpx;height:45rpx;width:90rpx;background-color:#cce6ff;color:white;padding:0;text-align:center;font-size:25rpx;line-height:45rpx;" bindtap="commitComment">发表</button>
       </view>
       
       <view>
         <text style="padding-top:20rpx;height:40rpx;width:40rpx;border-bottom:2rpx solid #aaa;font-weight:bold;">大家怎么说</text>
-        <commentcard commentArray="{{commentArray}}" />
+        <commentcards commentArray="{{commentArray}}" />
       </view>
 
   </view>
 
 </view>
 
-<image class="collection" style="position:fixed;top:0;right:20rpx;height:40rpx;width:40rpx;" src="../../images/like-active.png" catchtap="onCollect" wx:if="{{collected}}"></image>
-<image wx:else class="collection" style="position:fixed;top:0;right:20rpx;height:40rpx;width:40rpx;" src="../../images/like.png" catchtap="onCollect"></image>
+<image class="collection" style="position:fixed;top:0;right:20rpx;height:40rpx;width:40rpx;" src="/images/Like-active.png" catchtap="onCollect" wx:if="{{collected}}"></image>
+<image wx:else class="collection" style="position:fixed;top:0;right:20rpx;height:40rpx;width:40rpx;" src="/images/Like.png" catchtap="onCollect"></image>
