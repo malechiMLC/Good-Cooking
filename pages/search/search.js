@@ -123,21 +123,17 @@ Page({
       filePath: '/images/timg.jpg',
       encoding: "base64",
       success: function(res) {
-        console.log(encodeURI(res.data))
         _this.setData({
           URI:encodeURI(res.data)
         })
-        console.log(_this.data.URI)
         _this.getCate()
       }
     })
   },
 
-  
-
   getCate:function(){
+    console.log('in getCate()')
     var _this=this
-    var access_token
     wx.request({
       url: 'https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=dHI6TB3SArO6YVxOkDvcnzwv&client_secret=EoSU8wLzXIpb7yqyFIFuk6rzIU3E1h3C',
       method: 'POST',
@@ -146,10 +142,9 @@ Page({
         'content-type': 'application/json'
       },
       success(res) {
-        access_token = res.data.access_token
-        console.log(_this.data.URI)
+        console.log(res)
         wx.request({
-          url: 'https://aip.baidubce.com/rest/2.0/image-classify/v2/dish?access_token='+access_token,
+          url: 'https://aip.baidubce.com/rest/2.0/image-classify/v2/dish?access_token='+res.data.access_token,
           method: 'POST',
           data: {
             image:_this.data.URI,

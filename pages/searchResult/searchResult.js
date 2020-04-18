@@ -42,7 +42,6 @@ Page({
       _this.setData({
         keyword:data.data
       })
-      console.log(_this.data.keyword)
     }) 
 
     // 搜索
@@ -71,6 +70,7 @@ Page({
         _this.setData({
           infoArray:temp_array
         })
+        console.log(_this.data.infoArray)
       }
     })
   },
