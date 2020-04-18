@@ -2,6 +2,7 @@
 
 const app = getApp()
 const util = require('../../utils/util.js');
+const qiniuUploader = require("../../utils/qiniuUploader");
 
 Page({
 
@@ -11,6 +12,7 @@ Page({
   data: {
     showModal:false,
     img_url:[],
+    image_array:[],
     content:'',
     infoArray: [
       {
@@ -62,7 +64,23 @@ Page({
       success: function (res) {
 
         if (res.tempFilePaths.length > 0) {
-
+          var temp_array = []
+          for (let i = 0; i < res.tempFilePaths.length; i++){
+            wx.uploadFile({
+              url: 'https://csquare.wang/',
+              filePath: tempFilePaths,
+              name: 'image',
+              formData:{
+                'user':app.globalData.openId
+              },
+              success(response){
+                temp_array.push(response)
+              }
+            })
+          }
+          that.setData({
+            image_array:temp_array
+          })
           //图如果满了9张，不显示加图
           if (res.tempFilePaths.length == 9) {
             that.setData({

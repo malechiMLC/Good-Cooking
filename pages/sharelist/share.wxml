@@ -7,9 +7,9 @@
 <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
 <view class ="uploadDlg" wx:if="{{showModal}}">
     <text style="font-weight:bold;font-size:32rpx;">分享</text>
-    <textarea class='text' bindinput="input" placeholder="说点什么...." maxlength="-1" />
+    <textarea class='text' bindinput="input" placeholder="说点什么...." maxlength="-1">{{content}}</textarea>
     <scroll-view class="image_content" scroll-y="true" enable-flex="true">
-      <view class='image' wx:for="{{img_url}}">
+      <view class='image' wx:for="{{img_array}}">
         <image class="moment_img" src="{{item}}"></image>
       </view>
       <view class='image' style='display:{{hideAdd?"none":"block"}}'>

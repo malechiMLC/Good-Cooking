@@ -40,8 +40,10 @@ Page({
 URI:undefined,
     //Mask
     showModal: false,
-    img_url: [],
-    content: '',    
+    head: 'http://q8xdn54oe.bkt.clouddn.com/',
+    img_array: [],
+    img_urls:[],
+    content: ''
   },
 
 
@@ -52,8 +54,6 @@ URI:undefined,
 
   onLoad: function (options) {
     var _this=this
-    
-    
     
     
     // 获取分享列表
@@ -128,49 +128,75 @@ URI:undefined,
   chooseimage: function () {
     var that = this;
     wx.chooseImage({
-      count: 9, // 默认9  
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有  
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有  
+      count:1, 
+      sizeType: ['compressed'], // 指定压缩图
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机
       success: function (res) {
+        var filePath = res.tempFilePaths[0];
+        console.log(filePath)
+        //把图push进数组
+        let temp_array = that.data.img_array;
+        temp_array.push(filePath)
+        //前台显示
+        that.setData({
+          img_array: temp_array
+        })
+        //上传图片
+        wx.request({
+          url: 'https://csquare.wang/uptoken',
+          method: 'GET',
+          data: {},
+          header: {
+            'content-type': 'application/json'
+          },
+          success(res) {
+            console.log(res.data)
+            uptoken: res.data
 
-        if (res.tempFilePaths.length > 0) {
-
-          //图如果满了9张，不显示加图
-          if (res.tempFilePaths.length == 9) {
-            that.setData({
-              hideAdd: 1
+            var fileName = filePath.split('//')[1];
+            var urls = that.data.img_urls
+            var formData = {
+              'token': res.data,
+              'key': fileName
+            };
+            wx.uploadFile({
+              url: 'https://upload.qiniup.com',
+              filePath: filePath,
+              name: 'file',
+              formData: formData,
+              success: function (res) {
+                let dataString = res.data
+                let dataObject = JSON.parse(dataString);
+                console.log(dataObject)
+                let imageurl = that.data.head + dataObject.key;
+                urls.push(imageurl);
+                that.setData({
+                  img_urls: urls
+                })
+              },
+              fail: function (error) {
+                console.log(error);
+                if (fail) {
+                  fail(error);
+                }
+              }
             })
-          } else {
-            that.setData({
-              hideAdd: 0
-            })
+
           }
-
-          //把每次选择的图push进数组
-          let img_url = that.data.img_url;
-          for (let i = 0; i < res.tempFilePaths.length; i++) {
-            img_url.push(res.tempFilePaths[i])
-          }
-          that.setData({
-            img_url: img_url
-          })
-
-        }
-
+        })
       }
     })
   },
 
-
   //提交
   submit: function () {
     let that = this;
-    let images = that.data.img_url;
-    let text = that.content;
-    var TIME = util.formatTime(new Date());
+    let images = that.data.img_urls;
+    let text = that.data.content;
+    var TIME = Date.parse(new Date())
     wx.request({
       url: 'https://csquare.wang/post',
-      method: 'GET',
+      method: 'POST',
       data: {
         openid: app.globalData.openId,
         images: images,
@@ -178,10 +204,9 @@ URI:undefined,
         time: TIME,
       },
       header: {
-        'content-type': 'application.json'
+        'content-type': 'application/json'
       },
       success(res) {
-        console.log(res);
         wx.showToast({
           title: '成功',
           icon: 'success',
@@ -189,15 +214,9 @@ URI:undefined,
         })
         that.setData({
           img_url: [],
+          img_array: [],
+          content:'',
           showModal: false
-        })
-      },
-      fail() {
-        console.log('fail')
-        wx.showToast({
-          title: '失败',
-          icon: 'fail',
-          duration: 1500
         })
       }
     })

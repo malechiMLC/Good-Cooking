@@ -5,7 +5,7 @@ const app = getApp()
 Page({
   data: {
     title:'',
-    image:'',
+    image_url:'',
     timeNeeded:'',
     difficulty:'',
     size:'',
@@ -15,6 +15,8 @@ Page({
 
     //chooseIcon
     icon:'/images/add.png',
+    cover_url:'',
+    head: 'http://q8xdn54oe.bkt.clouddn.com/',
 
     //editor
     formats: {},
@@ -34,14 +36,14 @@ Page({
 
   //submit
   submit:function(){
-    let that = this;
+    var that = this;
     wx.request({
       url: 'https://csquare.wang/recipe',
       method:'POST',
       data:{
         openid: app.globalData.openId,
         title: that.data.title,
-        image: that.data.image,
+        image: that.data.cover_url,
         timeNeeded: that.data.timeNeeded,
         difficulty: that.data.difficulty,
         size: that.data.size,
@@ -54,9 +56,17 @@ Page({
       },
       success(res) {
         console.log('upload success');
-        // console.log(that.data.steps)
-        that.clear()
-        
+        console.log(res)
+        that.setData({
+          title: '',
+          image: '',
+          timeNeeded: '',
+          difficulty: '',
+          size: '',
+          ingredients: '',
+          nutrition: '',
+          steps: '',
+        })
         wx.showToast({
           title: '成功',
           icon: 'success',
@@ -105,19 +115,59 @@ Page({
   //get cover
   chooseCover:function(){
     var that=this;
-    console.log("chooseimage")
     wx.chooseImage({
-      count: 1, // 默认9  
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有  
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有  
+      count: 1,  
+      sizeType: ['compressed'], // 指定压缩图
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机
       success: function (res) {
+        var filePath = res.tempFilePaths[0]
+        console.log(filePath)
+        //前台展示
+        that.setData({
+          icon: filePath,
+        })
+        //上传图片
+        wx.request({
+          url: 'https://csquare.wang/uptoken',
+          method: 'GET',
+          data: {},
+          header: {
+            'content-type': 'application/json'
+          },
+          success(res) {
+            console.log(res.data)
+            uptoken: res.data
 
-        if (res.tempFilePaths.length > 0) {
-            that.setData({
-              icon: res.tempFilePaths[0],
-              image: res.tempFilePaths[0]
+            var fileName = filePath.split('//')[1];
+            var formData = {
+              'token': res.data,
+              'key': fileName
+            };
+            wx.uploadFile({
+              url: 'https://upload.qiniup.com',
+              filePath: filePath,
+              name: 'file',
+              formData: formData,
+              success: function (res) {
+                let dataString = res.data
+                let dataObject = JSON.parse(dataString);
+                console.log(dataObject)
+                let imageurl = that.data.head + dataObject.key;
+                that.setData({
+                  cover_url: imageurl
+                })
+              },
+              fail: function (error) {
+                console.log(error);
+                if (fail) {
+                  fail(error);
+                }
+              }
             })
-        }
+
+          }
+        })
+
       }
     })
   },
@@ -210,18 +260,62 @@ Page({
   },
   insertImage() {
     const that = this
+    var url
     wx.chooseImage({
       count: 1,
+      sizeType: ['compressed'], // 指定压缩图
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机
       success: function (res) {
-        that.editorCtx.insertImage({
-          src: res.tempFilePaths[0],
-          data: {
-            id: 'abcd',
-            role: 'god'
+        var filePath = res.tempFilePaths[0];
+        console.log(filePath)
+        //上传图片
+        wx.request({
+          url: 'https://csquare.wang/uptoken',
+          method: 'GET',
+          data: {},
+          header: {
+            'content-type': 'application/json'
           },
-          width: '80%',
-          success: function () {
-            console.log('insert image success')
+          success(res) {
+            console.log(res.data)
+            uptoken: res.data
+
+            var fileName = filePath.split('//')[1];
+            var formData = {
+              'token': res.data,
+              'key': fileName
+            };
+            wx.uploadFile({
+              url: 'https://upload.qiniup.com',
+              filePath: filePath,
+              name: 'file',
+              formData: formData,
+              success: function (res) {
+                let dataString = res.data
+                let dataObject = JSON.parse(dataString);
+                console.log(dataObject)
+                url = that.data.head + dataObject.key;
+                //前台展示
+                that.editorCtx.insertImage({
+                  src: url,
+                  data: {
+                    id: 'abcd',
+                    role: 'god'
+                  },
+                  width: '80%',
+                  success: function () {
+                    console.log('insert image success')
+                  }
+                })
+              },
+              fail: function (error) {
+                console.log(error);
+                if (fail) {
+                  fail(error);
+                }
+              }
+            })
+
           }
         })
       }

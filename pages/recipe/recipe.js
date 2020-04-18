@@ -187,8 +187,8 @@ Page({
       },
       success(res) {
         var temp_array = []
-        for (let i = 0; i < res.length; i++) {
-          var obj = {}
+        for (let i = 0; i < res.data.length; i++) {
+          let obj = {}
           obj.comment = res.data[i].content,
           obj.openid = res.data[i].openid,
           //获取用户头像
@@ -204,9 +204,9 @@ Page({
             success(response) {
               obj.name = response.data.name,
               obj.avatar = response.data.profile
+              temp_array.push(obj)
             }
           })
-          temp_array.push(obj)
         }
         that.setData({
           commentArray: temp_array
