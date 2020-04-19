@@ -26,6 +26,8 @@ App({
         this.globalData.safeHeight = res.height
       }
     })
+
+    this.getBaiduToken();
   },
   globalData: {
     userInfo: null,
@@ -40,6 +42,31 @@ App({
     statusBarHeight:0,    //状态栏的高度，单位px
     safeWidth:0,    //安全区域的宽度，单位逻辑像素
     safeHeight:0,   //安全区域的高度，单位逻辑像素
+    
+    //baidu:
+    apiKey: 'DbRErCfR47onkX8KCtSElkmv',
+    secretKey: 'kXLXns2m1HAGH2f8ks5FWcMuCBgg8yPe',
+    tokenUrl: 'https://aip.baidubce.com/oauth/2.0/token',
+    baiduToken: '',
+  },
 
-  }
+  getBaiduToken: function () {
+    var that = this;
+    wx.request({
+      url: that.globalData.tokenUrl,
+      data: {
+        grant_type: 'client_credentials',
+        client_id: that.globalData.apiKey,
+        client_secret: that.globalData.secretKey
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success(res) {
+        that.globalData.baiduToken = res.data.access_token;
+        console.log(that.globalData.baiduToken)
+      }
+    })
+  },
 })

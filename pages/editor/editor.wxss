@@ -78,3 +78,12 @@
   justify-content:space-between;
   padding: 5rpx 0 5rpx 20rpx;
 }
+
+.audio{
+  float: right;
+  position: fixed;
+  bottom: 140rpx;
+  right: 80rpx; 
+  height: 140rpx;
+  max-width: 90rpx;
+}
