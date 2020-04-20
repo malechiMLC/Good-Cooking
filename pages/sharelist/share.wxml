@@ -5,24 +5,27 @@
 
 <!--mask-->
 <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
-<view class ="uploadDlg" wx:if="{{showModal}}">
-    <text style="font-weight:bold;font-size:32rpx;">分享</text>
-    <textarea class='text' bindinput="input" placeholder="说点什么...." maxlength="-1">{{content}}</textarea>
-    <scroll-view class="image_content" scroll-y="true" enable-flex="true">
-      <view class='image' wx:for="{{img_array}}">
-        <image class="moment_img" src="{{item}}"></image>
-      </view>
-      <view class='image' style='display:{{hideAdd?"none":"block"}}'>
-        <image bindtap="chooseimage" class="moment_img" src='/images/add.png'></image>
-      </view>
-    </scroll-view>
-    <view style="display:flex;flex-direction:row;height:80rpx;width:100%;position:fixed;bottom:5rpx;">
-      <button style="width:100px;position:fixed;left:10px;" bindtap="close">退出</button>
-      <button style="width:100px;position:fixed;right:10px;" bindtap="submit">发布</button>
-    </view>
+<view class="uploadDlg" wx:if="{{showModal}}">
+	<text style="font-weight:bold;font-size:32rpx;">分享</text>
+	<textarea class='text' bindinput="input" placeholder="说点什么...." maxlength="-1" value="{{content}}"></textarea>
+	<scroll-view class="image_content" scroll-y="true" enable-flex="true">
+		<view class='image' wx:for="{{img_array}}">
+			<image class="moment_img" src="{{item}}"></image>
+		</view>
+		<view class='image' style='display:{{hideAdd?"none":"block"}}'>
+			<image bindtap="chooseimage" class="moment_img" src='/images/add.png'></image>
+		</view>
+	</scroll-view>
+	<view style="display:flex;flex-direction:row;height:80rpx;width:100%;position:fixed;bottom:5rpx;">
+		<button style="width:100px;position:fixed;left:10px;" bindtap="close">退出</button>
+		<button class="cu-btn bg-gradual-green shadow icon lg" catchtouchstart='recordBegins' catchtouchend='recordEnds' catchtouchcancel="recordEnds">
+			<text class="cuIcon-voice"></text>
+		</button>
+		<button style="width:100px;position:fixed;right:10px;" bindtap="submit">发布</button>
+	</view>
 </view>
 <!--mask-->
 
-<cards infoArray="{{infoArray}}"/>
+<cards infoArray="{{infoArray}}" />
 
 <image class='camera' src='/images/camera.png' bindtap='towrite'></image>

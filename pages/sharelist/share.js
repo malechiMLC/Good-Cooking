@@ -3,6 +3,8 @@
 //mask
 const app = getApp()
 const util = require('../../utils/util.js');
+const plugin = requirePlugin("WechatSI")
+const manager = plugin.getRecordRecognitionManager()
 
 Page({
 
@@ -10,39 +12,37 @@ Page({
    * 页面的初始数据
    */
   data: {
-    infoArray:[
-      {
-        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
-        text:"这里是内容",
-        avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-        author:"作者名",
-        likeNum:'2000',
-        openid:'111',
-        id:'1'
-      },{
-        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
-        text:"这里是标题",
-        avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-        author:"作者名",
-        likeNum:'2000',
-        openid:'112',
-        id:'2'
-      },{
-        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
-        text:"这里是标题",
-        avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-        author:"作者名",
-        likeNum:'2000',
-        openid:'113',
-        id:'3'
-      }
-    ],
-URI:undefined,
+    infoArray: [{
+      bgUrl: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",
+      text: "这里是内容",
+      avatarUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
+      author: "作者名",
+      likeNum: '2000',
+      openid: '111',
+      id: '1'
+    }, {
+      bgUrl: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",
+      text: "这里是标题",
+      avatarUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
+      author: "作者名",
+      likeNum: '2000',
+      openid: '112',
+      id: '2'
+    }, {
+      bgUrl: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",
+      text: "这里是标题",
+      avatarUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
+      author: "作者名",
+      likeNum: '2000',
+      openid: '113',
+      id: '3'
+    }],
+    URI: undefined,
     //Mask
     showModal: false,
     head: 'http://q8xdn54oe.bkt.clouddn.com/',
     img_array: [],
-    img_urls:[],
+    img_urls: [],
     content: ''
   },
 
@@ -50,61 +50,64 @@ URI:undefined,
   /**
    * 生命周期函数--监听页面加载
    */
-  
+
 
   onLoad: function (options) {
-    var _this=this
+    var _this = this
 
-    
-    
+
+
 
     // 获取分享列表
     wx.request({
       url: 'https://csquare.wang/post',
       method: 'GET',
-      data: { },
+      data: {},
       header: {
         'content-type': 'application/json'
       },
       success(res) {
         console.log(res)
-        var temp_array=[]
-        for(var i=0;i<res.length;i++){
+        var temp_array = []
+        for (var i = 0; i < res.length; i++) {
           var obj
-          obj.author=res.data[i].name
-          obj.bgUrl=res.data[i].images[0]
-          obj.text=res.data[i].text
-          obj.avatarUrl=res.data[i].profile
-          obj.openid=res.data[i].openid
-          obj.id=res.data[i].id
+          obj.author = res.data[i].name
+          obj.bgUrl = res.data[i].images[0]
+          obj.text = res.data[i].text
+          obj.avatarUrl = res.data[i].profile
+          obj.openid = res.data[i].openid
+          obj.id = res.data[i].id
           // 获取点赞数
           wx.request({
-            url: 'https://csquare.wang/like/post/'+res.data[i].id+'/number',
+            url: 'https://csquare.wang/like/post/' + res.data[i].id + '/number',
             method: 'GET',
-            data: { },
+            data: {},
             header: {
               'content-type': 'application/json'
             },
             success(response) {
-              obj.likeNum=response.data
+              obj.likeNum = response.data
             }
           })
           temp_array.push(obj)
         }
         _this.setData({
-          infoArray:temp_array
+          infoArray: temp_array
         })
       }
-    }) 
+    })
+
+    //语音识别初始化
+    this.initRecord()
   },
 
-  tosearch:function(){
+  tosearch: function () {
     wx.navigateTo({
       url: '/pages/search/search',
     })
   },
 
-  towrite:function(){
+  towrite: function () {
     //展示蒙层
     console.log("展示蒙层")
     this.setData({
@@ -125,13 +128,14 @@ URI:undefined,
     this.setData({
       content: e.detail.value
     })
+    console.log(this.data.content)
   },
 
   //选择图片
   chooseimage: function () {
     var that = this;
     wx.chooseImage({
-      count:1, 
+      count: 1,
       sizeType: ['compressed'], // 指定压缩图
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机
       success: function (res) {
@@ -218,7 +222,7 @@ URI:undefined,
         that.setData({
           img_url: [],
           img_array: [],
-          content:'',
+          content: '',
           showModal: false
         })
       }
@@ -231,6 +235,48 @@ URI:undefined,
       img_url: [],
       showModal: false
     })
+  },
+
+  //开始识别
+  recordBegins: function (e) {
+    wx.showLoading({
+      title: '启动语音输入',
+    })
+    manager.start({
+      lang: 'zh_CN',
+      complete (res) {
+        wx.hideLoading()
+      }
+    })
+    wx.showToast({
+      title: '正在聆听中',
+      icon: 'loading',
+      duration: 100000
+    })
+  },
+
+  recordEnds: function (e) {
+    manager.stop()
+  },
+
+  initRecord: function(res){
+    let manager = plugin.getRecordRecognitionManager();
+    var that = this;
+    manager.onStop = function(res){
+      that.setData({
+        content: that.data.content + res.result
+      })
+      console.log(res.result)
+      console.log(that.data.content)
+      wx.hideToast()
+    }
+    manager.onStart = function(res){
+      console.log('已开始录音', res)
+    }
+    manager.onError = function(res){
+      wx.hideToast()
+      console.log("error:", res.msg)
+    }
   },
 
   /**

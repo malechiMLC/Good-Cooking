@@ -68,6 +68,13 @@
 					"id": -1,
 					"name": "editor",
 					"pathName": "pages/editor/editor",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "share",
+					"pathName": "pages/sharelist/share",
 					"scene": null
 				}
 			]

@@ -46,7 +46,7 @@
 </view>
 
 <view class="editor-container" style="bottom:50px;">
-  <editor id="editor" class="ql-container" placeholder="{{placeholder}}" bindstatuschange="onStatusChange" bindready="onEditorReady" bindblur="inputStep" bindinput="addInput">
+  <editor id="editor" class="ql-container" placeholder="{{placeholder}}" bindstatuschange="onStatusChange" bindready="onEditorReady" bindblur="inputStep">
   </editor>
 </view>
 
@@ -60,5 +60,6 @@
 
 </view>
 
-<button class="audio cu-btn cuIcon-voice bg-gradual-blue shadow" catchtouchstart='recordBegins' catchtouchend='recordEnds' catchtouchcancel="recordEnds" ></button>语音 -->
-<!-- <image class='audio' src='/images/add.png' bindtap='toedit'></image>
+<button class="audio cu-btn bg-gradual-green shadow icon lg" catchtouchstart='recordBegins' catchtouchend='recordEnds' catchtouchcancel="recordEnds" >
+  <text class="cuIcon-voice"></text>
+</button>
