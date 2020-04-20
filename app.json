@@ -46,5 +46,11 @@
         "text": "我的"
       }
     ]
+  },
+  "plugins": {
+    "WechatSI": {
+      "version": "0.3.3",
+      "provider": "wx069ba97219f66d99"
+    }
   }
 }

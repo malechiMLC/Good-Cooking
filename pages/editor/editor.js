@@ -1,6 +1,8 @@
 // pages/editor/editor.js
 
 const app = getApp()
+const plugin = requirePlugin("WechatSI")
+const manager = plugin.getRecordRecognitionManager()
 
 Page({
   data: {
@@ -24,7 +26,7 @@ Page({
     placeholder: '开始输入...',
     editorHeight: 300,
     keyboardHeight: 0,
-    isIOS: false
+    isIOS: false,
   },
 
   //exit
@@ -37,6 +39,7 @@ Page({
   //submit
   submit:function(){
     var that = this;
+    console.log(this.data.steps)
     wx.request({
       url: 'https://csquare.wang/recipe',
       method:'POST',
@@ -200,6 +203,9 @@ Page({
       }, duration)
 
     })
+
+    //语音识别初始化
+    this.initRecord()
   },
   updatePosition(keyboardHeight) {
     const toolbarHeight = 50
@@ -322,126 +328,43 @@ Page({
     })
   },
 
+  //开始识别
   recordBegins: function (e) {
-    console.log('touch start event')
-    const recorder = wx.getRecorderManager()
-    const options = {
-      duration: 30000,
-      sampleRate: 16000,
-      numberOfChannels: 1,
-      encodeBitRate: 48000,
-      format: 'wav',
-      frameSize: 50
-    }
-    wx.getSetting({
-      success: suc => {
-        if (suc.authSetting['scope.record'] && !this.data.recordStarted) {
-          recorder.start(options)
-        } else {
-          wx.authorize({
-            scope: 'scope.record',
-            success: () => {
-            },
-            fail: () => {
-              wx.showToast({
-                title: '获取用户授权失败, 无法录音',
-                icon: 'none'
-              })
-            }
-          })
-        }
+    wx.showLoading({
+      title: '启动语音输入',
+    })
+    manager.start({
+      lang: 'zh_CN',
+      complete (res) {
+        wx.hideLoading()
       }
+    })
+    wx.showToast({
+      title: '正在聆听中',
+      icon: 'loading',
+      duration: 100000
     })
   },
 
   recordEnds: function (e) {
-    console.log('touch end event', e)
-    var { recordStarted } = this.data
-    var delta = 0
-    if (!recordStarted) {
-      delta = 1000
-    }
-    setTimeout(() => {
-      wx.getRecorderManager().stop()
-    }, delta)
+    manager.stop()
   },
 
-  bindRecorderStopEvent: function(){
-    recorderManager.onStop((res) => {
-      var baiduBccessToken = app.globalData.baiduToken;
-      var tempFilePath = res.tempFilePath;//音频文件地址
-      // var fileSize = res.fileSize;
-      const fs = wx.getFileSystemManager();
-      fs.readFile({//读取文件并转为ArrayBuffer
-        filePath: tempFilePath,
-        success(res) {
-          const base64 = wx.arrayBufferToBase64(res.data);
-          var fileSize = res.data.byteLength;
-          wx.request({
-            url: 'https://vop.baidu.com/server_api',
-            data: {
-              format: 'pcm',
-              rate: 16000,
-              channel: 1,
-              cuid: 'sdfdfdfsfs',
-              token: baiduBccessToken,
-              speech: base64,
-              len: fileSize
-            },
-            method: 'POST',
-            header: {
-              'content-type': 'application/json' // 默认值
-            },
-            success(res) {
-              wx.hideLoading();
-              console.log(res.data);
-              var result = res.data.result;
-              if (result.length == 0){
-                wx.showToast({
-                  title: "未识别到语音信息!",
-                  icon: 'none',
-                  duration: 3000
-                })
-                return ;
-              }
-              
-              var keyword = result[0];
-              keyword = keyword.replace("。", "");
-              wx.navigateTo({
-                url: '/pages/search/search?keyword=' + keyword
-              })
-            }
-          })
-        }
-      })
- 
-      
-    })
-  },
-
-  speechRecognition: function (res) {
-    wx.showToast({
-      title: '识别中',
-      icon: 'loading',
-      duration: 10000
-    })
+  initRecord: function(res){
+    let manager = plugin.getRecordRecognitionManager();
     var that = this;
-    wx.request({
-      url: 'https://aip.baidubce.com/rest/2.0/image-classify/v2/dish?access_token=24.d86fa2092e41a9897f6e64efd77f1c36.2592000.1578540493.282335-17974307',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      method: 'POST',
-      data: {
-        image: that.data.resultBase64ImageB,
-        filter_threshold: 0.95
-      },
-      success: function(res) {
-
-        //console.log(res.data.result[0].calorie);
-        console.log(res)
-        wx.hideToast()
-      }
-    })
+    manager.onStop = function(res){
+      that.editorCtx.insertText({
+        text: res.result,
+      })
+      wx.hideToast()
+    }
+    manager.onStart = function(res){
+      console.log('已开始录音', res)
+    }
+    manager.onError = function(res){
+      wx.hideToast()
+      console.log("error:", res.msg)
+    }
   },
 })

@@ -46,7 +46,7 @@
 </view>
 
 <view class="editor-container" style="bottom:50px;">
-  <editor id="editor" class="ql-container" placeholder="{{placeholder}}" bindstatuschange="onStatusChange" bindready="onEditorReady" bindblur="inputStep">
+  <editor id="editor" class="ql-container" placeholder="{{placeholder}}" bindstatuschange="onStatusChange" bindready="onEditorReady" bindblur="inputStep" bindinput="addInput">
   </editor>
 </view>
 
