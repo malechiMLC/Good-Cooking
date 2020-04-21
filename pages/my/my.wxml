@@ -79,9 +79,9 @@
 		</view>
 
 		<view class="cu-item arrow">
-			<view class="content" url="/pages/my/log/log" bindtap="NavToInfo">
+			<view class="content" url="/pages/myRecipe/myRecipe" bindtap="NavToMyRecipe">
 				<text class="cuIcon-formfill text-blue"></text>
-				<text class="text-grey text-bold">个人信息</text>
+				<text class="text-grey text-bold">我的教程</text>
 			</view>
 		</view>
 

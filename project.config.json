@@ -75,6 +75,13 @@
 					"id": -1,
 					"name": "share",
 					"pathName": "pages/sharelist/share",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "myRecipe",
+					"pathName": "pages/myRecipe/myRecipe",
 					"scene": null
 				}
 			]

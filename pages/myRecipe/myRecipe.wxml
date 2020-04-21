@@ -1,0 +1,40 @@
+<!--pages/myRecipe/myRecipe.wxml-->
+<view class="page-section-spacing">
+	<view class="cu-bar bg-white solid-bottom">
+		<view class="action">
+			<text class="cuIcon-title text-blue"></text>我的发布
+		</view>
+	</view>
+	<view wx:for="{{myRecipes}}">
+		<view class="cu-card case {{isCard?'no-card':''}}" bindtap="clickCard" data-index="{{index}}">
+			<view class="cu-item shadow">
+				<view class="image">
+					<image src="{{item.image}}" mode="widthFix"></image>
+					<view class="cu-tag bg-blue">
+						<text class="text-cut">{{item.difficulty}}</text>
+					</view>
+					<view class="cu-bar bg-shadeBottom">
+						<text class="text-cut">{{item.title}}</text>
+					</view>
+				</view>
+				<view class="cu-list menu-avatar">
+					<view class="cu-item">
+						<view class="cu-avatar round lg" style="background-image:url({{profile}});"></view>
+						<view class="content flex-sub">
+							<view class="text-grey">{{nickName}}</view>
+							<view class="text-gray text-sm flex justify-between">
+								发布时间
+								<!-- 因后台无接口 暂不考虑赞数 评论数 -->
+								<!-- <view class="text-gray text-sm">
+									<text class="cuIcon-attentionfill margin-lr-xs"></text> 10
+									<text class="cuIcon-appreciatefill margin-lr-xs"></text> 20
+									<text class="cuIcon-messagefill margin-lr-xs"></text> 30
+								</view> -->
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
