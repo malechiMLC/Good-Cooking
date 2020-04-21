@@ -151,4 +151,10 @@ Page({
       }
     })
   },
+
+  NavToMyRecipe(){
+    wx.navigateTo({
+      url: '/pages/myRecipe/myRecipe',
+    })
+  }
 })

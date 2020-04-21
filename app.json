@@ -12,7 +12,8 @@
     "pages/today/today",
     "pages/searchResult/searchResult",
     "pages/search/search",
-    "pages/upload/upload"
+    "pages/upload/upload",
+    "pages/myRecipe/myRecipe"
   ],
   "window": {
     "backgroundTextStyle": "light",

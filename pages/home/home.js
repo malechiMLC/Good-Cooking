@@ -11,14 +11,15 @@ Page({
   data: {
     cardCur: 0,
     currentImage: 0,
+    topRecLst: [],
     swiperList: [{
       id: 0,
       type: 'image',
       url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
     }, {
       id: 1,
-        type: 'image',
-        url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
+      type: 'image',
+      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
     }, {
       id: 2,
       type: 'image',
@@ -59,13 +60,40 @@ Page({
     this.loginAndGetUserInfo();
   },
 
+  getTopRec(){
+    wx.request({
+      url: 'https://csquare.wang/recipe/recommendation',
+      data: {
+        openid: app.globalData.openId,
+      },
+      method: 'get',
+      success(res){
+        console.log(res.data)
+      },
+    })
+  },
+
+  pageRec(){
+    wx.request({
+      url: 'https://csquare.wang/recommendation/user/' + app.globalData.openId,
+      data: {
+        page: 0,
+        size: 5
+      },
+      method: 'get',
+      success(res){
+        console.log(res.data)
+      },
+    })
+  },
+
   // cardSwiper
   cardSwiper(e) {
     this.setData({
       cardCur: e.detail.current
     })
   },
-  
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -77,7 +105,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   },
 
   /**
@@ -115,25 +143,26 @@ Page({
 
   },
 
-  swiperChanged: function(e){
+  swiperChanged: function (e) {
     this.setData({
       currentImage: e.detail.current
     })
   },
 
-  swiperClicked: function(){
+  swiperClicked: function () {
     console.log(this.data.currentImage)
   },
 
   //登录以及老用户直接获取用户信息
-  loginAndGetUserInfo: function(){
+  loginAndGetUserInfo: function () {
+    var that = this;
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId
         console.log(res)
         //这样不太好.....但是省事
         wx.request({
-          url: app.globalData.server+'openid', 
+          url: app.globalData.server + 'openid',
           data: {
             appid: 'wx58f90beac70c6284',
             secret: '7445557abf79f7371a4056035e0ee901',
@@ -143,42 +172,11 @@ Page({
           header: {
             'content-type': 'application/json' // 默认值
           },
-          success (res) {
+          success(res) {
             app.globalData.openId = res.data.openid
             console.log(app.globalData.openId)
-            wx.request({
-              url: app.globalData.server + 'recipe/recommendation', 
-              data: {
-                openid: app.globalData.openId,
-              },
-              header: {
-                'content-type': 'application/json' // 默认值
-              },
-              success (res) {
-                console.log(res.data)
-              },
-              fail(res){
-                console.log(res)
-              }
-            })
-            wx.request({
-              url: app.globalData.server + 'recipe/today', 
-              data: {
-                openid: app.globalData.openId,
-              },
-              header: {
-                'content-type': 'application/json' // 默认值
-              },
-              success (res) {
-                console.log(res.data)
-              },
-              fail(res){
-                console.log(res)
-              }
-            })
-          },
-          fail (res){
-            console.log(res)
+            that.getTopRec();
+            that.pageRec();
           }
         })
       }
@@ -199,8 +197,7 @@ Page({
                 }
               })
               app.globalData.loginSuccess = true;
-            }
-            else{
+            } else {
               console.log('尚未授权')
               wx.showModal({
                 title: '请先登录',
@@ -214,7 +211,7 @@ Page({
     })
   },
 
-  toToday:function(){
+  toToday: function () {
     wx.navigateTo({
       url: '/pages/today/today',
     })
