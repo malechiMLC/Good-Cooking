@@ -11,7 +11,7 @@
 				<view class="image">
 					<image src="{{item.image}}" mode="widthFix"></image>
 					<view class="cu-tag bg-blue">
-						<text class="text-cut">{{item.difficulty}}</text>
+						<text class="text-cut">{{item.difficulty}} 约{{item.timeNeeded}}</text>
 					</view>
 					<view class="cu-bar bg-shadeBottom">
 						<text class="text-cut">{{item.title}}</text>

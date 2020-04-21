@@ -12,6 +12,9 @@ Page({
     cardCur: 0,
     currentImage: 0,
     topRecLst: [],
+    recommendRecipes: [],
+    currPage: 0,
+    allViewed: false,
     swiperList: [{
       id: 0,
       type: 'image',
@@ -58,31 +61,56 @@ Page({
     //程序的首页 所以一开始加载，也只会加载一次，可以用来处理登录
     // 登录 以及登录的回调里面写了获取推荐数据等等
     this.loginAndGetUserInfo();
+    //这个函数success后才会调用获取信息推荐
   },
 
-  getTopRec(){
+  getTopRec() {
     wx.request({
       url: 'https://csquare.wang/recipe/recommendation',
       data: {
         openid: app.globalData.openId,
       },
       method: 'get',
-      success(res){
+      success(res) {
         console.log(res.data)
       },
     })
   },
 
-  pageRec(){
+  getRecommendRecipes() {
+    console.log("getRecommendRecipes")
+    var that = this;
     wx.request({
       url: 'https://csquare.wang/recommendation/user/' + app.globalData.openId,
       data: {
-        page: 0,
+        page: that.data.currPage,
         size: 5
       },
       method: 'get',
-      success(res){
+      success(res) {
         console.log(res.data)
+        if (that.data.allViewed) {
+          wx.showToast({
+            title: '更多菜谱敬请期待',
+            icon: 'none',
+            duration: 2000
+          })
+        } else {
+          var new_Array = that.data.recommendRecipes;
+          for (var i = 0; i < res.data.data.length; i++) {
+            new_Array.push(res.data.data[i]);
+          }
+          that.setData({
+            recommendRecipes: new_Array,
+            currPage: that.data.currPage + 1
+          })
+          if (that.data.currPage >= res.data.totalPages) {
+            that.setData({
+              allViewed: true,
+            })
+          }
+          console.log(that.data.currPage)
+        }
       },
     })
   },
@@ -98,7 +126,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    console.log(app.globalData.openId)
+
   },
 
   /**
@@ -134,6 +162,7 @@ Page({
    */
   onReachBottom: function () {
     console.log('触底刷新')
+    this.getRecommendRecipes()
   },
 
   /**
@@ -176,7 +205,7 @@ Page({
             app.globalData.openId = res.data.openid
             console.log(app.globalData.openId)
             that.getTopRec();
-            that.pageRec();
+            that.getRecommendRecipes(0);
           }
         })
       }

@@ -40,7 +40,16 @@ Page({
   },
 
   clickCard(e){
-    console.log("clicked", e.currentTarget.dataset.index)
+    var index = e.currentTarget.dataset.index
+    var that = this;
+    wx.navigateTo({
+      url: '/pages/recipe/recipe',
+      success: function(res) {
+        // 通过eventChannel向被打开页面传送数据
+        console.log(that.data.myRecipes[index].id)
+        res.eventChannel.emit('acceptDataFromOpenerPage', { data: that.data.myRecipes[index].id })
+      }
+    })
   },
 
   /**
