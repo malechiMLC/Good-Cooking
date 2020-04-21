@@ -39,12 +39,14 @@ Page({
   //submit
   submit:function(){
     var that = this;
+    var TIME = Date.parse(new Date())
     console.log(this.data.steps)
     wx.request({
       url: 'https://csquare.wang/recipe',
       method:'POST',
       data:{
         openid: app.globalData.openId,
+        time:TIME,
         title: that.data.title,
         image: that.data.cover_url,
         timeNeeded: that.data.timeNeeded,
