@@ -13,7 +13,8 @@
     "pages/searchResult/searchResult",
     "pages/search/search",
     "pages/upload/upload",
-    "pages/myRecipe/myRecipe"
+    "pages/myRecipe/myRecipe",
+    "pages/about/about"
   ],
   "window": {
     "backgroundTextStyle": "light",

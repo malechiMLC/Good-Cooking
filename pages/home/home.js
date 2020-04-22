@@ -15,7 +15,7 @@ Page({
     recommendRecipes: [],
     currPage: 0,
     allViewed: false,
-    todayRecipes: []
+    todayRecipes: [],
   },
 
   //跳转到写菜谱页面

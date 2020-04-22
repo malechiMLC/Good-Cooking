@@ -53,17 +53,16 @@
 	<view class="padding flex text-center text-grey bg-white shadow-warp">
 
 		<view class="flex flex-sub flex-direction solid-right">
-			<text class="cuIcon-homefill"></text> 已发布文章
-			<view class="margin-top-sm">
-				<view class="text-xl text-orange">{{essayNumber}}篇</view>
+			<text class="cuIcon-homefill"></text> 已发布教程
+			<view class="margin-top-sm" bindtap="NavToMyRecipe">
+				<view class="text-xl text-orange">{{recipeNumber}}篇</view>
 			</view>
-
 		</view>
 
 		<view class="flex flex-sub flex-direction solid-right">
-			<text class="cuIcon-rankfill"></text> 已获得赞数
-			<view class="margin-top-sm">
-				<view class="text-xl text-blue">{{praiseNumber}}赞</view>
+			<text class="cuIcon-rankfill"></text> 关注我的人
+			<view class="margin-top-sm" bindtap="NavToFollowers">
+				<view class="text-xl text-blue">{{followNumber}}粉丝</view>
 			</view>
 		</view>
 
@@ -87,16 +86,16 @@
 
 
 		<view class="cu-item arrow">
-			<navigator class="content" url="/pages/others/about/about" hover-class="none">
+			<navigator class="content" url="/pages/about/about" hover-class="none">
 				<text class="cuIcon-apps text-orange"></text>
 				<text class="text-grey text-bold">关于我们</text>
 			</navigator>
 		</view>
 
 		<view class="cu-item arrow">
-			<button class="cu-btn content" bindtap='showLogout'>
+			<button class="cu-btn content" open-type="exit">
 				<text class="cuIcon-exit text-red"></text>
-				<text class="text-grey">退出登录</text>
+				<text class="text-grey">退出程序</text>
 			</button>
 		</view>
 
