@@ -1,20 +1,27 @@
 <!--pages/home/home.wxml-->
+<!-- <searchbar style="padding-bottom: 30px" bindfocus="tosearch"></searchbar> -->
+<view class="cu-bar search bg-white">
+	<view class="search-form round">
+		<text class="cuIcon-search"></text>
+		<input type="text" placeholder="搜索教程、食材" bindfocus="tosearch"></input>
+	</view>
+</view>
+
 <view>
 	<view class="cu-bar bg-white solid-bottom">
 		<view class="action">
-			<text class="cuIcon-title text-blue"></text>猜你喜欢
+			<text class="cuIcon-title text-olive"></text>推荐菜（老饕菜单）
 		</view>
 	</view>
 	<swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="swiperChanged">
-		<swiper-item bindtap="swiperClicked" wx:for="{{swiperList}}" wx:key>
-			<image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
-			<video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
-			<view class='swipertitle animation-fade'><text>我是标题啦啦啦</text></view>
+		<swiper-item wx:for="{{swiperRecipes}}" bindtap="swiperClicked" data-index="{{index}}" wx:key>
+			<image src="{{item.image}}" mode="aspectFill"></image>
+			<view class='swipertitle animation-fade'><text>{{item.title}}</text></view>
 		</swiper-item>
 	</swiper>
 </view>
 
-<view class="page-section-spacing">
+<!-- <view class="page-section-spacing">
 	<view class="cu-bar bg-white solid-bottom">
 		<view class="action">
 			<text class="cuIcon-title text-blue"></text>今日菜单
@@ -28,59 +35,52 @@
 			</view>
 		</swiper-item>
 	</swiper>
-</view>
+</view> -->
 
 <view class="page-section-spacing">
 	<view class="cu-bar bg-white solid-bottom">
 		<view class="action">
-			<text class="cuIcon-title text-blue"></text>猜你喜欢
+			<text class="cuIcon-title text-olive"></text>今日菜单
 		</view>
 	</view>
-	<view class="cu-card case {{isCard?'no-card':''}}">
-		<view class="cu-item shadow">
-			<view class="image">
-				<image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="widthFix"></image>
-				<view class="cu-tag bg-blue">难度</view>
-				<view class="cu-bar bg-shadeBottom">
-					<text class="text-cut">菜谱名字</text>
-				</view>
-			</view>
-			<view class="cu-list menu-avatar">
-				<view class="cu-item">
-					<view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
-					<view class="content flex-sub">
-						<view class="text-grey">作者昵称</view>
-						<view class="text-gray text-sm flex justify-between">
-							发布时间
-							<view class="text-gray text-sm">
-								<text class="cuIcon-attentionfill margin-lr-xs"></text> 10
-								<text class="cuIcon-appreciatefill margin-lr-xs"></text> 20
-								<text class="cuIcon-messagefill margin-lr-xs"></text> 30
-							</view>
-						</view>
+	<scroll-view class="scroll-view_X" scroll-x="true" style="width: 100%;white-space: nowrap;">
+		<view wx:for="{{todayRecipes}}" class="scroll-view-element" bindtap="scrollClicked" data-index="{{index}}">
+			<image src="{{item.image}}"></image>
+			<view class="text-black text-bold" style="text-align:center">{{item.title}}</view>
+		</view>
+	</scroll-view>
+</view>
+
+
+<view>
+	<view class="cu-bar bg-white solid-bottom">
+		<view class="action">
+			<text class="cuIcon-title text-olive"></text>猜你喜欢
+		</view>
+	</view>
+	<view wx:for="{{recommendRecipes}}">
+		<view class="cu-card case {{isCard?'no-card':''}}" bindtap="clickCard" data-index="{{index}}">
+			<view class="cu-item shadow">
+				<view class="image">
+					<image src="{{item.image}}" mode="widthFix"></image>
+					<view class="cu-tag bg-olive">
+						<text class="text-cut">{{item.difficulty}} 约{{item.timeNeeded}}</text>
+					</view>
+					<view class="cu-bar bg-shadeBottom">
+						<text class="text-cut">{{item.title}}</text>
 					</view>
 				</view>
-			</view>
-		</view>
-	</view>
-	<view class="cu-card case {{isCard?'no-card':''}}">
-		<view class="cu-item shadow">
-			<view class="image">
-				<image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="widthFix"></image>
-				<view class="cu-tag bg-blue">难度</view>
-				<view class="cu-bar bg-shadeBottom">
-					<text class="text-cut">菜谱名字</text>
-				</view>
-			</view>
-			<view class="cu-list menu-avatar">
-				<view class="cu-item">
-					<view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
-					<view class="content flex-sub">
-						<view class="text-grey">作者昵称</view>
-						<view class="text-gray text-sm flex justify-between">
-							菜谱前十个字就可以了...
-							<view class="text-gray text-sm">
-								<text class="cuIcon-appreciatefill margin-lr-xs"></text> 20
+				<view class="cu-list menu-avatar">
+					<view class="cu-item">
+						<view class="cu-avatar round lg" style="background-image:url({{item.profile}});"></view>
+						<view class="content flex-sub">
+							<view class="text-grey">{{item.name}}</view>
+							<view class="text-gray text-sm flex justify-between">
+								发布时间 {{item.time}}
+								<view class="text-gray text-sm">
+									<text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.favoriteNum}}
+									<text class="cuIcon-messagefill margin-lr-xs"></text> {{item.commentNum}}
+								</view>
 							</view>
 						</view>
 					</view>
@@ -91,4 +91,4 @@
 </view>
 
 
-<image class='article' src='/images/add.png' bindtap='toedit'></image>
+<image class='article' src='/images/add_home.png' bindtap='toedit'></image>

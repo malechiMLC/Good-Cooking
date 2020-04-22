@@ -39,7 +39,7 @@
 
 <scroll-view scroll-y class="scrollPage">
 
-	<view class="UCenter-bg bg-gradual-red">
+	<view class="UCenter-bg bg-olive">
 
 		<view class='cu-avatar xl margin-bottom round'>
 			<image class="cu-avatar round xl bg-white" src="{{avatar}}"></image>

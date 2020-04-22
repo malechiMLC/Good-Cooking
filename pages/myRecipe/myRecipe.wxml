@@ -2,7 +2,7 @@
 <view class="page-section-spacing">
 	<view class="cu-bar bg-white solid-bottom">
 		<view class="action">
-			<text class="cuIcon-title text-blue"></text>我的发布
+			<text class="cuIcon-title text-olive"></text>我发布的教程
 		</view>
 	</view>
 	<view wx:for="{{myRecipes}}">
@@ -10,8 +10,8 @@
 			<view class="cu-item shadow">
 				<view class="image">
 					<image src="{{item.image}}" mode="widthFix"></image>
-					<view class="cu-tag bg-blue">
-						<text class="text-cut">{{item.difficulty}}</text>
+					<view class="cu-tag bg-olive">
+						<text class="text-cut">{{item.difficulty}} 约{{item.timeNeeded}}</text>
 					</view>
 					<view class="cu-bar bg-shadeBottom">
 						<text class="text-cut">{{item.title}}</text>
