@@ -160,3 +160,16 @@ page {
   position:relative;
   right: 0;
 }
+
+.scroll-view_X{
+  padding: 20rpx 0rpx;
+  width: auto;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.scroll-view-element{
+  display: inline-block;
+  margin: 0 20rpx;
+  font-size: 32rpx;
+}

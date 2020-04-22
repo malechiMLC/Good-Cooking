@@ -6,15 +6,14 @@
 		</view>
 	</view>
 	<swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="swiperChanged">
-		<swiper-item bindtap="swiperClicked" wx:for="{{swiperList}}" wx:key>
-			<image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
-			<video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
-			<view class='swipertitle animation-fade'><text>我是标题啦啦啦</text></view>
+		<swiper-item bindtap="swiperClicked" wx:for="{{swiperRecipes}}" wx:key>
+			<image src="{{item.image}}" mode="aspectFill"></image>
+			<view class='swipertitle animation-fade'><text>{{item.title}}</text></view>
 		</swiper-item>
 	</swiper>
 </view>
 
-<view class="page-section-spacing">
+<!-- <view class="page-section-spacing">
 	<view class="cu-bar bg-white solid-bottom">
 		<view class="action">
 			<text class="cuIcon-title text-blue"></text>今日菜单
@@ -28,16 +27,31 @@
 			</view>
 		</swiper-item>
 	</swiper>
-</view>
+</view> -->
 
 <view class="page-section-spacing">
+	<view class="cu-bar bg-white solid-bottom">
+		<view class="action">
+			<text class="cuIcon-title text-blue"></text>今日菜单
+		</view>
+	</view>
+	<scroll-view class="scroll-view_X" scroll-x="true" style="width: 100%;white-space: nowrap;">
+		<view wx:for="{{todayRecipes}}" class="scroll-view-element">
+			<image src="{{item.image}}"></image>
+			<view>{{item.title}}</view>
+		</view>
+	</scroll-view>
+</view>
+
+
+<view>
 	<view class="cu-bar bg-white solid-bottom">
 		<view class="action">
 			<text class="cuIcon-title text-blue"></text>猜你喜欢
 		</view>
 	</view>
 	<view wx:for="{{recommendRecipes}}">
-	<view class="cu-card case {{isCard?'no-card':''}}" bindtap="clickCard" data-index="{{index}}">
+		<view class="cu-card case {{isCard?'no-card':''}}" bindtap="clickCard" data-index="{{index}}">
 			<view class="cu-item shadow">
 				<view class="image">
 					<image src="{{item.image}}" mode="widthFix"></image>

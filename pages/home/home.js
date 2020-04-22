@@ -11,39 +11,11 @@ Page({
   data: {
     cardCur: 0,
     currentImage: 0,
-    topRecLst: [],
+    swiperRecipes: [],
     recommendRecipes: [],
     currPage: 0,
     allViewed: false,
-    swiperList: [{
-      id: 0,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
-    }, {
-      id: 1,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
-    }, {
-      id: 2,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
-    }, {
-      id: 3,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
-    }, {
-      id: 4,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big25011.jpg'
-    }, {
-      id: 5,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21016.jpg'
-    }, {
-      id: 6,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
-    }],
+    todayRecipes: []
   },
 
   //跳转到写菜谱页面
@@ -64,7 +36,8 @@ Page({
     //这个函数success后才会调用获取信息推荐
   },
 
-  getTopRec() {
+  getSwiperRec() {
+    var that = this
     wx.request({
       url: 'https://csquare.wang/recipe/recommendation',
       data: {
@@ -73,6 +46,52 @@ Page({
       method: 'get',
       success(res) {
         console.log(res.data)
+        that.setData({
+          swiperRecipes: res.data
+        })
+      },
+    })
+  },
+
+  
+  getTodayRecipes() {
+    var that = this
+    wx.request({
+      url: 'https://csquare.wang/recipe/today',
+      data: {
+        openid: app.globalData.openId,
+      },
+      method: 'get',
+      success(res) {
+        console.log(res.data)
+        var breakfast = res.data.breakfastRecipes;
+        var lunch  = res.data.lunchRecipes;
+        var dinner = res.data.dinnerRecipes;
+        var todayRec = [];
+        for(var i=0;i<breakfast.length;i++){
+          todayRec.push({
+            id: breakfast[i].id,
+            title: '营养早餐：' + breakfast[i].title,
+            image: breakfast[i].image,
+          })
+        }
+        for(var i=0;i<lunch.length;i++){
+          todayRec.push({
+            id: lunch[i].id,
+            title: '丰盛午餐：' + lunch[i].title,
+            image: lunch[i].image,
+          })
+        }
+        for(var i=0;i<dinner.length;i++){
+          todayRec.push({
+            id: dinner[i].id,
+            title: '精致晚餐：' + dinner[i].title,
+            image: dinner[i].image,
+          })
+        }
+        that.setData({
+          todayRecipes: todayRec,
+        })
       },
     })
   },
@@ -91,7 +110,7 @@ Page({
         console.log(res.data)
         if (that.data.allViewed) {
           wx.showToast({
-            title: '更多菜谱敬请期待',
+            title: '更多美味敬请期待',
             icon: 'none',
             duration: 2000
           })
@@ -112,6 +131,21 @@ Page({
           console.log(that.data.currPage)
         }
       },
+    })
+  },
+
+  clickCard(e) {
+    var index = e.currentTarget.dataset.index
+    var that = this;
+    wx.navigateTo({
+      url: '/pages/recipe/recipe',
+      success: function (res) {
+        // 通过eventChannel向被打开页面传送数据
+        console.log(that.data.recommendRecipes[index].id)
+        res.eventChannel.emit('acceptDataFromOpenerPage', {
+          data: that.data.recommendRecipes[index].id
+        })
+      }
     })
   },
 
@@ -204,7 +238,8 @@ Page({
           success(res) {
             app.globalData.openId = res.data.openid
             console.log(app.globalData.openId)
-            that.getTopRec();
+            that.getSwiperRec();
+            that.getTodayRecipes();
             that.getRecommendRecipes(0);
           }
         })
