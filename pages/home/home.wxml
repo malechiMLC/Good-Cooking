@@ -1,4 +1,12 @@
 <!--pages/home/home.wxml-->
+<!-- <searchbar style="padding-bottom: 30px" bindfocus="tosearch"></searchbar> -->
+<view class="cu-bar search bg-white">
+	<view class="search-form round">
+		<text class="cuIcon-search"></text>
+		<input type="text" placeholder="搜索教程、食材" bindfocus="tosearch"></input>
+	</view>
+</view>
+
 <view>
 	<view class="cu-bar bg-white solid-bottom">
 		<view class="action">
