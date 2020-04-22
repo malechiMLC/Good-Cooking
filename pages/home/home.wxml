@@ -91,4 +91,4 @@
 </view>
 
 
-<image class='article' src='/images/add.png' bindtap='toedit'></image>
+<image class='article' src='/images/add_home.png' bindtap='toedit'></image>
