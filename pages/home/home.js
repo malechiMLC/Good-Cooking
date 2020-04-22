@@ -71,21 +71,21 @@ Page({
         for(var i=0;i<breakfast.length;i++){
           todayRec.push({
             id: breakfast[i].id,
-            title: '营养早餐：' + breakfast[i].title,
+            title: '早餐·' + breakfast[i].title,
             image: breakfast[i].image,
           })
         }
         for(var i=0;i<lunch.length;i++){
           todayRec.push({
             id: lunch[i].id,
-            title: '丰盛午餐：' + lunch[i].title,
+            title: '午餐·' + lunch[i].title,
             image: lunch[i].image,
           })
         }
         for(var i=0;i<dinner.length;i++){
           todayRec.push({
             id: dinner[i].id,
-            title: '精致晚餐：' + dinner[i].title,
+            title: '晚餐·' + dinner[i].title,
             image: dinner[i].image,
           })
         }
@@ -212,8 +212,30 @@ Page({
     })
   },
 
-  swiperClicked: function () {
-    console.log(this.data.currentImage)
+  swiperClicked: function (e) {
+    var index = e.currentTarget.dataset.index
+    var that = this;
+    wx.navigateTo({
+      url: '/pages/recipe/recipe',
+      success: function(res) {
+        // 通过eventChannel向被打开页面传送数据
+        console.log(that.data.swiperRecipes[index].id)
+        res.eventChannel.emit('acceptDataFromOpenerPage', { data: that.data.swiperRecipes[index].id })
+      }
+    })
+  },
+
+  scrollClicked(e){
+    var index = e.currentTarget.dataset.index
+    var that = this;
+    wx.navigateTo({
+      url: '/pages/recipe/recipe',
+      success: function(res) {
+        // 通过eventChannel向被打开页面传送数据
+        console.log(that.data.todayRecipes[index].id)
+        res.eventChannel.emit('acceptDataFromOpenerPage', { data: that.data.todayRecipes[index].id })
+      }
+    })
   },
 
   //登录以及老用户直接获取用户信息

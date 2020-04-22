@@ -2,11 +2,11 @@
 <view>
 	<view class="cu-bar bg-white solid-bottom">
 		<view class="action">
-			<text class="cuIcon-title text-blue"></text>推荐菜（老饕菜单）
+			<text class="cuIcon-title text-olive"></text>推荐菜（老饕菜单）
 		</view>
 	</view>
 	<swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="swiperChanged">
-		<swiper-item bindtap="swiperClicked" wx:for="{{swiperRecipes}}" wx:key>
+		<swiper-item wx:for="{{swiperRecipes}}" bindtap="swiperClicked" data-index="{{index}}" wx:key>
 			<image src="{{item.image}}" mode="aspectFill"></image>
 			<view class='swipertitle animation-fade'><text>{{item.title}}</text></view>
 		</swiper-item>
@@ -32,13 +32,13 @@
 <view class="page-section-spacing">
 	<view class="cu-bar bg-white solid-bottom">
 		<view class="action">
-			<text class="cuIcon-title text-blue"></text>今日菜单
+			<text class="cuIcon-title text-olive"></text>今日菜单
 		</view>
 	</view>
 	<scroll-view class="scroll-view_X" scroll-x="true" style="width: 100%;white-space: nowrap;">
-		<view wx:for="{{todayRecipes}}" class="scroll-view-element">
+		<view wx:for="{{todayRecipes}}" class="scroll-view-element" bindtap="scrollClicked" data-index="{{index}}">
 			<image src="{{item.image}}"></image>
-			<view>{{item.title}}</view>
+			<view class="text-black text-bold" style="text-align:center">{{item.title}}</view>
 		</view>
 	</scroll-view>
 </view>
@@ -47,7 +47,7 @@
 <view>
 	<view class="cu-bar bg-white solid-bottom">
 		<view class="action">
-			<text class="cuIcon-title text-blue"></text>猜你喜欢
+			<text class="cuIcon-title text-olive"></text>猜你喜欢
 		</view>
 	</view>
 	<view wx:for="{{recommendRecipes}}">
@@ -55,7 +55,7 @@
 			<view class="cu-item shadow">
 				<view class="image">
 					<image src="{{item.image}}" mode="widthFix"></image>
-					<view class="cu-tag bg-blue">
+					<view class="cu-tag bg-olive">
 						<text class="text-cut">{{item.difficulty}} 约{{item.timeNeeded}}</text>
 					</view>
 					<view class="cu-bar bg-shadeBottom">
