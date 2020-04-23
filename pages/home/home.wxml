@@ -90,5 +90,12 @@
 	</view>
 </view>
 
+<cu-custom bgColor="bg-olive" wx:if="{{loading}}">
+  <view class="action" slot="right">
+    <view class="cu-load load-icon">加载中...</view>
+		<text class='cuIcon-title text-blue' wx:if="{{loadingErr}}"></text>加载错误
+  </view>
+</cu-custom>
+
 
 <image class='article' src='/images/add_home.png' bindtap='toedit'></image>
