@@ -10,9 +10,10 @@ Page({
     name: "尚未登陆",
     avatar: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",
     talk: "这个人很懒，还没有写介绍┑(￣Д ￣)┍.....................",
-    essayNumber: "111",
-    praiseNumber: "222",
-    imgBase: app.globalData.imgBase
+    recipeNumber: "0",
+    followNumber: "0",
+    imgBase: app.globalData.imgBase,
+    followers: []
   },
 
   //事件处理函数
@@ -25,12 +26,44 @@ Page({
    */
   onLoad: function (options) {
     var userInfo = app.globalData.userInfo;
-    if(userInfo != null){
+    if (userInfo != null) {
       this.setData({
         name: userInfo.nickName,
         avatar: userInfo.avatarUrl,
       })
+      var that = this;
+      wx.request({
+        url: 'https://csquare.wang/recipe',
+        method: 'GET',
+        data: {
+          openid: app.globalData.openId
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        success(res) {
+          console.log(res)
+          that.setData({
+            recipeNumber: res.data.length
+          })
+        }
+      })
+      this.getFollowers();
     }
+  },
+
+  getFollowers() {
+    var that = this
+    wx.request({
+      url: 'https://csquare.wang/user/' + app.globalData.openId + '/follower',
+      method: 'get',
+      success(res) {
+        console.log(res.data)
+        that.setData({
+          followers: []
+        })
+      },
+    })
   },
 
   /**
@@ -80,7 +113,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    
+
   },
 
   bindGetUserInfo: function (e) {
@@ -122,7 +155,7 @@ Page({
     }
   },
 
-  uploadUserInfo: function(userInfo){
+  uploadUserInfo: function (userInfo) {
     wx.request({
       url: 'https://csquare.wang/user',
       data: {
@@ -132,9 +165,9 @@ Page({
         profile: userInfo.avatarUrl
       },
       method: 'post',
-      success(res){
+      success(res) {
         console.log(res.data)
-        if(!res.data){
+        if (!res.data) {
           wx.showModal({
             title: '警告',
             content: '账号信息上传错误，请重试或联系开发者',
@@ -142,7 +175,7 @@ Page({
           })
         }
       },
-      fail(res){
+      fail(res) {
         wx.showModal({
           title: '警告',
           content: '账号信息上传错误，请重试或联系开发者',
@@ -152,9 +185,22 @@ Page({
     })
   },
 
-  NavToMyRecipe(){
+  NavToMyRecipe() {
     wx.navigateTo({
       url: '/pages/myRecipe/myRecipe',
+    })
+  },
+
+  NavToFollowers() {
+    var that = this;
+    wx.navigateTo({
+      url: '/pages/followlist/followlist',
+      success: function (res) {
+        // 通过eventChannel向被打开页面传送数据
+        res.eventChannel.emit('acceptDataFromOpenerPage', {
+          data: that.data.followers
+        })
+      }
     })
   }
 })

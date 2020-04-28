@@ -1,0 +1,13 @@
+<view class='margin-xl bg-olive padding-xl radius shadow-lg light'>
+  <view class='text-center margin-bottom text-lg text-grey'>关于做好饭</view>
+  <view class='text-content'>
+    <view>Hi！欢迎使用做好饭小程序！</view>
+    <view class='margin-top-sm'>该项目是我们团队为Software Engineering这门课程开发的课程项目。这个项目主要是考虑到平日尤其在当前的疫情期间中学做饭难，亟需大家各自在家做饭并且需要考虑营养搭配时的问题而选择的选题。</view>
+    <view class='margin-top-sm'>我们的软件中，不光能为用户提供特定菜品的教程，更能根据用户使用历史推荐符合用户口味且营养均衡的每日菜单。解决用户的选择困难及对营养搭配的不了解。除此之外，我们还将为用户提供可以进行交流的社区，使用户可以在互相交流中拓展思路。
+    </view>
+    <view class='margin-top-sm'>项目中主要使用到了WeUI和ColorUI组件库，Spring Boot作为后端。项目团队成员包括王初程，马睿祺，祝捷，胡思成和李佩芳。欢迎大家提出宝贵意见，一起享受美食的乐趣！٩(๑❛ᴗ❛๑)۶</view>
+    <view class='margin-top-sm'>更多功能敬请期待！联系邮箱：3513193474@qq.com</view>
+    <view class='margin-top-sm' style="text-align:right">做好饭项目团队</view>
+    <view class='margin-top-sm' style="text-align:right">2020.4.22</view>
+  </view>
+</view>

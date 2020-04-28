@@ -7,4 +7,9 @@
     <image wx:elif="{{item.sex=='2'}}" class="sex-img" src="/images/female.png"></image>
   </view>
 </view>
+<view wx:if="{{userList.length == 0}}">
+  <text class="cuIcon-info lg text-black" style="font-size: 16px">
+    您目前还没有关注者哦，分享更多教程让更多人认识你吧！
+  </text>
+</view>
 <view class="hori-center" style="margin-top:30px;"><text class="bottom-text"> - - 没有更多关注啦 - - </text></view>

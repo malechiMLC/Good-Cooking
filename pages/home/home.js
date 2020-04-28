@@ -15,7 +15,9 @@ Page({
     recommendRecipes: [],
     currPage: 0,
     allViewed: false,
-    todayRecipes: []
+    todayRecipes: [],
+    loading: false,
+    loadingErr: false
   },
 
   //跳转到写菜谱页面
@@ -97,6 +99,9 @@ Page({
   },
 
   getRecommendRecipes() {
+    this.setData({
+      loading: true,
+    })
     console.log("getRecommendRecipes")
     var that = this;
     wx.request({
@@ -114,6 +119,9 @@ Page({
             icon: 'none',
             duration: 2000
           })
+          that.setData({
+            loading: false,
+          })
         } else {
           var new_Array = that.data.recommendRecipes;
           for (var i = 0; i < res.data.data.length; i++) {
@@ -121,7 +129,8 @@ Page({
           }
           that.setData({
             recommendRecipes: new_Array,
-            currPage: that.data.currPage + 1
+            currPage: that.data.currPage + 1,
+            loading: false,
           })
           if (that.data.currPage >= res.data.totalPages) {
             that.setData({
@@ -131,6 +140,12 @@ Page({
           console.log(that.data.currPage)
         }
       },
+      fail(err){
+        console.log(err)
+        that.setData({
+          loadingErr: true
+        })
+      }
     })
   },
 

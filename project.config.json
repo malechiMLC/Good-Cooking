@@ -82,6 +82,13 @@
 					"id": -1,
 					"name": "myRecipe",
 					"pathName": "pages/myRecipe/myRecipe",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "about",
+					"pathName": "pages/about/about",
 					"scene": null
 				}
 			]
