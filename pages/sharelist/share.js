@@ -55,9 +55,6 @@ Page({
   onLoad: function (options) {
     var _this = this
 
-
-
-
     // 获取分享列表
     wx.request({
       url: 'https://csquare.wang/post',
@@ -69,26 +66,31 @@ Page({
       success(res) {
         console.log(res)
         var temp_array = []
-        for (var i = 0; i < res.length; i++) {
-          var obj
+        for (var i = 0; i < res.data.length; i++) {
+          var obj={}
           obj.author = res.data[i].name
           obj.bgUrl = res.data[i].images[0]
           obj.text = res.data[i].text
           obj.avatarUrl = res.data[i].profile
           obj.openid = res.data[i].openid
           obj.id = res.data[i].id
-          // 获取点赞数
-          wx.request({
-            url: 'https://csquare.wang/like/post/' + res.data[i].id + '/number',
-            method: 'GET',
-            data: {},
-            header: {
-              'content-type': 'application/json'
-            },
-            success(response) {
-              obj.likeNum = response.data
-            }
+          console.log(obj)
+          new Promise((resolve, reject) => {
+            // 获取点赞数
+            wx.request({
+              url: 'https://csquare.wang/like/post/' + res.data[i].id + '/number',
+              method: 'GET',
+              data: {},
+              header: {
+                'content-type': 'application/json'
+              },
+              success(response) {
+                console.log(response)
+                obj.likeNum = response.data
+              }
+            })
           })
+          console.log(obj)
           temp_array.push(obj)
         }
         _this.setData({
@@ -128,7 +130,7 @@ Page({
     this.setData({
       content: e.detail.value
     })
-    console.log(this.data.content)
+    // console.log(this.data.content)
   },
 
   //选择图片
