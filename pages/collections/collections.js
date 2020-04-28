@@ -14,11 +14,19 @@ Page({
         image:"https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
         timeNeeded:"10min",
         difficulty:"0基础",
+        rid:10,
+        avatar:'',
+        author:'',
+        time:'',
       }, {
         title: "菜名",
         image: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
         timeNeeded: "10min",
         difficulty: "0基础",
+        rid:10,
+        avatar: '',
+        author: '',
+        time: '',
       }
     ],
   },
@@ -29,19 +37,32 @@ Page({
   onLoad: function (options) {
     var that = this
     //获取收藏列表
-    wx.request({
-      url: 'https://csquare.wang/favorite/user/' + app.globalData.openId,
-      method: 'GET',
-      data: {
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success(res) {
-        console.log(res)
-        that.setData({
-          collects: res.data.collects,
-        })
+    // wx.request({
+    //   url: 'https://csquare.wang/favorite/user/' + app.globalData.openId,
+    //   method: 'GET',
+    //   data: {
+    //   },
+    //   header: {
+    //     'content-type': 'application/json'
+    //   },
+    //   success(res) {
+    //     console.log(res)
+    //     that.setData({
+    //       collects: res.data.collects,
+    //     })
+    //   }
+    // })
+  },
+
+  clickCard(e) {
+    var index = e.currentTarget.dataset.index
+    var that = this;
+    wx.navigateTo({
+      url: '/pages/recipe/recipe',
+      success: function (res) {
+        // 通过eventChannel向被打开页面传送数据
+        console.log(that.data.collects[index].rid)
+        res.eventChannel.emit('acceptDataFromOpenerPage', { data: that.data.collects[index].rid })
       }
     })
   },

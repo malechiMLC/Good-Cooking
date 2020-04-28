@@ -24,21 +24,21 @@ Page({
     nutrition:'',
     steps: '',
     commentArray: [
-      // {
-      //   avatar:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg",
-      //   name:'user',
-      //   comment:"great!"
-      // },
-      // {
-      //   avatar: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg",
-      //   name: 'user',
-      //   comment: "great!"
-      // },
-      // {
-      //   avatar: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg",
-      //   name: 'user',
-      //   comment: "great!"
-      // }
+      {
+        avatar:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg",
+        name:'user',
+        comment:"great!"
+      },
+      {
+        avatar: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg",
+        name: 'user',
+        comment: "great!"
+      },
+      {
+        avatar: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg",
+        name: 'user',
+        comment: "great!"
+      }
     ]
   },
 
@@ -143,11 +143,13 @@ Page({
     var that = this
     console.log('onload get openid')
     console.log(app.globalData.openId)
-    // 页面跳转参数处理
-    // let sid = options.recipeID
-    // let rid = parseInt(sid)
-    // this.setData({
-    //   id:rid
+
+    // //页面跳转参数处理
+    // let eventChannel = this.getOpenerEventChannel();
+    // eventChannel.on('acceptDataFromOpenerPage', function (data) {
+    //   that.setData({
+    //     rid: data.data
+    //   })
     // })
 
     //获取食谱
@@ -173,46 +175,47 @@ Page({
           uid:res.data.openid,
           time:res.data.time,
         })
+
       }
     })
 
-    // 获取评论列表
-    wx.request({
-      url: 'https://csquare.wang/comment/recipe/' + that.data.rid,
-      method: 'GET',
-      data: {
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success(res) {
-        var temp_array = []
-        for (let i = 0; i < res.data.length; i++) {
-          let obj = {}
-          obj.comment = res.data[i].content,
-          obj.openid = res.data[i].openid,
-          //获取用户头像
-          wx.request({
-            url: 'https://csquare.wang/user',
-            method: 'GET',
-            data: {
-              openid: res.data[i].openid
-            },
-            header: {
-              'content-type': 'application/json'
-            },
-            success(response) {
-              obj.name = response.data.name,
-              obj.avatar = response.data.profile
-              temp_array.push(obj)
-            }
-          })
-        }
-        that.setData({
-          commentArray: temp_array
-        })
-      }
-    })
+    // // 获取评论列表
+    // wx.request({
+    //   url: 'https://csquare.wang/comment/recipe/' + that.data.rid,
+    //   method: 'GET',
+    //   data: {
+    //   },
+    //   header: {
+    //     'content-type': 'application/json'
+    //   },
+    //   success(res) {
+    //     var temp_array = []
+    //     for (let i = 0; i < res.data.length; i++) {
+    //       let obj = {}
+    //       obj.comment = res.data[i].content,
+    //       obj.openid = res.data[i].openid,
+    //       //获取用户头像
+    //       wx.request({
+    //         url: 'https://csquare.wang/user',
+    //         method: 'GET',
+    //         data: {
+    //           openid: res.data[i].openid
+    //         },
+    //         header: {
+    //           'content-type': 'application/json'
+    //         },
+    //         success(response) {
+    //           obj.name = response.data.name
+    //           obj.avatar = response.data.profile
+    //           temp_array.push(obj)
+    //         }
+    //       })
+    //     }
+    //     that.setData({
+    //       commentArray: temp_array
+    //     })
+    //   }
+    // })
 
   },
 
@@ -227,6 +230,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+
   },
 
   /**

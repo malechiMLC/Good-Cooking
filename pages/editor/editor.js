@@ -62,16 +62,6 @@ Page({
       success(res) {
         console.log('upload success');
         console.log(res)
-        that.setData({
-          title: '',
-          image: '',
-          timeNeeded: '',
-          difficulty: '',
-          size: '',
-          ingredients: '',
-          nutrition: '',
-          steps: '',
-        })
         wx.showToast({
           title: '成功',
           icon: 'success',

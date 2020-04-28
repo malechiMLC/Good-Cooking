@@ -6,14 +6,7 @@ Component({
   properties: {
     commentArray: {
       type: Array,
-      value: [],
-      observer:function(newval,oldval){
-        console.log(this.data.commentArray)
-        console.log(newval)
-        this.setData({
-          commentArray:newval
-        })
-      }
+      value: []
     }
   },
 
