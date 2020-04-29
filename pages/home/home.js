@@ -112,7 +112,7 @@ Page({
       },
       method: 'get',
       success(res) {
-        console.log(res.data)
+        // console.log(res.data)
         if (that.data.allViewed) {
           wx.showToast({
             title: '更多美味敬请期待',
@@ -137,7 +137,7 @@ Page({
               allViewed: true,
             })
           }
-          console.log(that.data.currPage)
+          // console.log(that.data.currPage)
         }
       },
       fail(err){
