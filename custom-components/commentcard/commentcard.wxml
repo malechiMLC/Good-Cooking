@@ -1,6 +1,6 @@
 <!--custom-components/commentcard/commentcard.wxml-->
 
-<view wx:for="{{commentArray}}" wx:for-item="item" >
+<view wx:for="{{comments}}" wx:for-item="item" >
 
   <view  class="comment-card">
    <image class="avater" style="height:80rpx;width:80rpx;border-radius:40rpx;" src="{{item.avatar}}" bindtap="tohomepage" id="{{item.openid}}"></image>

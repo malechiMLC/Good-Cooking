@@ -23,23 +23,7 @@ Page({
     ingredients:'',
     nutrition:'',
     steps: '',
-    commentArray: [
-      {
-        avatar:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg",
-        name:'user',
-        comment:"great!"
-      },
-      {
-        avatar: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg",
-        name: 'user',
-        comment: "great!"
-      },
-      {
-        avatar: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg",
-        name: 'user',
-        comment: "great!"
-      }
-    ]
+    commentArray: []
   },
 
   //点击collet按钮
@@ -141,8 +125,6 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    console.log('onload get openid')
-    console.log(app.globalData.openId)
 
     // //页面跳转参数处理
     // let eventChannel = this.getOpenerEventChannel();
@@ -175,47 +157,49 @@ Page({
           uid:res.data.openid,
           time:res.data.time,
         })
-
+        var temp_array = []
+        new Promise((resolve, reject) => {
+          // 获取评论列表
+          wx.request({
+            url: 'https://csquare.wang/comment/recipe/' + that.data.rid,
+            method: 'GET',
+            data: {
+            },
+            header: {
+              'content-type': 'application/json'
+            },
+            success(response) {
+              for (let i = 0; i < response.data.length; i++) {
+                let obj = {}
+                obj.comment = response.data[i].content,
+                obj.openid = response.data[i].openid,
+                new Promise((response, reject) => {
+                  //获取用户头像
+                  wx.request({
+                    url: 'https://csquare.wang/user',
+                    method: 'GET',
+                    data: {
+                      openid: obj.openid
+                    },
+                    header: {
+                      'content-type': 'application/json'
+                    },
+                    success(resp) {
+                      obj.name = resp.data.name
+                      obj.avatar = resp.data.profile
+                    }
+                  })
+                })
+                temp_array.push(obj)
+              }
+            }
+          })
+        })
+        that.setData({
+          commentArray: temp_array
+        })
       }
     })
-
-    // // 获取评论列表
-    // wx.request({
-    //   url: 'https://csquare.wang/comment/recipe/' + that.data.rid,
-    //   method: 'GET',
-    //   data: {
-    //   },
-    //   header: {
-    //     'content-type': 'application/json'
-    //   },
-    //   success(res) {
-    //     var temp_array = []
-    //     for (let i = 0; i < res.data.length; i++) {
-    //       let obj = {}
-    //       obj.comment = res.data[i].content,
-    //       obj.openid = res.data[i].openid,
-    //       //获取用户头像
-    //       wx.request({
-    //         url: 'https://csquare.wang/user',
-    //         method: 'GET',
-    //         data: {
-    //           openid: res.data[i].openid
-    //         },
-    //         header: {
-    //           'content-type': 'application/json'
-    //         },
-    //         success(response) {
-    //           obj.name = response.data.name
-    //           obj.avatar = response.data.profile
-    //           temp_array.push(obj)
-    //         }
-    //       })
-    //     }
-    //     that.setData({
-    //       commentArray: temp_array
-    //     })
-    //   }
-    // })
 
   },
 
@@ -230,7 +214,51 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this
+    var temp_array = []
+      // 获取评论列表
+    
+      wx.request({
+        url: 'https://csquare.wang/comment/recipe/' + that.data.rid,
+        method: 'GET',
+        data: {
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        success(response) {
+          for (let i = 0; i < response.data.length; i++) {
+            let obj = {}
+            obj.comment = response.data[i].content,
+            obj.openid = response.data[i].openid
+            // if (obj.openid = null){
+            //   obj.openid = "ovQMG5twIxjfeMk7WdJt8hAIZDBQ"
+            // }
+            new Promise((response, reject) => {
+              //获取用户头像
+              wx.request({
+                url: 'https://csquare.wang/user',
+                method: 'GET',
+                data: {
+                  openid: obj.openid
+                },
+                header: {
+                  'content-type': 'application/json'
+                },
+                success(resp) {
+                  obj.name = resp.data.name
+                  obj.avatar = resp.data.profile
+                }
+              })
+            })
+            temp_array.push(obj)
+          }
+          that.setData({
+            commentArray: temp_array
+          })
+          console.log(temp_array)
+        }
+      })
   },
 
   /**

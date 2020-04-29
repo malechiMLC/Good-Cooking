@@ -64,7 +64,7 @@
       
       <view>
         <text style="padding-top:20rpx;height:40rpx;width:40rpx;border-bottom:2rpx solid #aaa;font-weight:bold;">大家怎么说</text>
-        <commentcards wx:if="{{commentArray.lenth>0}}" commentArray="{{commentArray}}" />
+        <commentcards commentArray="{{commentArray}}" />
       </view>
 
   </view>
