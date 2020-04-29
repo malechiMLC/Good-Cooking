@@ -11,9 +11,9 @@
       <view class="author-view ver-center" bindtap="tohomepage" id="{{item.openid}}"><text class="author-text">{{item.author}}</text></view>
       <view class="like-view ver-center" id="{{index}}" bindtap="like">
         
-        <image wx:if="{{ifactive[index]=='true'}}" class="image-like" mode="aspectFill" src="/images/Like-active.png"></image>
-        <image wx:else class="image-like" mode="aspectFill" src="/images/Like.png"></image>
-        <text class="author-text">{{item.likeNum}}</text>
+        <image wx:if="{{ifactive[index]=='true'}}" class="image-like" mode="aspectFill" src="/images/Like-active.png" bindtap="like"></image>
+        <image wx:else class="image-like" mode="aspectFill" src="/images/Like.png" bindtap="like"></image>
+        <!-- <text class="author-text">{{item.likeNum}}</text> -->
       </view>
     </view>
   </view>

@@ -20,12 +20,14 @@ Component({
   },
 
   lifetimes:{
-    attached: function() {
+    ready: function() {
       var _this=this
+      console.log(_this.data.infoArray)
       for(var i=0;i<_this.data.infoArray.length;i++){
         _this.data.ifactive.push('false')
       }
-    },
+      console.log(_this.data.ifactive)
+    }
 
   },
   /**
@@ -42,8 +44,11 @@ Component({
     },
     like:function(e){
       var _this=this
+      // console.log(_this.data.infoArray)
       var index=Number(e.currentTarget.id)
+      // console.log(index)
       if(_this.data.ifactive[index]=='true'){
+        console.log(_this.data.infoArray[index].id)
         wx.request({
           url: 'https://csquare.wang/like/post/'+_this.data.infoArray[index].id,
           method: 'DELETE',

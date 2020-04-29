@@ -12,31 +12,32 @@ Page({
    * 页面的初始数据
    */
   data: {
-    infoArray: [{
-      bgUrl: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",
-      text: "这里是内容",
-      avatarUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-      author: "作者名",
-      likeNum: '2000',
-      openid: '111',
-      id: '1'
-    }, {
-      bgUrl: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",
-      text: "这里是标题",
-      avatarUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-      author: "作者名",
-      likeNum: '2000',
-      openid: '112',
-      id: '2'
-    }, {
-      bgUrl: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",
-      text: "这里是标题",
-      avatarUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-      author: "作者名",
-      likeNum: '2000',
-      openid: '113',
-      id: '3'
-    }],
+    // infoArray: [{
+    //   bgUrl: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",
+    //   text: "这里是内容",
+    //   avatarUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
+    //   author: "作者名",
+    //   likeNum: '2000',
+    //   openid: '111',
+    //   id: '1'
+    // }, {
+    //   bgUrl: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",
+    //   text: "这里是标题",
+    //   avatarUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
+    //   author: "作者名",
+    //   likeNum: '2000',
+    //   openid: '112',
+    //   id: '2'
+    // }, {
+    //   bgUrl: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",
+    //   text: "这里是标题",
+    //   avatarUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
+    //   author: "作者名",
+    //   likeNum: '2000',
+    //   openid: '113',
+    //   id: '3'
+    // }],
+    infoArray:[],
     URI: undefined,
     //Mask
     showModal: false,
@@ -54,8 +55,7 @@ Page({
 
   onLoad: function (options) {
     var _this = this
-
-    // 获取分享列表
+    // _this.gettotalarray()
     wx.request({
       url: 'https://csquare.wang/post',
       method: 'GET',
@@ -64,43 +64,86 @@ Page({
         'content-type': 'application/json'
       },
       success(res) {
-        console.log(res)
+        // console.log(res)
         var temp_array = []
         for (var i = 0; i < res.data.length; i++) {
-          var obj={}
-          obj.author = res.data[i].name
-          obj.bgUrl = res.data[i].images[0]
-          obj.text = res.data[i].text
-          obj.avatarUrl = res.data[i].profile
-          obj.openid = res.data[i].openid
-          obj.id = res.data[i].id
-          console.log(obj)
-          new Promise((resolve, reject) => {
-            // 获取点赞数
-            wx.request({
-              url: 'https://csquare.wang/like/post/' + res.data[i].id + '/number',
-              method: 'GET',
-              data: {},
-              header: {
-                'content-type': 'application/json'
-              },
-              success(response) {
-                console.log(response)
-                obj.likeNum = response.data
-              }
-            })
-          })
-          console.log(obj)
-          temp_array.push(obj)
+          let obj={}
+          _this.form(res,temp_array,i,obj)
+          .then(_this.getlikenum(obj,obj.id))
+          .then(_this.addtoarray(temp_array,obj))
         }
         _this.setData({
           infoArray: temp_array
         })
-      }
+        console.log(_this.data.infoArray)
+    }
     })
 
     //语音识别初始化
     this.initRecord()
+  },
+  gettotalarray:function(temp){
+    var _this = this
+    return new Promise(function (resolve, reject) {
+      // 获取分享列表
+      wx.request({
+        url: 'https://csquare.wang/post',
+        method: 'GET',
+        data: {},
+        header: {
+          'content-type': 'application/json'
+        },
+        success(res) {
+          // console.log(res)
+          var temp_array = []
+          for (var i = 0; i < res.data.length; i++) {
+            let obj={}
+            _this.form(res,temp_array,i,obj)
+            .then(_this.getlikenum(obj,obj.id))
+            .then(_this.addtoarray(temp_array,obj))
+          }
+          _this.setData({
+            infoArray: temp_array
+          })
+          console.log(_this.data.infoArray)
+        }
+      })
+    })
+  },
+
+  form:function(res,temp_array,i,obj){
+    var _this=this
+    return new Promise(function (resolve, reject) {
+      obj.author = res.data[i].name
+      obj.bgUrl = res.data[i].images[0]
+      obj.text = res.data[i].text
+      obj.avatarUrl = res.data[i].profile
+      obj.openid = res.data[i].openid
+      obj.id = res.data[i].id
+    })
+  },
+
+  getlikenum:function(obj,id){
+    return new Promise(function (resolve, reject) {
+      wx.request({
+        url: 'https://csquare.wang/like/post/' + id + '/number',
+        method: 'GET',
+        data: {},
+        header: {
+          'content-type': 'application/json'
+        },
+        success(response) {
+          console.log(response)
+          obj.likeNum = response.data
+        }
+      })
+    })
+  },
+
+  addtoarray:function(temp_array,obj){
+    // console.log(obj)
+    temp_array.push(obj)
+    // console.log(temp_array)
   },
 
   tosearch: function () {
