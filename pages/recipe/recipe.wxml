@@ -46,14 +46,11 @@
 
   <view class="comment-area">
       <view class="comment-title" style="display:flex;flex-direction:row;justify-content:flex-end;width:95%;">
-        <!-- <image wx:if="{{liked}}" class="icon" src="../../images/like-active.png" catchtap="onLike"/>
-        <image wx:else class="icon" src="../../images/like.png" catchtap="onLike"/>
-        <text/>{{likenum}} -->
-        <image wx:if="{{commented}}" class="icon" src="/images/Like-active.png" catchtap="onComment"/>
-        <image wx:else class="icon" src="/images/Like.png" catchtap="onComment"/>
+        <image wx:if="{{commented}}" class="icon" src="/images/comment-active.png" catchtap="onComment"/>
+        <image wx:else class="icon" src="/images/comment.png" catchtap="onComment"/>
         <text/>{{commentnum}}
-        <image wx:if="{{collected}}" class="icon" src="/images/Like-active.png" catchtap="onCollect"/>
-        <image wx:else class="icon" src="/images/Like.png" catchtap="onCollect"/>
+        <image wx:if="{{collected}}" class="icon" src="/images/collect-active.png" catchtap="onCollect"/>
+        <image wx:else class="icon" src="/images/collect.png" catchtap="onCollect"/>
         <text/>{{collectnum}}
       </view>
 
@@ -71,5 +68,5 @@
 
 </view>
 
-<image class="collection" style="position:fixed;top:0;right:20rpx;height:40rpx;width:40rpx;" src="/images/Like-active.png" catchtap="onCollect" wx:if="{{collected}}"></image>
-<image wx:else class="collection" style="position:fixed;top:0;right:20rpx;height:40rpx;width:40rpx;" src="/images/Like.png" catchtap="onCollect"></image>
+<image class="collection" style="position:fixed;top:0;right:20rpx;height:50rpx;width:50rpx;" src="/images/collect-active.png" catchtap="onCollect" wx:if="{{collected}}"></image>
+<image wx:else class="collection" style="position:fixed;top:0;right:20rpx;height:50rpx;width:50rpx;" src="/images/collect.png" catchtap="onCollect"></image>

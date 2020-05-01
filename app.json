@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/recipe/recipe",
     "pages/home/home",
+    "pages/recipe/recipe",
     "pages/post/post",
     "pages/editor/editor",
     "pages/collections/collections",
@@ -12,7 +12,6 @@
     "pages/today/today",
     "pages/searchResult/searchResult",
     "pages/search/search",
-    "pages/upload/upload",
     "pages/myRecipe/myRecipe",
     "pages/about/about"
   ],

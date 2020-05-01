@@ -40,7 +40,9 @@ Component({
       })
     },
     toshare:function(e){
-      // 跳转到动态详情页
+      wx.navigateTo({
+        url: '/pages/post/post?postid=' + e.currentTarget.id,
+      })
     },
     like:function(e){
       var _this=this

@@ -164,10 +164,6 @@ Page({
    * Mask
    */
 
-  preventTouchMove: function () {
-
-  },
-
   //输入内容
   input: function (e) {
     this.setData({

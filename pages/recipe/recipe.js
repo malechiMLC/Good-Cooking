@@ -11,8 +11,8 @@ Page({
     liked:false,
     collected:false,
     commented:false,
-    commentnum: '111',
-    collectnum: '222',
+    commentnum: '',
+    collectnum: '',
     commenttext:'',
     rid:10,
     title: "",
@@ -40,7 +40,7 @@ Page({
           'content-type': 'application/json'
         },
         success(res) {
-          console.log('collect success')
+          console.log(res)
           var num = parseInt(that.data.collectnum)+1
           that.setData({
             collected: true,
@@ -84,12 +84,12 @@ Page({
     }
 
   },
-  //
   inputComment:function(e){
     this.setData({
       commenttext: e.detail.value
     })
   },
+
   //提交评论
   commitComment:function(){
     var that = this
@@ -115,10 +115,40 @@ Page({
           commented:false,
           commentnum:num.toString()
         })
+        that.getComments()
       }
     })
-
   },
+
+  //获取评论列表
+  getComments:function(){
+  var that = this
+  wx.request({
+    url: 'https://csquare.wang/comment/recipe/' + that.data.rid,
+    method: 'GET',
+    data: {
+    },
+    header: {
+      'content-type': 'application/json'
+    },
+    success(res) {
+      console.log(res.data)
+      var temp_array = []
+      for (let i = 0; i < res.data.length; i++) {
+        let obj = {}
+        obj.openid = res.data[i].openid,
+          obj.name = res.data[i].name,
+          obj.avatar = res.data[i].profile,
+          obj.content = res.data[i].content
+        temp_array.push(obj)
+      }
+      that.setData({
+        commentArray: temp_array,
+        commentnum:res.data.length
+      })
+    }
+  })
+},
 
   /**
    * 生命周期函数--监听页面加载
@@ -126,13 +156,13 @@ Page({
   onLoad: function (options) {
     var that = this
 
-    // //页面跳转参数处理
-    // let eventChannel = this.getOpenerEventChannel();
-    // eventChannel.on('acceptDataFromOpenerPage', function (data) {
-    //   that.setData({
-    //     rid: data.data
-    //   })
-    // })
+    //页面跳转参数处理
+    let eventChannel = this.getOpenerEventChannel();
+    eventChannel.on('acceptDataFromOpenerPage', function (data) {
+      that.setData({
+        rid: data.data
+      })
+    })
 
     //获取食谱
     wx.request({
@@ -144,63 +174,25 @@ Page({
         'content-type': 'application/json'
       },
       success(res) {
-        console.log(res)
+        console.log(res.data)
         that.setData({
-          difficulty:res.data.difficulty,
-          image:res.data.image,
-          ingredients:res.data.ingredients,
-          nutrition:res.data.nutrition,
-          size:res.data.size,
-          steps:res.data.steps,
-          timeNeeded:res.data.timeNeeded,
-          title:res.data.title,
-          uid:res.data.openid,
-          time:res.data.time,
-        })
-        var temp_array = []
-        new Promise((resolve, reject) => {
-          // 获取评论列表
-          wx.request({
-            url: 'https://csquare.wang/comment/recipe/' + that.data.rid,
-            method: 'GET',
-            data: {
-            },
-            header: {
-              'content-type': 'application/json'
-            },
-            success(response) {
-              for (let i = 0; i < response.data.length; i++) {
-                let obj = {}
-                obj.comment = response.data[i].content,
-                obj.openid = response.data[i].openid,
-                new Promise((response, reject) => {
-                  //获取用户头像
-                  wx.request({
-                    url: 'https://csquare.wang/user',
-                    method: 'GET',
-                    data: {
-                      openid: obj.openid
-                    },
-                    header: {
-                      'content-type': 'application/json'
-                    },
-                    success(resp) {
-                      obj.name = resp.data.name
-                      obj.avatar = resp.data.profile
-                    }
-                  })
-                })
-                temp_array.push(obj)
-              }
-            }
-          })
-        })
-        that.setData({
-          commentArray: temp_array
+          difficulty: res.data.difficulty,
+          image: res.data.image,
+          ingredients: res.data.ingredients,
+          nutrition: res.data.nutrition,
+          size: res.data.size,
+          steps: res.data.steps,
+          timeNeeded: res.data.timeNeeded,
+          title: res.data.title,
+          uid: res.data.openid,
+          time: res.data.time,
+          collectnum: res.data.collectedTimes
         })
       }
     })
 
+    //获取评论列表
+    that.getComments()
   },
 
   /**
@@ -214,51 +206,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that = this
-    var temp_array = []
-      // 获取评论列表
-    
-      wx.request({
-        url: 'https://csquare.wang/comment/recipe/' + that.data.rid,
-        method: 'GET',
-        data: {
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success(response) {
-          for (let i = 0; i < response.data.length; i++) {
-            let obj = {}
-            obj.comment = response.data[i].content,
-            obj.openid = response.data[i].openid
-            // if (obj.openid = null){
-            //   obj.openid = "ovQMG5twIxjfeMk7WdJt8hAIZDBQ"
-            // }
-            new Promise((response, reject) => {
-              //获取用户头像
-              wx.request({
-                url: 'https://csquare.wang/user',
-                method: 'GET',
-                data: {
-                  openid: obj.openid
-                },
-                header: {
-                  'content-type': 'application/json'
-                },
-                success(resp) {
-                  obj.name = resp.data.name
-                  obj.avatar = resp.data.profile
-                }
-              })
-            })
-            temp_array.push(obj)
-          }
-          that.setData({
-            commentArray: temp_array
-          })
-          console.log(temp_array)
-        }
-      })
+ 
   },
 
   /**

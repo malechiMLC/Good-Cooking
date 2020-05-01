@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    openid:'ovQMG5twIxjfeMk7WdJt8hAIZDBQ',
     collects:[
       {
         title:"菜名",
@@ -37,21 +38,21 @@ Page({
   onLoad: function (options) {
     var that = this
     //获取收藏列表
-    // wx.request({
-    //   url: 'https://csquare.wang/favorite/user/' + app.globalData.openId,
-    //   method: 'GET',
-    //   data: {
-    //   },
-    //   header: {
-    //     'content-type': 'application/json'
-    //   },
-    //   success(res) {
-    //     console.log(res)
-    //     that.setData({
-    //       collects: res.data.collects,
-    //     })
-    //   }
-    // })
+    wx.request({
+      url: 'https://csquare.wang/favorite/user/' + that.data.openid,
+      method: 'GET',
+      data: {
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res) {
+        console.log(res)
+        that.setData({
+          collects: res.data.collects,
+        })
+      }
+    })
   },
 
   clickCard(e) {

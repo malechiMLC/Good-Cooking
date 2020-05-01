@@ -284,31 +284,30 @@ Page({
     // })
 
     // 获取收藏列表
-    // wx.request({
-    //   url: 'https://csquare.wang/favorite/user/'+_this.data.otherOpenId,
-    //   method: 'GET',
-    //   data: { },
-    //   header: {
-    //     'content-type': 'application/json'
-    //   },
-    //   success(res) {
-    //         var temp_array=[]
-    //         for(var i=0;i<res.data.length;i++){
-    //           var obj
-    //           obj.timeNeeded=res.data[i].timeNeeded
-    //           obj.bgUrl=res.data[i].image
-    //           obj.text=res.data[i].title
-    //           obj.difficulty=res.data[i].difficulty
-    //           obj.id=res.data[i].id
-    
-    //           temp_array.push(obj)
-    //         }
-    
-    //         _this.setData({
-    //           caipuArray:temp_array
-    //         })
-    //   }
-    // })
+    wx.request({
+      url: 'https://csquare.wang/favorite/user/'+_this.data.otherOpenId,
+      method: 'GET',
+      data: { },
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res) {
+        console.log(res)
+        var temp_array=[]
+        for(var i=0;i<res.data.length;i++){
+          var obj
+          obj.timeNeeded=res.data[i].timeNeeded
+          obj.bgUrl=res.data[i].image
+          obj.text=res.data[i].title
+          obj.difficulty=res.data[i].difficulty
+          obj.id=res.data[i].id
+          temp_array.push(obj)
+        }
+        _this.setData({
+          shoucangArray:temp_array
+        })
+      }
+    })
     wx.setNavigationBarTitle({
       title: _this.data.name
    })
