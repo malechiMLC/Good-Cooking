@@ -40,6 +40,8 @@
 
     <view class='comment-area'>
         <text style="padding-top:20rpx;height:40rpx;width:40rpx;border-bottom:2rpx solid #aaa;font-weight:bold;">评论</text>
+        <view class="hori-center" style="margin-top:30px;" wx:if="{{commentArray.length==0}}"><text class="bottom-text"> - -暂时还没有评论哦，快来发表第一个评论吧- - </text></view>
         <commentcard commentArray="{{commentArray}}" />
+        <view class="hori-center" style="margin-top:30px;" wx:if="{{commentArray.length>0}}"><text class="bottom-text"> - - 没有更多啦 - - </text></view>
     </view>
 </view>

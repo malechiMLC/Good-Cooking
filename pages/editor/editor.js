@@ -60,7 +60,6 @@ Page({
         'content-type': 'application/json'
       },
       success(res) {
-        console.log('upload success');
         console.log(res)
         wx.showToast({
           title: '成功',

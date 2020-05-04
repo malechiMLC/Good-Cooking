@@ -21,11 +21,15 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    toRecipe:function(event){
-      var recipeID = event.currentTarget.dataset.index
-      console.log(event.currentTarget.dataset.index)
+    toRecipe:function(e){
+      var recipeID = e.currentTarget.dataset.index
+      console.log(e.currentTarget.dataset.index)
       wx.navigateTo({
-        url: '/pages/recipe/recipe?recipeID=' + recipeID,
+        url: '/pages/recipe/recipe',
+        success: function (res) {
+          // 通过eventChannel向被打开页面传送数据
+          res.eventChannel.emit('acceptDataFromOpenerPage', { data: recipeID })
+        }
       })
     }
   }

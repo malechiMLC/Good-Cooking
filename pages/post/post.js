@@ -11,7 +11,7 @@ Page({
     liked: false,
     commented: false,
     likenum: '',
-    commentnum: '',
+    commentnum: 0,
     commenttext: '',
     postid:'',
     postuserid:'',
@@ -37,7 +37,6 @@ Page({
           'content-type': 'application/json'
         },
         success(res) {
-          console.log('like success')
           var num = parseInt(that.data.likenum) + 1
           that.setData({
             liked: true,
@@ -47,7 +46,6 @@ Page({
       })
     } else {
       var that = this
-      //取消收藏
       wx.request({
         url: 'https://csquare.wang/like/post/' + that.data.postid,
         method: 'DELETE',
@@ -58,7 +56,6 @@ Page({
           'content-type': 'application/json'
         },
         success(res) {
-          console.log('delete success')
           var num = parseInt(that.data.likenum) - 1
           that.setData({
             liked: false,
@@ -89,7 +86,7 @@ Page({
   commitComment: function () {
     var that = this
     wx.request({
-      url: 'https://csquare.wang/comment/recipe/' + that.data.rid,
+      url: 'https://csquare.wang/comment/post/' + that.data.postid,
       method: 'POST',
       data: {
         openid: app.globalData.openId,
@@ -99,7 +96,6 @@ Page({
         'content-type': 'application/json'
       },
       success(res) {
-        console.log("comment success")
         wx.showToast({
           title: '成功',
           icon: 'success',
@@ -118,7 +114,7 @@ Page({
   getComments:function(){
     var that = this
     wx.request({
-      url: 'https://csquare.wang/comment/recipe/' + that.data.postid,
+      url: 'https://csquare.wang/comment/post/' + that.data.postid,
       method: 'GET',
       data: {
       },
@@ -126,22 +122,25 @@ Page({
         'content-type': 'application/json'
       },
       success(res) {
-        console.log(res.data)
         var temp_array = []
         for (let i = 0; i < res.data.length; i++) {
           let obj = {}
           obj.openid = res.data[i].openid,
-            obj.name = res.data[i].name,
-            obj.avatar = res.data[i].profile,
-            obj.content = res.data[i].content
+          obj.name = res.data[i].name,
+          obj.avatar = res.data[i].profile,
+          obj.content = res.data[i].content
           temp_array.push(obj)
         }
-        that.setData({
-          commentArray: temp_array
-        })
+        if(temp_array.length>0){
+          that.setData({
+            commentArray: temp_array,
+            commentnum:temp_array.length
+          })
+        }
       }
     })
   },
+
   getLikes:function(){
     var that = this
     wx.request({
@@ -152,13 +151,60 @@ Page({
         'content-type': 'application/json'
       },
       success(res) {
-        console.log(res)
         that.setData({
           likenum:res.data
+        })
+        //点赞
+        var oldlikenum = res.data
+        var newlikenum
+        wx.request({
+          url: 'https://csquare.wang/like/post/' + that.data.postid,
+          method: 'POST',
+          data: {
+            openid: app.globalData.openId
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          success(res) {
+            //获取数
+            wx.request({
+              url: 'https://csquare.wang/like/post/' + that.data.postid + '/number',
+              method: 'GET',
+              data: {},
+              header: {
+                'content-type': 'application/json'
+              },
+              success(res){
+                newlikenum = res.data
+                if (newlikenum == oldlikenum) {
+                  that.setData({
+                    liked: true
+                  })
+                } else {
+                  that.setData({
+                    liked: false
+                  })
+                  //取消点赞
+                  wx.request({
+                    url: 'https://csquare.wang/like/post/' + that.data.postid,
+                    method: 'DELETE',
+                    data: {
+                      openid: app.globalData.openId,
+                    },
+                    header: {
+                      'content-type': 'application/json'
+                    }
+                  })
+                }
+              }
+            })
+          }
         })
       }
     })
   },
+
   // 查看作者主页
   tohomepage: function () {
     wx.navigateTo({
@@ -183,7 +229,6 @@ Page({
         'content-type': 'application/json'
       },
       success(res){
-        console.log(res)
         that.setData({
           postuserid:res.data.openid,
           name:res.data.name,

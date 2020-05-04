@@ -169,7 +169,6 @@ Page({
     this.setData({
       content: e.detail.value
     })
-    // console.log(this.data.content)
   },
 
   //选择图片
