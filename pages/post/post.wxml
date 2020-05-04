@@ -26,8 +26,8 @@
           <image wx:if="{{commented}}" class="icon" src="../../images/comment-active.png" catchtap="onComment"/>
           <image wx:else class="icon" src="../../images/comment.png" catchtap="onComment"/>
           <text/>{{commentnum}}
-          <image wx:if="{{liked}}" class="icon" src="../../images/like-active.png" catchtap="onLike"/>
-          <image wx:else class="icon" src="../../images/like.png" catchtap="onLike"/>
+          <image wx:if="{{liked}}" class="icon" src="../../images/Like-active.png" catchtap="onLike"/>
+          <image wx:else class="icon" src="../../images/Like.png" catchtap="onLike"/>
           <text/>{{likenum}}
       </view>
 
