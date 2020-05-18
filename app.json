@@ -2,7 +2,6 @@
   "pages": [
     "pages/home/home",
     "pages/recipe/recipe",
-    "pages/post/post",
     "pages/editor/editor",
     "pages/collections/collections",
     "pages/homepage/homepage",
