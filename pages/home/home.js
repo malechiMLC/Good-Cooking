@@ -17,7 +17,6 @@ Page({
     allViewed: false,
     todayRecipes: [],
     loading: false,
-    loadingErr: false
   },
 
   //跳转到写菜谱页面
@@ -85,7 +84,7 @@ Page({
           })
         }
         for(var i=0;i<dinner.length;i++){
-          todayRec.push({
+          todayRec.push( {
             id: dinner[i].id,
             title: '晚餐·' + dinner[i].title,
             image: dinner[i].image,
@@ -112,7 +111,7 @@ Page({
       },
       method: 'get',
       success(res) {
-        // console.log(res.data)
+        console.log(res.data)
         if (that.data.allViewed) {
           wx.showToast({
             title: '更多美味敬请期待',
@@ -140,16 +139,10 @@ Page({
           // console.log(that.data.currPage)
         }
       },
-      fail(err){
-        console.log(err)
-        that.setData({
-          loadingErr: true
-        })
-      }
     })
   },
 
-  clickCard(e) {
+  clickCard(e) {  
     var index = e.currentTarget.dataset.index
     var that = this;
     wx.navigateTo({

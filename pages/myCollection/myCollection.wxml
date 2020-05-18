@@ -2,10 +2,10 @@
 <view class="page-section-spacing">
 	<view class="cu-bar bg-white solid-bottom">
 		<view class="action">
-			<text class="cuIcon-title text-olive"></text>我发布的教程
+			<text class="cuIcon-title text-olive"></text>我收藏的教程
 		</view>
 	</view>
-	<view wx:for="{{myRecipes}}">
+	<view wx:for="{{myCollections}}">
 		<view class="cu-card case {{isCard?'no-card':''}}" bindtap="clickCard" data-index="{{index}}">
 			<view class="cu-item shadow">
 				<view class="image">
@@ -19,9 +19,9 @@
 				</view>
 				<view class="cu-list menu-avatar">
 					<view class="cu-item">
-						<view class="cu-avatar round lg" style="background-image:url({{profile}});"></view>
+						<view class="cu-avatar round lg" style="background-image:url({{item.profile}});"></view>
 						<view class="content flex-sub">
-							<view class="text-grey">{{nickName}}</view>
+							<view class="text-grey">{{item.nickName}}</view>
 							<view class="text-gray text-sm flex justify-between">
 								<text>{{item.difficulty}}  {{item.timeNeeded}}</text>
 								<!-- 因后台无接口 暂不考虑赞数 评论数 -->

@@ -13,6 +13,7 @@
     "pages/searchResult/searchResult",
     "pages/search/search",
     "pages/myRecipe/myRecipe",
+    "pages/myCollection/myCollection",
     "pages/about/about"
   ],
   "window": {

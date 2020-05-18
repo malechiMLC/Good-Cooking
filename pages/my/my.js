@@ -191,6 +191,12 @@ Page({
     })
   },
 
+  NavToMyCollection() {
+    wx.navigateTo({
+      url: '/pages/myCollection/myCollection',
+    })
+  },
+
   NavToFollowers() {
     var that = this;
     wx.navigateTo({
