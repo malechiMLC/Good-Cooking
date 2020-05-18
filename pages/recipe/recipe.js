@@ -24,8 +24,6 @@ Page({
     nutrition:'',
     steps: '',
     commentArray: []
-<<<<<<< HEAD
-=======
   },
 
   //获取收藏数
@@ -67,7 +65,6 @@ Page({
         })
       }
     })
->>>>>>> 6f8450186044e137a9a87185c250126f4f1236ba
   },
 
   //点击collet按钮

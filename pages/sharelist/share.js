@@ -233,36 +233,36 @@ Page({
             icon: 'success',
             duration: 1500
           })
-          wx.request({
-            url: 'https://csquare.wang/user/',
-            method: 'GET',
-            data: {
-              openid: app.globalData.openId
-            },
-            header: {
-             'content-type': 'application/json'
-             },
-            success(res) {
+          // wx.request({
+          //   url: 'https://csquare.wang/user/',
+          //   method: 'GET',
+          //   data: {
+          //     openid: app.globalData.openId
+          //   },
+          //   header: {
+          //    'content-type': 'application/json'
+          //    },
+          //   success(res) {
 
-              let obj = {}
-              obj.bgUrl = images[0]
-              obj.text = text
-              obj.avatarUrl = res.data.profile
-              obj.author = res.data.name
-              obj.likeNum = 0
-              obj.id = app.globalData.openId
-              var tempArray = that.data.infoArray
-              tempArray.push(obj)
+          //     // let obj = {}
+          //     // obj.bgUrl = images[0]
+          //     // obj.text = text
+          //     // obj.avatarUrl = res.data.profile
+          //     // obj.author = res.data.name
+          //     // obj.likeNum = 0
+          //     // obj.id = app.globalData.openId
+          //     // var tempArray = that.data.infoArray
+          //     // tempArray.push(obj)
 
-              that.setData({
-                img_url: [],
-                img_array: [],
-                content: '',
-                showModal: false,
-                infoArray: tempArray
-              })
-            }
-           })
+          //     that.setData({
+          //       img_url: [],
+          //       img_array: [],
+          //       content: '',
+          //       showModal: false
+          //       // infoArray: tempArray
+          //     })
+          //   }
+          //  })
         }
       })
     })

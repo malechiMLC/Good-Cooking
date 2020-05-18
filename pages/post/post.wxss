@@ -1,0 +1,33 @@
+/* pages/post/post.wxss */
+@import "../recipe/recipe.wxss";
+
+.info-card{
+  height: 240rpx;
+  width: 100%;
+}
+
+.info-avatar{
+  height:100rpx;
+  width: 100rpx;
+  border-radius: 50%;
+  background-color:rgb(108, 189, 255);
+}
+
+.contentimage{
+  border-radius:20rpx;
+  width: 700rpx;
+  height: 500rpx;
+  margin-left:20rpx;
+  margin-top:20rpx;
+  display: inline-block;
+}
+
+.flex-column{
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row{
+  display: flex;
+  flex-direction: row;
+}
