@@ -41,7 +41,7 @@ Page({
     URI: undefined,
     //Mask
     showModal: false,
-    head: 'http://q8xdn54oe.bkt.clouddn.com/',
+    head: 'http://qaj46n6jc.bkt.clouddn.com/',
     img_array: [],
     img_urls: [],
     content: ''
@@ -241,31 +241,57 @@ Page({
     let images = that.data.img_urls;
     let text = that.data.content;
     var TIME = Date.parse(new Date())
-    wx.request({
-      url: 'https://csquare.wang/post',
-      method: 'POST',
-      data: {
-        openid: app.globalData.openId,
-        images: images,
-        text: text,
-        time: TIME,
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success(res) {
-        wx.showToast({
-          title: '成功',
-          icon: 'success',
-          duration: 1500
-        })
-        that.setData({
-          img_url: [],
-          img_array: [],
-          content: '',
-          showModal: false
-        })
-      }
+    return new Promise(function (resolve, reject){
+      wx.request({
+        url: 'https://csquare.wang/post',
+        method: 'POST',
+        data: {
+          openid: app.globalData.openId,
+          images: images,
+          text: text,
+          time: TIME,
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        success(res) {
+          wx.showToast({
+            title: '成功',
+            icon: 'success',
+            duration: 1500
+          })
+          wx.request({
+            url: 'https://csquare.wang/user/',
+            method: 'GET',
+            data: {
+              openid: app.globalData.openId
+            },
+            header: {
+             'content-type': 'application/json'
+             },
+            success(res) {
+
+              let obj = {}
+              obj.bgUrl = images[0]
+              obj.text = text
+              obj.avatarUrl = res.data.profile
+              obj.author = res.data.name
+              obj.likeNum = 0
+              obj.id = app.globalData.openId
+              var tempArray = that.data.infoArray
+              tempArray.push(obj)
+
+              that.setData({
+                img_url: [],
+                img_array: [],
+                content: '',
+                showModal: false,
+                infoArray: tempArray
+              })
+            }
+           })
+        }
+      })
     })
   },
 

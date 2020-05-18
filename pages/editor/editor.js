@@ -18,7 +18,7 @@ Page({
     //chooseIcon
     icon:'/images/add.png',
     cover_url:'',
-    head: 'http://q8xdn54oe.bkt.clouddn.com/',
+    head: 'http://qaj46n6jc.bkt.clouddn.com/',
 
     //editor
     formats: {},

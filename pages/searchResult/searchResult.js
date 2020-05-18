@@ -66,7 +66,6 @@ Page({
           obj.text=res.data[i].title
           obj.difficulty=res.data[i].difficulty
           obj.id=res.data[i].id
-          
           temp_array.push(obj)
         }
         _this.setData({
