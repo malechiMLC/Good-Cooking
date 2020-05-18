@@ -12,31 +12,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // infoArray: [{
-    //   bgUrl: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",
-    //   text: "这里是内容",
-    //   avatarUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-    //   author: "作者名",
-    //   likeNum: '2000',
-    //   openid: '111',
-    //   id: '1'
-    // }, {
-    //   bgUrl: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",
-    //   text: "这里是标题",
-    //   avatarUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-    //   author: "作者名",
-    //   likeNum: '2000',
-    //   openid: '112',
-    //   id: '2'
-    // }, {
-    //   bgUrl: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",
-    //   text: "这里是标题",
-    //   avatarUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-    //   author: "作者名",
-    //   likeNum: '2000',
-    //   openid: '113',
-    //   id: '3'
-    // }],
     infoArray:[],
     URI: undefined,
     //Mask
@@ -51,8 +26,6 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-
-
   onLoad: function (options) {
     var _this = this
     // _this.gettotalarray()
