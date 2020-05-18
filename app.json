@@ -12,8 +12,8 @@
     "pages/today/today",
     "pages/searchResult/searchResult",
     "pages/search/search",
-    "pages/upload/upload",
     "pages/myRecipe/myRecipe",
+    "pages/myCollection/myCollection",
     "pages/about/about"
   ],
   "window": {

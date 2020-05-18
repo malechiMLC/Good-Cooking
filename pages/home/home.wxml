@@ -76,7 +76,7 @@
 						<view class="content flex-sub">
 							<view class="text-grey">{{item.name}}</view>
 							<view class="text-gray text-sm flex justify-between">
-								发布时间 {{item.time}}
+								<text>{{item.difficulty}}  {{item.timeNeeded}}</text>
 								<view class="text-gray text-sm">
 									<text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.favoriteNum}}
 									<text class="cuIcon-messagefill margin-lr-xs"></text> {{item.commentNum}}
@@ -93,7 +93,6 @@
 <cu-custom bgColor="bg-olive" wx:if="{{loading}}">
   <view class="action" slot="right">
     <view class="cu-load load-icon">加载中...</view>
-		<text class='cuIcon-title text-blue' wx:if="{{loadingErr}}"></text>加载错误
   </view>
 </cu-custom>
 

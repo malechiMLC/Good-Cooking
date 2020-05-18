@@ -1,5 +1,4 @@
-// pages/collections/collections.js
-
+// pages/myRecipe/myRecipe.js
 const app = getApp()
 
 Page({
@@ -8,62 +7,44 @@ Page({
    * 页面的初始数据
    */
   data: {
-    openid:'ovQMG5twIxjfeMk7WdJt8hAIZDBQ',
-    collects:[
-      {
-        title:"菜名",
-        image:"https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        timeNeeded:"10min",
-        difficulty:"0基础",
-        rid:10,
-        avatar:'',
-        author:'',
-        time:'',
-      }, {
-        title: "菜名",
-        image: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        timeNeeded: "10min",
-        difficulty: "0基础",
-        rid:10,
-        avatar: '',
-        author: '',
-        time: '',
-      }
-    ],
+    myCollections: [],
+    profile: '',
+    nickName: '未登录'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this
-    //获取收藏列表
+    this.setData({
+      profile: app.globalData.userInfo.avatarUrl,
+      nickName: app.globalData.userInfo.nickName
+    })
+    var that = this;
     wx.request({
-      url: 'https://csquare.wang/favorite/user/' + that.data.openid,
+      url: 'https://csquare.wang/favorite/user/' + app.globalData.openId,
       method: 'GET',
-      data: {
-      },
       header: {
         'content-type': 'application/json'
       },
       success(res) {
         console.log(res)
         that.setData({
-          collects: res.data.collects,
+          myCollections: res.data
         })
       }
     })
   },
 
-  clickCard(e) {
+  clickCard(e){
     var index = e.currentTarget.dataset.index
     var that = this;
     wx.navigateTo({
       url: '/pages/recipe/recipe',
-      success: function (res) {
+      success: function(res) {
         // 通过eventChannel向被打开页面传送数据
-        console.log(that.data.collects[index].rid)
-        res.eventChannel.emit('acceptDataFromOpenerPage', { data: that.data.collects[index].rid })
+        console.log(that.data.myCollections[index].id)
+        res.eventChannel.emit('acceptDataFromOpenerPage', { data: that.data.myCollections[index].id })
       }
     })
   },

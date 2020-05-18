@@ -7,12 +7,10 @@ Component({
     commentArray: {
       type: Array,
       value: [],
-      observer:function(newval,oldval){
-        console.log(this.data.commentArray)
-        console.log(newval)
-        this.setData({
-          commentArray:newval
-        })
+      observer: function (newVal) {
+        if (newVal.length>0){
+          console.log(newVal)
+        }
       }
     }
   },

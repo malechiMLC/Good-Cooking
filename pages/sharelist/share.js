@@ -137,16 +137,11 @@ Page({
    * Mask
    */
 
-  preventTouchMove: function () {
-
-  },
-
   //输入内容
   input: function (e) {
     this.setData({
       content: e.detail.value
     })
-    // console.log(this.data.content)
   },
 
   //选择图片

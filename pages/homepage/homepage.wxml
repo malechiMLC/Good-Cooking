@@ -25,7 +25,7 @@
   <view>
     <view wx:if="{{iscaipu}}"><recipies infoArray="{{caipuArray}}"/></view>
     <view wx:elif="{{isdongtai}}"><cards infoArray="{{dongtaiArray}}"/></view>
-    <view wx:elif="{{isshoucang}}"><cards infoArray="{{shoucangArray}}"/></view>
+    <view wx:elif="{{isshoucang}}"><recipies infoArray="{{shoucangArray}}"/></view>
   </view>
 
 </view>

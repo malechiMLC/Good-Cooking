@@ -14,7 +14,9 @@
 }
 
 .contentimage{
+  border-radius:20rpx;
   width: 700rpx;
+  height: 500rpx;
   margin-left:20rpx;
   margin-top:20rpx;
   display: inline-block;

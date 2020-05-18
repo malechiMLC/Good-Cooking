@@ -4,7 +4,7 @@
 <view class="blank"></view>
 
 <!--mask-->
-<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="mask" wx:if="{{showModal}}"></view>
 <view class="uploadDlg" wx:if="{{showModal}}">
 	<text style="font-weight:bold;font-size:32rpx;">分享</text>
 	<textarea class='text' bindinput="input" placeholder="说点什么...." maxlength="-1" value="{{content}}"></textarea>
@@ -26,6 +26,6 @@
 </view>
 <!--mask-->
 
-<cards infoArray="{{infoArray}}" />
+<cards infoArray="{{infoArray}}" class="{{showModal?'bodyLock':''}}" />
 
 <image class='camera' src='/images/camera.png' bindtap='towrite'></image>
