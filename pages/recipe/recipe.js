@@ -23,23 +23,7 @@ Page({
     ingredients:'',
     nutrition:'',
     steps: '',
-    commentArray: [
-      // {
-      //   avatar:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg",
-      //   name:'user',
-      //   comment:"great!"
-      // },
-      // {
-      //   avatar: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg",
-      //   name: 'user',
-      //   comment: "great!"
-      // },
-      // {
-      //   avatar: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg",
-      //   name: 'user',
-      //   comment: "great!"
-      // }
-    ]
+    commentArray: []
   },
 
   //点击collet按钮

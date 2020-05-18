@@ -3,7 +3,6 @@ const app=getApp()
 
 
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -46,7 +45,7 @@ Page({
       profile:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg'
     }],
     followersLength:3,
-    likes:233,
+    likes:218,
     iffollow:'关注',    //关注/取消关注
     btnColor:'red',
     txtColor:'white',
@@ -55,46 +54,46 @@ Page({
     shoucangColor:'#bbb',
     dongtaiArray:[
       {
-        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
-        text:"这里是内容",
+        bgUrl:"https://s1.ax1x.com/2020/05/18/Yhcnk6.jpg",        
+        text:"今天做了黄瓜炒鸡蛋!",
         avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-        author:"作者名",
+        author:"美食博主大一号",
         likeNum:'2000',
         id:'1'
       },{
-        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
-        text:"这里是标题",
+        bgUrl:"https://s1.ax1x.com/2020/05/18/YhceTx.jpg",        
+        text:"猜猜这是什么花呢",
         avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-        author:"作者名",
+        author:"美食博主大一号",
         likeNum:'2000',
         id:'1'
       },{
-        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
-        text:"这里是标题",
+        bgUrl:"https://s1.ax1x.com/2020/05/18/YhcutK.jpg",        
+        text:"太心水粽子了~",
         avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-        author:"作者名",
+        author:"美食博主大一号",
         likeNum:'2000',
         id:'1'
       }
     ],
     caipuArray:[
       {
-        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
-        text:"菜名",
-        timeNeeded:"200分钟",
-        difficulty:'中等',
+        bgUrl:"https://s1.ax1x.com/2020/05/18/Yhwj54.jpg",        
+        text:"海带炖肉",
+        timeNeeded:"40分钟",
+        difficulty:'较难',
         id:'1'
       },{
-        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
-        text:"菜名",
-        timeNeeded:"200分钟",
-        difficulty:'容易',
+        bgUrl:"https://s1.ax1x.com/2020/05/18/YhwzG9.jpg",        
+        text:"糖醋排骨",
+        timeNeeded:"20分钟",
+        difficulty:'中等',
         id:'2'
       },{
-        bgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg",        
-        text:"菜名",
-        timeNeeded:"200分钟",
-        difficulty:'较难',
+        bgUrl:"https://s1.ax1x.com/2020/05/18/YhwxPJ.jpg",        
+        text:"番茄炒鸡蛋",
+        timeNeeded:"10分钟",
+        difficulty:'容易',
         id:'3'
       }
     ],
@@ -116,36 +115,36 @@ Page({
     isshoucang:false,
     isdongtai:false
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('1')
     console.log(options.otherOpenId)
     var _this=this
     _this.setData({
       otherOpenId:options.otherOpenId
     })
-
-    var _this=this
-  //获取个人主页信息
-  //  wx.request({
-  //   url: 'https://csquare.wang/user/',
-  //   method: 'GET',
-  //   data: {
-  //     openid:_this.data.otherOpenId
-  //   },
-  //   header: {
-  //     'content-type': 'application/json'
-  //   },
-  //   success(res) {
-  //     _this.setData({
-  //       name:res.data.name,
-  //       sex:res.data.sex,
-  //       profile:res.data.profile
-  //     })
-  //   }
-  // })
+    console.log(_this.data.otherOpenId)
+  // 获取个人主页信息
+   wx.request({
+    url: 'https://csquare.wang/user/',
+    method: 'GET',
+    data: {
+      openid:_this.data.otherOpenId
+    },
+    header: {
+      'content-type': 'application/json'
+    },
+    success(res) {
+      _this.setData({
+        // name:res.data.name,
+        // sex:res.data.sex,
+        profile:res.data.profile
+      })
+      console.log(res)
+    }
+  })
 
     // 关注了谁
     // wx.request({
@@ -318,14 +317,38 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    console.log('1')
+    var _this=this
+    _this.setData({
+      otherOpenId:options.otherOpenId
+    })
+
+    console.log(_this.data.otherOpenId)
+  // 获取个人主页信息
+   wx.request({
+    url: 'https://csquare.wang/user/',
+    method: 'GET',
+    data: {
+      openid:_this.data.otherOpenId
+    },
+    header: {
+      'content-type': 'application/json'
+    },
+    success(res) {
+      _this.setData({
+        name:res.data.name,
+        sex:res.data.sex,
+        profile:res.data.profile
+      })
+      console.log(res)
+    }
+  })
   },
 
   iffollow:function(){
