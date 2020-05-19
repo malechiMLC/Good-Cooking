@@ -43,7 +43,7 @@ Page({
         keyword:data.data
       })
     }) 
-
+console.log(_this.data.keyword)
     // 搜索
     wx.request({
       url: 'https://csquare.wang/search',
@@ -56,6 +56,7 @@ Page({
         'content-type': 'application/json'
       },
       success(res) {
+        console.log(_this.data.keyword)
         console.log(res)
         var temp_array=[]
         for(var i=0;i<res.data.length;i++){

@@ -6,14 +6,10 @@
     "pages/collections/collections",
     "pages/homepage/homepage",
     "pages/my/my",
-    "pages/followlist/followlist",
     "pages/sharelist/share",
     "pages/today/today",
     "pages/searchResult/searchResult",
-    "pages/search/search",
-    "pages/myRecipe/myRecipe",
-    "pages/myCollection/myCollection",
-    "pages/about/about"
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -53,5 +49,16 @@
       "version": "0.3.3",
       "provider": "wx069ba97219f66d99"
     }
-  }
+  },
+  "subpackages": [
+    {
+      "root": "pages/MyPages/",
+      "pages": [
+        "myRecipe/myRecipe",
+        "myCollection/myCollection",
+        "followlist/followlist",
+        "about/about"
+      ]
+    }
+  ]
 }

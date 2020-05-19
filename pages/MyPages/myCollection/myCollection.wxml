@@ -21,7 +21,7 @@
 					<view class="cu-item">
 						<view class="cu-avatar round lg" style="background-image:url({{item.profile}});"></view>
 						<view class="content flex-sub">
-							<view class="text-grey">{{item.nickName}}</view>
+							<view class="text-grey">{{item.nickname}}</view>
 							<view class="text-gray text-sm flex justify-between">
 								<text>{{item.difficulty}}  {{item.timeNeeded}}</text>
 								<!-- 因后台无接口 暂不考虑赞数 评论数 -->

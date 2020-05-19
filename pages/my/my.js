@@ -187,20 +187,20 @@ Page({
 
   NavToMyRecipe() {
     wx.navigateTo({
-      url: '/pages/myRecipe/myRecipe',
+      url: '/pages/MyPages/myRecipe/myRecipe',
     })
   },
 
   NavToMyCollection() {
     wx.navigateTo({
-      url: '/pages/myCollection/myCollection',
+      url: '/pages/MyPages/myCollection/myCollection',
     })
   },
 
   NavToFollowers() {
     var that = this;
     wx.navigateTo({
-      url: '/pages/followlist/followlist',
+      url: '/pages/MyPages/followlist/followlist',
       success: function (res) {
         // 通过eventChannel向被打开页面传送数据
         res.eventChannel.emit('acceptDataFromOpenerPage', {
