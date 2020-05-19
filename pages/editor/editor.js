@@ -66,6 +66,9 @@ Page({
           icon: 'success',
           duration: 1500
         })
+        wx.navigateTo({
+          url: '/pages/myRecipe/myRecipe',
+        })
       },
     })
   },
