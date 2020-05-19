@@ -22,9 +22,18 @@ Component({
    */
   methods: {
     torecipe:function(e){
+      // console.log(e.currentTarget.id)
+      // wx.navigateTo({
+      //   url: '/pages/recipe/recipe?rid='+e.currentTarget.id
+      // })
+      var recipeID = e.currentTarget.id
       console.log(e.currentTarget.id)
       wx.navigateTo({
-        url: '/pages/recipe/recipe?recipeID='+e.currentTarget.id
+        url: '/pages/recipe/recipe',
+        success: function (res) {
+          // 通过eventChannel向被打开页面传送数据
+          res.eventChannel.emit('acceptDataFromOpenerPage', { data: recipeID })
+        }
       })
     }
   }
