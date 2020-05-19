@@ -147,35 +147,35 @@ Page({
   })
 
     // 关注了谁
-    // wx.request({
-    //   url: 'https://csquare.wang/user/'+_this.data.otherOpenId+'/follow',
-    //   method: 'GET',
-    //   data: {},
-    //   header: {
-    //     'content-type': 'application/json'
-    //   },
-    //   success(res) {
-    //     _this.setData({
-    //       follows:res.data,
-    //       followsLength:res.data.length
-    //     })
-    //   }
-    // })
+    wx.request({
+      url: 'https://csquare.wang/user/'+_this.data.otherOpenId+'/follow',
+      method: 'GET',
+      data: {},
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res) {
+        _this.setData({
+          follows:res.data,
+          followsLength:res.data.length
+        })
+      }
+    })
     //被谁关注了
-    // wx.request({
-    //   url: 'https://csquare.wang/user/'+_this.data.otherOpenId+'/follower',
-    //   method: 'GET',
-    //   data: {},
-    //   header: {
-    //     'content-type': 'application/json'
-    //   },
-    //   success(res) {
-    //     _this.setData({
-    //       followers:res.data,
-    //       followersLength:res.data.length
-    //     })
-    //   }
-    // })
+    wx.request({
+      url: 'https://csquare.wang/user/'+_this.data.otherOpenId+'/follower',
+      method: 'GET',
+      data: {},
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res) {
+        _this.setData({
+          followers:res.data,
+          followersLength:res.data.length
+        })
+      }
+    })
     //获赞数
     // wx.request({
     //   url: 'https://csquare.wang/like/post/'+app.globalData.openId+'/number',
@@ -214,73 +214,62 @@ Page({
     // })
 
     // 获取分享列表
-    // wx.request({
-    //   url: 'https://csquare.wang/post',
-    //   method: 'GET',
-    //   data: { 
-    //     openid:_this.data.otherOpenId
-    //   },
-    //   header: {
-    //     'content-type': 'application/json'
-    //   },
-    //   success(res) {
-    //     var temp_array=[]
-    //     for(var i=0;i<res.length;i++){
-    //       var obj
-    //       obj.author=res.data[i].name
-    //       obj.bgUrl=res.data[i].images[0]
-    //       obj.text=res.data[i].text
-    //       obj.avatarUrl=res.data[i].profile
-    //       obj.openid=res.data[i].openid
-    //       obj.id=res.data[i].id
-    //       // 获取点赞数
-    //       wx.request({
-    //         url: 'https://csquare.wang/like/post/'+res.data[i].id+'/number',
-    //         method: 'GET',
-    //         data: { },
-    //         header: {
-    //           'content-type': 'application/json'
-    //         },
-    //         success(response) {
-    //           obj.likeNum=response.data
-    //         }
-    //       })
-    //       temp_array.push(obj)
-    //     }
-    //     _this.setData({
-    //       dongtaiArray:temp_array
-    //     })
-    //   }
-    // }) 
+    wx.request({
+      url: 'https://csquare.wang/post',
+      method: 'GET',
+      data: { 
+        openid:_this.data.otherOpenId
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res) {
+        var temp_array=[]
+        for(var i=0;i<res.data.length;i++){
+          var obj = {}
+          obj.author=res.data[i].name
+          obj.bgUrl=res.data[i].images[0]
+          obj.text=res.data[i].text
+          obj.avatarUrl=res.data[i].profile
+          obj.openid=res.data[i].openid
+          obj.id=res.data[i].id
+          temp_array.push(obj)
+        }
+        _this.setData({
+          dongtaiArray:temp_array
+        })
+        console.log(_this.data.dongtaiArray)
+      }
+    }) 
 
     // 获取菜谱列表
-    // wx.request({
-    //   url: 'https://csquare.wang/recipe',
-    //   method: 'GET',
-    //   data: {
-    //     openid:_this.data.otherOpenId
-    //   },
-    //   header: {
-    //     'content-type': 'application/json'
-    //   },
-    //   success(res) {
-    //         var temp_array=[]
-    //         for(var i=0;i<res.data.length;i++){
-    //           var obj
-    //           obj.timeNeeded=res.data[i].timeNeeded
-    //           obj.bgUrl=res.data[i].image
-    //           obj.text=res.data[i].name
-    //           obj.difficulty=res.data[i].difficulty
-    //           obj.id=res.data[i].id
+    wx.request({
+      url: 'https://csquare.wang/recipe',
+      method: 'GET',
+      data: {
+        openid:_this.data.otherOpenId
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res) {
+            var temp_array=[]
+            for(let i=0;i<res.data.length;i++){
+              var obj = {}
+              obj.timeNeeded=res.data[i].timeNeeded
+              obj.bgUrl=res.data[i].image
+              obj.text=res.data[i].name
+              obj.difficulty=res.data[i].difficulty
+              obj.id=res.data[i].id
     
-    //           temp_array.push(obj)
-    //         }
-    
-    //         _this.setData({
-    //           caipuArray:temp_array
-    //         })
-    //   }
-    // })
+              temp_array.push(obj)
+            }
+    console.log(temp_array)
+            _this.setData({
+              caipuArray:temp_array
+            })
+      }
+    })
 
     // 获取收藏列表
     wx.request({
