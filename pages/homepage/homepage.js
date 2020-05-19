@@ -45,7 +45,7 @@ Page({
       profile:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg'
     }],
     followersLength:3,
-    likes:218,
+    likes:0,
     iffollow:'关注',    //关注/取消关注
     btnColor:'red',
     txtColor:'white',
