@@ -8,7 +8,7 @@ Page({
    */
   data: {
     otherOpenId:'111',      //个人主页的所有者的openid
-    name:'昵称在这里~',
+    name:'个人主页',
     sex:'2',
     profile:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585590556936&di=d28106696f36c2e6152f1f874451e3a0&imgtype=0&src=http%3A%2F%2Fp2.qhimgs4.com%2Ft013f09f1d8e07f62ce.jpg',
     follows:[{
@@ -57,21 +57,21 @@ Page({
         bgUrl:"https://s1.ax1x.com/2020/05/18/Yhcnk6.jpg",        
         text:"今天做了黄瓜炒鸡蛋!",
         avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-        author:"美食博主大一号",
+        author:"朝阳与落日",
         likeNum:'2000',
         id:'1'
       },{
         bgUrl:"https://s1.ax1x.com/2020/05/18/YhceTx.jpg",        
         text:"猜猜这是什么花呢",
         avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-        author:"美食博主大一号",
+        author:"朝阳与落日",
         likeNum:'2000',
         id:'1'
       },{
         bgUrl:"https://s1.ax1x.com/2020/05/18/YhcutK.jpg",        
         text:"太心水粽子了~",
         avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-        author:"美食博主大一号",
+        author:"朝阳与落日",
         likeNum:'2000',
         id:'1'
       }
