@@ -261,10 +261,9 @@ Page({
               obj.text=res.data[i].name
               obj.difficulty=res.data[i].difficulty
               obj.id=res.data[i].id
-    
               temp_array.push(obj)
             }
-    console.log(temp_array)
+            console.log(temp_array)
             _this.setData({
               caipuArray:temp_array
             })
