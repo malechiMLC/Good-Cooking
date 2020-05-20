@@ -317,8 +317,7 @@ Page({
               _this.setData({
                 iffollow:'取消关注',
                 btnColor:'white',
-                txtColor:'red',
-                followersLength:1
+                txtColor:'red'
               })
             }
           }
