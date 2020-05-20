@@ -53,49 +53,8 @@ Page({
     dongtaiColor:'#bbb',
     shoucangColor:'#bbb',
     dongtaiArray:[
-      {
-        bgUrl:"https://s1.ax1x.com/2020/05/18/Yhcnk6.jpg",        
-        text:"今天做了黄瓜炒鸡蛋!",
-        avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-        author:"朝阳与落日",
-        likeNum:'2000',
-        id:'1'
-      },{
-        bgUrl:"https://s1.ax1x.com/2020/05/18/YhceTx.jpg",        
-        text:"猜猜这是什么花呢",
-        avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-        author:"朝阳与落日",
-        likeNum:'2000',
-        id:'1'
-      },{
-        bgUrl:"https://s1.ax1x.com/2020/05/18/YhcutK.jpg",        
-        text:"太心水粽子了~",
-        avatarUrl:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1430982764,1384686867&fm=26&gp=0.jpg',
-        author:"朝阳与落日",
-        likeNum:'2000',
-        id:'1'
-      }
     ],
     caipuArray:[
-      {
-        bgUrl:"https://s1.ax1x.com/2020/05/18/Yhwj54.jpg",        
-        text:"海带炖肉",
-        timeNeeded:"40分钟",
-        difficulty:'较难',
-        id:'1'
-      },{
-        bgUrl:"https://s1.ax1x.com/2020/05/18/YhwzG9.jpg",        
-        text:"糖醋排骨",
-        timeNeeded:"20分钟",
-        difficulty:'中等',
-        id:'2'
-      },{
-        bgUrl:"https://s1.ax1x.com/2020/05/18/YhwxPJ.jpg",        
-        text:"番茄炒鸡蛋",
-        timeNeeded:"10分钟",
-        difficulty:'容易',
-        id:'3'
-      }
     ],
     shoucangArray:[
       {
@@ -312,9 +271,9 @@ Page({
   onShow: function () {
     console.log('1')
     var _this=this
-    _this.setData({
-      otherOpenId:options.otherOpenId
-    })
+    // _this.setData({
+    //   otherOpenId:options.otherOpenId
+    // })
 
     console.log(_this.data.otherOpenId)
   // 获取个人主页信息
@@ -342,47 +301,51 @@ Page({
     var _this=this
     // 关注
     if(_this.data.iffollow=='关注'){
-      // wx.request({
-      //     url: 'https://csquare.wang/like/post/'+app.globalData.openId+'/number',
-      //     method: 'POST',
-      //     data: {
-      //       followId:_this.data.otherOpenId
-      //     },
-      //     header: {
-      //       'content-type': 'application/json'
-      //     },
-      //     success(res) {
-      //       if(res.data=='true'){
-      //         _this.setData({
-      //           iffollow:'取消关注',
-      //           btnColor:'white',
-      //           txtColor:'red'
-      //         })
-      //       }
-      //     }
-      //   })
+      wx.request({
+          url: 'https://csquare.wang/user/'+app.globalData.openId+'/follow',
+          method: 'POST',
+          data: {
+            folOpenid: _this.data.otherOpenId
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          success(res) {
+            console.log(_this.data.otherOpenId)
+            console.log(res)
+            if(res.data=='true'){
+              _this.setData({
+                iffollow:'取消关注',
+                btnColor:'white',
+                txtColor:'red',
+                followersLength:1
+              })
+            }
+          }
+        })
     }
     // 取消关注
     else if(_this.data.iffollow=='取消关注'){
-      // wx.request({
-      //   url: 'https://csquare.wang/like/post/'+app.globalData.openId+'/number',
-      //   method: 'DELETE',
-      //   data: {
-      //     followId:_this.data.otherOpenId
-      //   },
-      //   header: {
-      //     'content-type': 'application/json'
-      //   },
-      //   success(res) {
-      //     if(res.data=='true'){
-      //       _this.setData({
-      //         iffollow:'关注',
-      //         btnColor:'red',
-      //         txtColor:'white'
-      //       })
-      //     }
-      //   }
-      // })
+      wx.request({
+        url: 'https://csquare.wang/user/'+app.globalData.openId+'/follow',
+        method: 'DELETE',
+        data: {
+          followid: _this.data.otherOpenId
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        success(res) {
+          console.log(res.data)
+          if(res.data=='true'){
+            _this.setData({
+              iffollow:'关注',
+              btnColor:'red',
+              txtColor:'white'
+            })
+          }
+        }
+      })
     }
   },
   changetab:function(e){

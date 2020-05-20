@@ -1,4 +1,5 @@
 {
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "cards":"/custom-components/card/card",
     "searchbar":"/components/searchbar/searchbar"

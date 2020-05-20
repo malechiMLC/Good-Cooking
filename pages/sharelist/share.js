@@ -19,9 +19,16 @@ Page({
     head: 'http://qaj46n6jc.bkt.clouddn.com/',
     img_array: [],
     img_urls: [],
-    content: ''
+    content: '',
+    ifhasImage: false,
   },
 
+
+  //下拉刷新
+  onPullDownRefresh:function(){
+    var that = this;
+    that.onLoad();
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -114,9 +121,7 @@ Page({
   },
 
   addtoarray:function(temp_array,obj){
-    // console.log(obj)
     temp_array.push(obj)
-    // console.log(temp_array)
   },
 
   tosearch: function () {
@@ -191,7 +196,8 @@ Page({
                 let imageurl = that.data.head + dataObject.key;
                 urls.push(imageurl);
                 that.setData({
-                  img_urls: urls
+                  img_urls: urls,
+                  ifhasImage:true
                 })
               },
               fail: function (error) {
@@ -322,7 +328,30 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    var _this = this
+    // _this.gettotalarray()
+    wx.request({
+      url: 'https://csquare.wang/post',
+      method: 'GET',
+      data: {},
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res) {
+        // console.log(res)
+        var temp_array = []
+        for (var i = 0; i < res.data.length; i++) {
+          let obj = {}
+          _this.form(res, temp_array, i, obj)
+            .then(_this.getlikenum(obj, obj.id))
+            .then(_this.addtoarray(temp_array, obj))
+        }
+        _this.setData({
+          infoArray: temp_array
+        })
+        console.log(_this.data.infoArray)
+      }
+    })
   },
 
   /**

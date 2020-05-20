@@ -14,6 +14,7 @@ Page({
     ingredients:'',
     nutrition:'',
     steps:'',
+    ifhascover:false,
 
     //chooseIcon
     icon:'/images/add.png',
@@ -41,12 +42,17 @@ Page({
     var that = this;
     var TIME = Date.parse(new Date())
     console.log(this.data.steps)
+    // while(true){
+    //   if(that.data.ifhascover){
+    //     break;
+    //   }
+    // }
     wx.request({
       url: 'https://csquare.wang/recipe',
-      method:'POST',
-      data:{
+      method: 'POST',
+      data: {
         openid: app.globalData.openId,
-        time:TIME,
+        time: TIME,
         title: that.data.title,
         image: that.data.cover_url,
         timeNeeded: that.data.timeNeeded,
@@ -56,7 +62,7 @@ Page({
         nutrition: that.data.nutrition,
         steps: that.data.steps,
       },
-      header:{
+      header: {
         'content-type': 'application/json'
       },
       success(res) {
@@ -65,9 +71,6 @@ Page({
           title: '成功',
           icon: 'success',
           duration: 1500
-        })
-        wx.navigateTo({
-          url: '/pages/myRecipe/myRecipe',
         })
       },
     })
@@ -109,6 +112,7 @@ Page({
     this.data.steps = value
     console.log(value)
   },
+
   //get cover
   chooseCover:function(){
     var that=this;
@@ -151,7 +155,8 @@ Page({
                 console.log(dataObject)
                 let imageurl = that.data.head + dataObject.key;
                 that.setData({
-                  cover_url: imageurl
+                  cover_url: imageurl,
+                  ifhascover:true
                 })
               },
               fail: function (error) {
@@ -161,7 +166,7 @@ Page({
                 }
               }
             })
-
+            
           }
         })
 
