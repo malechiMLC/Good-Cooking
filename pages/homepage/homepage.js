@@ -317,7 +317,8 @@ Page({
               _this.setData({
                 iffollow:'取消关注',
                 btnColor:'white',
-                txtColor:'red'
+                txtColor:'red',
+                followersLength:1
               })
             }
           }
@@ -325,6 +326,7 @@ Page({
     }
     // 取消关注
     else if(_this.data.iffollow=='取消关注'){
+
       wx.request({
         url: 'https://csquare.wang/user/'+app.globalData.openId+'/follow',
         method: 'DELETE',
